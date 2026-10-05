@@ -1,0 +1,73 @@
+FINAL HISTORICAL NBA BONUS ANALYSIS
+===================================
+
+DATASET
+-------
+Seasons analyzed: 30
+Games analyzed: 35,546
+Team-game rows: 71,092
+First season: 1996-97
+Most recent season: 2025-26
+
+QUESTION 1: DOES REACHING THE BONUS FIRST MATTER?
+-------------------------------------------------
+Win percentage when a team reached the bonus first
+in more periods: 54.86%
+
+Win percentage when it reached the bonus first in
+fewer periods: 45.14%
+
+Difference: 9.71 percentage points
+
+QUESTION 2: DOES SHOOTING MORE BONUS FREE THROWS MATTER?
+--------------------------------------------------------
+Win percentage with more bonus free throws:
+60.86%
+
+Win percentage with fewer bonus free throws:
+39.14%
+
+Difference: 21.72 percentage points
+
+QUESTION 3: WHAT HAPPENS WHEN A TEAM HAS BOTH ADVANTAGES?
+---------------------------------------------------------
+Win percentage with both advantages:
+59.67%
+
+Win percentage with both disadvantages:
+40.33%
+
+Difference: 19.35 percentage points
+
+OTHER RESULTS
+-------------
+Win percentage with first-to-bonus advantage only:
+36.10%
+
+Win percentage with bonus-FTA advantage only:
+63.12%
+
+Correlation between bonus-FTA difference and final
+point difference: 0.127
+
+CHANGE OVER TIME
+----------------
+First-to-bonus win gap in 1996-97:
+15.59 percentage points
+
+First-to-bonus win gap in 2025-26:
+7.14 percentage points
+
+Bonus-FTA win gap in 1996-97:
+30.33 percentage points
+
+Bonus-FTA win gap in 2025-26:
+13.16 percentage points
+
+IMPORTANT INTERPRETATION
+------------------------
+These results show an association, not definite causation.
+Teams may receive additional late-game free throws because
+opponents intentionally foul while trailing. Team quality,
+game location, score situation and other factors may also
+affect the relationship.

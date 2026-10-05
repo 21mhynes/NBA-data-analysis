@@ -1,0 +1,18 @@
+# Large raw NBA data stays on this computer
+data/
+
+# Duplicate per-season historical outputs
+results/history/
+results/history_before_accuracy_fix/
+
+# Backup scripts
+bonus_analysis_backup.py
+bonus_analysis_working_backup.py
+
+# VS Code and macOS files
+.vscode/
+.DS_Store
+
+# Python temporary files
+__pycache__/
+*.pyc

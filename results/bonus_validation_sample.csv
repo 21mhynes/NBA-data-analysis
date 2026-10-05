@@ -1,0 +1,585 @@
+gameId,period,clock,actionNumber,teamId,teamTricode,personId,playerName,actionType,subType,description,scoreHome,scoreAway
+22500001,1,PT11M26.00S,12,1610612745,HOU,1631095,Smith Jr.,Foul,Shooting,Smith Jr. S.FOUL (P1.T1) (E.Dalen),,
+22500001,1,PT11M26.00S,14,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 1 of 1,Holmgren Free Throw 1 of 1 (3 PTS),3.0,0.0
+22500001,1,PT08M17.00S,43,1610612760,OKC,1641717,Wallace,Foul,Shooting,Wallace S.FOUL (P1.T1) (Z.Zarba),,
+22500001,1,PT08M17.00S,45,1610612745,HOU,1641708,Thompson,Free Throw,Free Throw 1 of 1,Thompson Free Throw 1 of 1 (3 PTS),9.0,10.0
+22500001,1,PT06M40.00S,64,1610612745,HOU,1631095,Smith Jr.,Foul,Shooting,Smith Jr. S.FOUL (P2.T2) (J.Goldenberg),,
+22500001,1,PT06M40.00S,66,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 1 of 2,Holmgren Free Throw 1 of 2 (12 PTS),14.0,14.0
+22500001,1,PT06M40.00S,69,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 2 of 2,Holmgren Free Throw 2 of 2 (13 PTS),15.0,14.0
+22500001,1,PT06M29.00S,71,1610612760,OKC,1628392,Hartenstein,Foul,Shooting,Hartenstein S.FOUL (P1.T2) (E.Dalen),,
+22500001,1,PT06M29.00S,73,1610612745,HOU,1641708,Thompson,Free Throw,Free Throw 1 of 1,Thompson Free Throw 1 of 1 (8 PTS),15.0,17.0
+22500001,1,PT06M15.00S,76,1610612760,OKC,1628392,Hartenstein,Foul,Loose Ball,Hartenstein L.B.FOUL (P2.T3) (E.Dalen),,
+22500001,1,PT05M15.00S,89,1610612745,HOU,201142,Durant,Foul,Shooting,Durant S.FOUL (P1.T3) (J.Goldenberg),,
+22500001,1,PT05M15.00S,91,1610612760,OKC,1629652,Dort,Free Throw,Free Throw 1 of 2,Dort Free Throw 1 of 2 (3 PTS),18.0,21.0
+22500001,1,PT05M15.00S,92,1610612760,OKC,1629652,Dort,Free Throw,Free Throw 2 of 2,Dort Free Throw 2 of 2 (4 PTS),19.0,21.0
+22500001,1,PT04M08.00S,100,1610612760,OKC,1631119,Williams,Foul,Personal,Williams P.FOUL (P1.T4) (E.Dalen),,
+22500001,1,PT04M03.00S,104,1610612760,OKC,1629652,Dort,Foul,Personal,Dort P.FOUL (P1.PN) (E.Dalen),,
+22500001,1,PT04M03.00S,106,1610612745,HOU,201142,Durant,Free Throw,Free Throw 1 of 2,Durant Free Throw 1 of 2 (5 PTS),23.0,22.0
+22500001,1,PT04M03.00S,109,1610612745,HOU,201142,Durant,Free Throw,Free Throw 2 of 2,Durant Free Throw 2 of 2 (6 PTS),23.0,23.0
+22500001,1,PT03M26.00S,123,1610612745,HOU,1642263,Sheppard,Foul,Shooting,Sheppard S.FOUL (P1.T4) (Z.Zarba),,
+22500001,1,PT03M26.00S,125,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (3 PTS),24.0,23.0
+22500001,1,PT03M26.00S,126,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,MISS Gilgeous-Alexander Free Throw 2 of 2,,
+22500001,1,PT00M05.60S,166,1610612745,HOU,1631106,Eason,Foul,Offensive Charge,Eason Offensive Charge Foul (P1) (J.Goldenberg),,
+22500001,2,PT11M09.00S,196,1610612745,HOU,1630578,Sengun,Foul,Shooting,Sengun S.FOUL (P1.T1) (Z.Zarba),,
+22500001,2,PT11M09.00S,199,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 1 of 1,Holmgren Free Throw 1 of 1 (16 PTS),30.0,30.0
+22500001,2,PT08M43.00S,217,1610612745,HOU,1630578,Sengun,Foul,Offensive,Sengun OFF.Foul (P2) (E.Dalen),,
+22500001,2,PT08M11.00S,226,1610612760,OKC,1642349,Mitchell,Foul,Shooting,Mitchell S.FOUL (P1.T1) (J.Goldenberg),,
+22500001,2,PT08M11.00S,228,1610612745,HOU,1629006,Okogie,Free Throw,Free Throw 1 of 2,Okogie Free Throw 1 of 2 (4 PTS),39.0,40.0
+22500001,2,PT08M11.00S,237,1610612745,HOU,1629006,Okogie,Free Throw,Free Throw 2 of 2,Okogie Free Throw 2 of 2 (5 PTS),39.0,41.0
+22500001,2,PT06M35.00S,251,1610612760,OKC,1642349,Mitchell,Foul,Shooting,Mitchell S.FOUL (P2.T2) (E.Dalen),,
+22500001,2,PT06M35.00S,253,1610612745,HOU,203500,Adams,Free Throw,Free Throw 1 of 2,Adams Free Throw 1 of 2 (1 PTS),42.0,45.0
+22500001,2,PT06M35.00S,254,1610612745,HOU,203500,Adams,Free Throw,Free Throw 2 of 2,Adams Free Throw 2 of 2 (2 PTS),42.0,46.0
+22500001,2,PT05M44.00S,267,1610612745,HOU,203500,Adams,Foul,Offensive,Adams OFF.Foul (P1) (Z.Zarba),,
+22500001,2,PT04M05.00S,292,1610612760,OKC,1628392,Hartenstein,Foul,Loose Ball,Hartenstein L.B.FOUL (P3.T3) (Z.Zarba),,
+22500001,2,PT03M11.00S,300,1610612760,OKC,1629652,Dort,Foul,Personal,Dort P.FOUL (P2.T4) (Z.Zarba),,
+22500001,2,PT00M05.10S,340,1610612760,OKC,1631096,Holmgren,Foul,Personal,Holmgren P.FOUL (P1.PN) (Z.Zarba),,
+22500001,2,PT00M05.10S,342,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 1 of 2,Sengun Free Throw 1 of 2 (9 PTS),47.0,56.0
+22500001,2,PT00M05.10S,347,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 2 of 2,Sengun Free Throw 2 of 2 (10 PTS),47.0,57.0
+22500001,2,PT00M03.80S,348,1610612745,HOU,1641708,Thompson,Foul,Personal,Thompson P.FOUL (P1.T2) (J.Goldenberg),,
+22500001,2,PT00M00.70S,351,1610612745,HOU,1629006,Okogie,Foul,Shooting,Okogie S.FOUL (P1.PN) (Z.Zarba),,
+22500001,2,PT00M00.70S,356,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 1 of 1,Mitchell Free Throw 1 of 1 (12 PTS),51.0,57.0
+22500001,3,PT09M24.00S,389,1610612745,HOU,1641708,Thompson,Foul,Offensive,Thompson OFF.Foul (P2) (J.Goldenberg),,
+22500001,3,PT07M57.00S,401,1610612760,OKC,1627936,Caruso,Foul,Shooting,Caruso S.FOUL (P1.T1) (E.Dalen),,
+22500001,3,PT07M57.00S,403,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 1 of 2,Sengun Free Throw 1 of 2 (11 PTS),57.0,64.0
+22500001,3,PT07M57.00S,406,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 2 of 2,Sengun Free Throw 2 of 2 (12 PTS),57.0,65.0
+22500001,3,PT07M25.00S,411,1610612760,OKC,1641717,Wallace,Foul,Loose Ball,Wallace L.B.FOUL (P2.T2) (Z.Zarba),,
+22500001,3,PT07M00.00S,420,1610612745,HOU,1631095,Smith Jr.,Foul,Loose Ball,Smith Jr. L.B.FOUL (P3.T1) (Z.Zarba),,
+22500001,3,PT06M13.00S,434,1610612745,HOU,201142,Durant,Foul,Shooting,Durant S.FOUL (P2.T2) (E.Dalen),,
+22500001,3,PT06M13.00S,436,1610612760,OKC,1641717,Wallace,Free Throw,Free Throw 1 of 2,MISS Wallace Free Throw 1 of 2,,
+22500001,3,PT06M13.00S,444,1610612760,OKC,1641717,Wallace,Free Throw,Free Throw 2 of 2,Wallace Free Throw 2 of 2 (4 PTS),61.0,67.0
+22500001,3,PT04M19.00S,465,1610612760,OKC,1628983,Gilgeous-Alexander,Foul,Shooting,Gilgeous-Alexander S.FOUL (P1.T3) (E.Dalen),,
+22500001,3,PT04M19.00S,467,1610612745,HOU,203991,Capela,Free Throw,Free Throw 1 of 2,Capela Free Throw 1 of 2 (3 PTS),65.0,70.0
+22500001,3,PT04M19.00S,468,1610612745,HOU,203991,Capela,Free Throw,Free Throw 2 of 2,Capela Free Throw 2 of 2 (4 PTS),65.0,71.0
+22500001,3,PT01M18.00S,502,1610612760,OKC,1630598,Wiggins,Foul,Personal,Wiggins P.FOUL (P1.T4) (Z.Zarba),,
+22500001,3,PT01M18.00S,504,1610612760,OKC,1629652,Dort,Foul,Away From Play,Dort AWAY.FROM.PLAY.FOUL (P3.PN) (Z.Zarba),,
+22500001,3,PT01M18.00S,506,1610612745,HOU,201142,Durant,Free Throw,Free Throw 1 of 1,Durant Free Throw 1 of 1 (17 PTS),73.0,77.0
+22500001,3,PT00M43.80S,513,1610612760,OKC,1631096,Holmgren,Foul,Shooting,Holmgren S.FOUL (P2.PN) (J.Goldenberg),,
+22500001,3,PT00M43.80S,515,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 1 of 2,Sengun Free Throw 1 of 2 (18 PTS),75.0,78.0
+22500001,3,PT00M43.80S,520,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 2 of 2,Sengun Free Throw 2 of 2 (19 PTS),75.0,79.0
+22500001,4,PT08M30.00S,567,1610612745,HOU,1630578,Sengun,Foul,Offensive Charge,Sengun Offensive Charge Foul (P3) (E.Dalen),,
+22500001,4,PT08M10.00S,572,1610612745,HOU,203500,Adams,Foul,Shooting,Adams S.FOUL (P2.T1) (Z.Zarba),,
+22500001,4,PT08M10.00S,574,1610612760,OKC,1628392,Hartenstein,Free Throw,Free Throw 1 of 2,Hartenstein Free Throw 1 of 2 (3 PTS),84.0,87.0
+22500001,4,PT08M10.00S,577,1610612760,OKC,1628392,Hartenstein,Free Throw,Free Throw 2 of 2,Hartenstein Free Throw 2 of 2 (4 PTS),85.0,87.0
+22500001,4,PT07M29.00S,583,1610612760,OKC,1631096,Holmgren,Foul,Shooting,Holmgren S.FOUL (P3.T1) (J.Goldenberg),,
+22500001,4,PT07M29.00S,589,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 1 of 1,Sengun Free Throw 1 of 1 (28 PTS),85.0,90.0
+22500001,4,PT07M06.00S,593,1610612760,OKC,1628392,Hartenstein,Foul,Loose Ball,Hartenstein L.B.FOUL (P4.T2) (J.Goldenberg),,
+22500001,4,PT06M49.00S,595,1610612760,OKC,1627936,Caruso,Foul,Shooting,Caruso S.FOUL (P2.T3) (E.Dalen),,
+22500001,4,PT06M49.00S,602,1610612745,HOU,1629006,Okogie,Free Throw,Free Throw 1 of 2,MISS Okogie Free Throw 1 of 2,,
+22500001,4,PT06M49.00S,604,1610612745,HOU,1629006,Okogie,Free Throw,Free Throw 2 of 2,Okogie Free Throw 2 of 2 (6 PTS),85.0,91.0
+22500001,4,PT04M55.00S,616,1610612745,HOU,1630578,Sengun,Foul,Shooting,Sengun S.FOUL (P4.T2) (J.Goldenberg),,
+22500001,4,PT04M55.00S,618,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (14 PTS),88.0,93.0
+22500001,4,PT04M55.00S,622,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (15 PTS),89.0,93.0
+22500001,4,PT03M52.00S,629,1610612745,HOU,1641708,Thompson,Foul,Shooting,Thompson S.FOUL (P3.T3) (Z.Zarba),,
+22500001,4,PT03M52.00S,632,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (18 PTS),92.0,97.0
+22500001,4,PT03M52.00S,635,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (19 PTS),93.0,97.0
+22500001,4,PT00M53.10S,665,1610612760,OKC,1631096,Holmgren,Foul,Loose Ball,Holmgren L.B.FOUL (P4.T4) (J.Goldenberg),,
+22500001,4,PT00M09.50S,672,1610612760,OKC,1629652,Dort,Foul,Shooting,Dort S.FOUL (P4.PN) (E.Dalen),,
+22500001,4,PT00M09.50S,674,1610612745,HOU,201142,Durant,Free Throw,Free Throw 1 of 2,MISS Durant Free Throw 1 of 2,,
+22500001,4,PT00M09.50S,682,1610612745,HOU,201142,Durant,Free Throw,Free Throw 2 of 2,Durant Free Throw 2 of 2 (20 PTS),102.0,104.0
+22500001,5,PT04M44.00S,705,1610612760,OKC,1628983,Gilgeous-Alexander,Foul,Loose Ball,Gilgeous-Alexander L.B.FOUL (P2.T1) (Z.Zarba),,
+22500001,5,PT04M25.00S,710,1610612745,HOU,201142,Durant,Foul,Loose Ball,Durant L.B.FOUL (P3.T1) (Z.Zarba),,
+22500001,5,PT03M43.00S,719,1610612745,HOU,1630578,Sengun,Foul,Personal,Sengun P.FOUL (P5.T2) (E.Dalen),,
+22500001,5,PT02M30.00S,728,1610612760,OKC,1641717,Wallace,Foul,Shooting,Wallace S.FOUL (P3.T2) (J.Goldenberg),,
+22500001,5,PT02M30.00S,730,1610612745,HOU,1642263,Sheppard,Free Throw,Free Throw 1 of 2,Sheppard Free Throw 1 of 2 (9 PTS),112.0,107.0
+22500001,5,PT02M30.00S,731,1610612745,HOU,1642263,Sheppard,Free Throw,Free Throw 2 of 2,MISS Sheppard Free Throw 2 of 2,,
+22500001,5,PT01M25.00S,739,1610612760,OKC,1631096,Holmgren,Foul,Shooting,Holmgren S.FOUL (P5.T3) (Z.Zarba),,
+22500001,5,PT01M25.00S,741,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 1 of 2,MISS Sengun Free Throw 1 of 2,,
+22500001,5,PT01M25.00S,743,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 2 of 2,Sengun Free Throw 2 of 2 (33 PTS),112.0,111.0
+22500001,5,PT00M48.10S,753,1610612760,OKC,1631096,Holmgren,Foul,Personal,Holmgren P.FOUL (P6.PN) (Z.Zarba),,
+22500001,5,PT00M48.10S,757,1610612745,HOU,1629006,Okogie,Free Throw,Free Throw 1 of 2,Okogie Free Throw 1 of 2 (7 PTS),115.0,112.0
+22500001,5,PT00M48.10S,758,1610612745,HOU,1629006,Okogie,Free Throw,Free Throw 2 of 2,Okogie Free Throw 2 of 2 (8 PTS),115.0,113.0
+22500001,5,PT00M04.70S,773,1610612745,HOU,1629006,Okogie,Foul,Personal,Okogie P.FOUL (P2.T3) (J.Goldenberg),,
+22500001,6,PT04M28.00S,792,1610612745,HOU,203500,Adams,Foul,Personal,Adams P.FOUL (P3.T1) (J.Goldenberg),,
+22500001,6,PT03M41.00S,798,1610612760,OKC,1628392,Hartenstein,Foul,Shooting,Hartenstein S.FOUL (P5.T1) (J.Goldenberg),,
+22500001,6,PT03M41.00S,800,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 1 of 2,Sengun Free Throw 1 of 2 (36 PTS),115.0,116.0
+22500001,6,PT03M41.00S,801,1610612745,HOU,1630578,Sengun,Free Throw,Free Throw 2 of 2,Sengun Free Throw 2 of 2 (37 PTS),115.0,117.0
+22500001,6,PT03M33.00S,802,1610612745,HOU,1631095,Smith Jr.,Foul,Shooting,Smith Jr. S.FOUL (P4.T2) (E.Dalen),,
+22500001,6,PT03M33.00S,804,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,MISS Gilgeous-Alexander Free Throw 1 of 2,,
+22500001,6,PT03M33.00S,806,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (29 PTS),116.0,117.0
+22500001,6,PT03M10.00S,811,1610612745,HOU,201142,Durant,Foul,Loose Ball,Durant L.B.FOUL (P4.T3) (Z.Zarba),,
+22500001,6,PT02M19.00S,819,1610612745,HOU,201142,Durant,Foul,Shooting,Durant S.FOUL (P5.PN) (E.Dalen),,
+22500001,6,PT02M19.00S,821,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (30 PTS),117.0,119.0
+22500001,6,PT02M19.00S,822,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,MISS Gilgeous-Alexander Free Throw 2 of 2,,
+22500001,6,PT01M15.00S,837,1610612760,OKC,1628392,Hartenstein,Foul,Shooting,Hartenstein S.FOUL (P6.T2) (J.Goldenberg),,
+22500001,6,PT01M15.00S,841,1610612745,HOU,201142,Durant,Free Throw,Free Throw 1 of 1,Durant Free Throw 1 of 1 (23 PTS),120.0,122.0
+22500001,6,PT00M32.60S,845,1610612745,HOU,203500,Adams,Foul,Personal,Adams P.FOUL (P4.PN) (E.Dalen),,
+22500001,6,PT00M32.60S,847,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,MISS Gilgeous-Alexander Free Throw 1 of 2,,
+22500001,6,PT00M32.60S,851,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (33 PTS),123.0,122.0
+22500001,6,PT00M02.30S,860,1610612745,HOU,201142,Durant,Foul,Shooting,Durant S.FOUL (P6.PN) (J.Goldenberg),,
+22500001,6,PT00M02.30S,864,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (34 PTS),124.0,124.0
+22500001,6,PT00M02.30S,865,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (35 PTS),125.0,124.0
+22500002,1,PT09M24.00S,29,1610612747,LAL,1630559,Reaves,Foul,Shooting,Reaves S.FOUL (P1.T1) (T.Ford),,
+22500002,1,PT09M24.00S,31,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 1 of 2,Butler III Free Throw 1 of 2 (4 PTS),4.0,6.0
+22500002,1,PT09M24.00S,32,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 2 of 2,Butler III Free Throw 2 of 2 (5 PTS),4.0,7.0
+22500002,1,PT08M27.00S,41,1610612747,LAL,1629060,Hachimura,Foul,Offensive,Hachimura OFF.Foul (P1) (P.Ransom),,
+22500002,1,PT05M40.00S,76,1610612747,LAL,1629028,Ayton,Foul,Personal,Ayton P.FOUL (P1.T2) (J.DeRosa),,
+22500002,1,PT05M22.00S,87,1610612744,GSW,203110,Green,Foul,Technical,Green T.FOUL (P0.T0) (J.DeRosa),,
+22500002,1,PT05M22.00S,88,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw Technical,MISS Reaves Free Throw Technical,,
+22500002,1,PT05M00.00S,96,1610612744,GSW,1627780,Payton II,Foul,Offensive Charge,Payton II Offensive Charge Foul (P1) (P.Ransom),,
+22500002,1,PT04M49.00S,101,1610612744,GSW,1627780,Payton II,Foul,Shooting,Payton II S.FOUL (P2.T1) (P.Ransom),,
+22500002,1,PT04M49.00S,103,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 1 of 2,Doncic Free Throw 1 of 2 (6 PTS),12.0,12.0
+22500002,1,PT04M49.00S,104,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 2 of 2,MISS Doncic Free Throw 2 of 2,,
+22500002,1,PT03M26.00S,126,1610612747,LAL,1631222,LaRavia,Foul,Shooting,LaRavia S.FOUL (P1.T3) (J.DeRosa),,
+22500002,1,PT03M26.00S,128,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 1 of 2,Butler III Free Throw 1 of 2 (8 PTS),14.0,18.0
+22500002,1,PT03M26.00S,129,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 2 of 2,Butler III Free Throw 2 of 2 (9 PTS),14.0,19.0
+22500002,1,PT02M42.00S,133,1610612744,GSW,1627780,Payton II,Foul,Shooting,Payton II S.FOUL (P3.T2) (P.Ransom),,
+22500002,1,PT02M42.00S,138,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 1 of 2,Doncic Free Throw 1 of 2 (9 PTS),15.0,22.0
+22500002,1,PT02M42.00S,139,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 2 of 2,Doncic Free Throw 2 of 2 (10 PTS),16.0,22.0
+22500002,1,PT02M13.00S,142,1610612744,GSW,202710,Butler III,Foul,Personal,Butler III P.FOUL (P1.T3) (T.Ford),,
+22500002,1,PT01M30.00S,153,1610612744,GSW,1642954,Richard,Foul,Shooting,Richard S.FOUL (P1.T4) (T.Ford),,
+22500002,1,PT01M30.00S,155,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 1 of 2,Reaves Free Throw 1 of 2 (3 PTS),17.0,22.0
+22500002,1,PT01M30.00S,156,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 2 of 2,Reaves Free Throw 2 of 2 (4 PTS),18.0,22.0
+22500002,1,PT00M56.00S,161,1610612744,GSW,1641764,Podziemski,Foul,Offensive Charge,Podziemski Offensive Charge Foul (P1) (T.Ford),,
+22500002,1,PT00M03.20S,169,1610612747,LAL,203935,Smart,Foul,Shooting,Smart S.FOUL (P1.T4) (J.DeRosa),,
+22500002,1,PT00M03.20S,179,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 1 of 3,Butler III Free Throw 1 of 3 (10 PTS),22.0,26.0
+22500002,1,PT00M03.20S,180,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 2 of 3,Butler III Free Throw 2 of 3 (11 PTS),22.0,27.0
+22500002,1,PT00M03.20S,181,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 3 of 3,Butler III Free Throw 3 of 3 (12 PTS),22.0,28.0
+22500002,2,PT11M08.00S,201,1610612744,GSW,202710,Butler III,Foul,Shooting,Butler III S.FOUL (P2.T1) (J.DeRosa),,
+22500002,2,PT11M08.00S,203,1610612747,LAL,1631222,LaRavia,Free Throw,Free Throw 1 of 2,MISS LaRavia Free Throw 1 of 2,,
+22500002,2,PT11M08.00S,205,1610612747,LAL,1631222,LaRavia,Free Throw,Free Throw 2 of 2,MISS LaRavia Free Throw 2 of 2,,
+22500002,2,PT10M04.00S,216,1610612747,LAL,1629020,Vanderbilt,Foul,Technical,Vanderbilt T.FOUL (P0.T0) (T.Ford),,
+22500002,2,PT10M04.00S,217,1610612744,GSW,202710,Butler III,Free Throw,Free Throw Technical,Butler III Free Throw Technical (13 PTS),25.0,31.0
+22500002,2,PT08M51.00S,223,1610612744,GSW,203110,Green,Foul,Offensive,Green OFF.Foul (P1) (P.Ransom),,
+22500002,2,PT08M38.00S,232,1610612747,LAL,1629637,Hayes,Foul,Offensive,Hayes OFF.Foul (P1) (T.Ford),,
+22500002,2,PT08M25.00S,237,1610612747,LAL,1630559,Reaves,Foul,Personal,Reaves P.FOUL (P2.T1) (J.DeRosa),,
+22500002,2,PT07M36.00S,246,1610612747,LAL,1629028,Ayton,Foul,Shooting,Ayton S.FOUL (P2.T2) (P.Ransom),,
+22500002,2,PT07M36.00S,248,1610612744,GSW,201939,Curry,Free Throw,Free Throw 1 of 2,Curry Free Throw 1 of 2 (4 PTS),31.0,36.0
+22500002,2,PT07M36.00S,255,1610612744,GSW,201939,Curry,Free Throw,Free Throw 2 of 2,Curry Free Throw 2 of 2 (5 PTS),31.0,37.0
+22500002,2,PT06M41.00S,270,1610612744,GSW,201143,Horford,Foul,Shooting,Horford S.FOUL (P1.T2) (T.Ford),,
+22500002,2,PT06M41.00S,272,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 1 of 2,Doncic Free Throw 1 of 2 (13 PTS),32.0,37.0
+22500002,2,PT06M41.00S,273,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 2 of 2,Doncic Free Throw 2 of 2 (14 PTS),33.0,37.0
+22500002,2,PT05M44.00S,281,1610612744,GSW,201939,Curry,Foul,Offensive,Curry OFF.Foul (P1) (J.DeRosa),,
+22500002,2,PT05M33.00S,286,1610612747,LAL,203935,Smart,Foul,Flagrant Type 1,Smart FLAGRANT.FOUL.TYPE1 (P2.T3) (P.Ransom),,
+22500002,2,PT05M33.00S,292,1610612744,GSW,201939,Curry,Free Throw,Free Throw Flagrant 1 of 2,Curry Free Throw Flagrant 1 of 2 (6 PTS),35.0,40.0
+22500002,2,PT05M33.00S,293,1610612744,GSW,201939,Curry,Free Throw,Free Throw Flagrant 2 of 2,Curry Free Throw Flagrant 2 of 2 (7 PTS),35.0,41.0
+22500002,2,PT05M23.00S,294,1610612747,LAL,1630559,Reaves,Foul,Shooting,Reaves S.FOUL (P3.T4) (J.DeRosa),,
+22500002,2,PT05M23.00S,296,1610612744,GSW,1630228,Kuminga,Free Throw,Free Throw 1 of 2,Kuminga Free Throw 1 of 2 (4 PTS),35.0,42.0
+22500002,2,PT05M23.00S,297,1610612744,GSW,1630228,Kuminga,Free Throw,Free Throw 2 of 2,MISS Kuminga Free Throw 2 of 2,,
+22500002,2,PT02M46.00S,323,1610612744,GSW,201143,Horford,Foul,Shooting,Horford S.FOUL (P2.T3) (J.DeRosa),,
+22500002,2,PT02M46.00S,325,1610612747,LAL,203935,Smart,Free Throw,Free Throw 1 of 2,Smart Free Throw 1 of 2 (5 PTS),42.0,49.0
+22500002,2,PT02M46.00S,332,1610612747,LAL,203935,Smart,Free Throw,Free Throw 2 of 2,MISS Smart Free Throw 2 of 2,,
+22500002,2,PT02M23.00S,336,1610612744,GSW,203110,Green,Foul,Shooting,Green S.FOUL (P2.T4) (T.Ford),,
+22500002,2,PT02M23.00S,338,1610612747,LAL,1629028,Ayton,Free Throw,Free Throw 1 of 2,MISS Ayton Free Throw 1 of 2,,
+22500002,2,PT02M23.00S,340,1610612747,LAL,1629028,Ayton,Free Throw,Free Throw 2 of 2,MISS Ayton Free Throw 2 of 2,,
+22500002,2,PT02M07.00S,344,1610612747,LAL,203935,Smart,Foul,Offensive,Smart OFF.Foul (P3) (T.Ford),,
+22500002,2,PT02M01.00S,347,1610612744,GSW,203110,Green,Foul,Offensive,Green OFF.Foul (P3) (P.Ransom),,
+22500002,2,PT01M52.00S,351,1610612744,GSW,1630228,Kuminga,Foul,Shooting,Kuminga S.FOUL (P1.PN) (T.Ford),,
+22500002,2,PT01M52.00S,353,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 1 of 1,Doncic Free Throw 1 of 1 (19 PTS),45.0,49.0
+22500002,2,PT01M08.00S,358,1610612747,LAL,203935,Smart,Foul,Personal,Smart P.FOUL (P4.PN) (J.DeRosa),,
+22500002,2,PT01M08.00S,360,1610612744,GSW,203110,Green,Free Throw,Free Throw 1 of 2,Green Free Throw 1 of 2 (3 PTS),48.0,50.0
+22500002,2,PT01M08.00S,363,1610612744,GSW,203110,Green,Free Throw,Free Throw 2 of 2,MISS Green Free Throw 2 of 2,,
+22500002,2,PT00M01.00S,376,1610612747,LAL,1629216,Vincent,Foul,Shooting,Vincent S.FOUL (P1.PN) (P.Ransom),,
+22500002,2,PT00M01.00S,378,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 1 of 2,Butler III Free Throw 1 of 2 (16 PTS),54.0,54.0
+22500002,2,PT00M01.00S,381,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 2 of 2,Butler III Free Throw 2 of 2 (17 PTS),54.0,55.0
+22500002,3,PT11M31.00S,392,1610612744,GSW,201939,Curry,Foul,Shooting,Curry S.FOUL (P2.T1) (J.DeRosa),,
+22500002,3,PT11M31.00S,394,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 1 of 1,MISS Doncic Free Throw 1 of 1,,
+22500002,3,PT10M47.00S,404,1610612744,GSW,1630228,Kuminga,Foul,Shooting,Kuminga S.FOUL (P2.T2) (P.Ransom),,
+22500002,3,PT10M47.00S,406,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 1 of 1,MISS Doncic Free Throw 1 of 1,,
+22500002,3,PT09M25.00S,415,1610612747,LAL,1629216,Vincent,Foul,Shooting,Vincent S.FOUL (P2.T1) (J.DeRosa),,
+22500002,3,PT09M25.00S,417,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 1 of 2,Butler III Free Throw 1 of 2 (22 PTS),58.0,68.0
+22500002,3,PT09M25.00S,418,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 2 of 2,Butler III Free Throw 2 of 2 (23 PTS),58.0,69.0
+22500002,3,PT08M50.00S,421,1610612747,LAL,1630559,Reaves,Foul,Shooting,Reaves S.FOUL (P4.T2) (P.Ransom),,
+22500002,3,PT08M50.00S,423,1610612744,GSW,201939,Curry,Free Throw,Free Throw 1 of 2,Curry Free Throw 1 of 2 (15 PTS),58.0,70.0
+22500002,3,PT08M50.00S,424,1610612744,GSW,201939,Curry,Free Throw,Free Throw 2 of 2,Curry Free Throw 2 of 2 (16 PTS),58.0,71.0
+22500002,3,PT07M48.00S,432,1610612747,LAL,1629028,Ayton,Foul,Offensive,Ayton OFF.Foul (P3) (P.Ransom),,
+22500002,3,PT06M57.00S,444,1610612744,GSW,1641764,Podziemski,Foul,Shooting,Podziemski S.FOUL (P2.T3) (T.Ford),,
+22500002,3,PT06M57.00S,450,1610612747,LAL,1629029,Dončić,Free Throw,Free Throw 1 of 1,Doncic Free Throw 1 of 1 (29 PTS),61.0,73.0
+22500002,3,PT05M56.00S,457,1610612744,GSW,1630228,Kuminga,Foul,Personal,Kuminga P.FOUL (P3.T4) (P.Ransom),,
+22500002,3,PT05M29.00S,468,1610612744,GSW,201939,Curry,Foul,Loose Ball,Curry L.B.FOUL (P3.PN) (T.Ford),,
+22500002,3,PT05M29.00S,470,1610612747,LAL,203935,Smart,Free Throw,Free Throw 1 of 2,Smart Free Throw 1 of 2 (6 PTS),64.0,78.0
+22500002,3,PT05M29.00S,472,1610612747,LAL,203935,Smart,Free Throw,Free Throw 2 of 2,Smart Free Throw 2 of 2 (7 PTS),65.0,78.0
+22500002,3,PT03M59.00S,482,1610612744,GSW,201143,Horford,Foul,Shooting,Horford S.FOUL (P3.PN) (J.DeRosa),,
+22500002,3,PT03M59.00S,485,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 1 of 2,Reaves Free Throw 1 of 2 (13 PTS),68.0,78.0
+22500002,3,PT03M59.00S,490,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 2 of 2,MISS Reaves Free Throw 2 of 2,,
+22500002,3,PT02M23.00S,503,1610612747,LAL,1630559,Reaves,Foul,Shooting,Reaves S.FOUL (P5.T3) (J.DeRosa),,
+22500002,3,PT02M23.00S,505,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 1 of 2,Butler III Free Throw 1 of 2 (24 PTS),70.0,84.0
+22500002,3,PT02M23.00S,508,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 2 of 2,Butler III Free Throw 2 of 2 (25 PTS),70.0,85.0
+22500002,4,PT09M48.00S,558,1610612747,LAL,1629637,Hayes,Foul,Shooting,Hayes S.FOUL (P2.T1) (P.Ransom),,
+22500002,4,PT09M48.00S,564,1610612744,GSW,203110,Green,Free Throw,Free Throw 1 of 1,MISS Green Free Throw 1 of 1,,
+22500002,4,PT09M32.00S,566,1610612744,GSW,203110,Green,Foul,Loose Ball,Green L.B.FOUL (P4.T1) (J.DeRosa),,
+22500002,4,PT09M25.00S,569,1610612744,GSW,1642366,Post,Foul,Shooting,Post S.FOUL (P1.T2) (P.Ransom),,
+22500002,4,PT09M25.00S,571,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 1 of 1,Reaves Free Throw 1 of 1 (16 PTS),84.0,95.0
+22500002,4,PT08M41.00S,574,1610612744,GSW,202710,Butler III,Foul,Personal,Butler III P.FOUL (P3.T3) (P.Ransom),,
+22500002,4,PT07M39.00S,601,1610612744,GSW,1642954,Richard,Foul,Loose Ball,Richard L.B.FOUL (P2.T4) (T.Ford),,
+22500002,4,PT05M07.00S,623,1610612744,GSW,201143,Horford,Foul,Offensive,Horford OFF.Foul (P4) (T.Ford),,
+22500002,4,PT03M16.00S,644,1610612744,GSW,203110,Green,Foul,Shooting,Green S.FOUL (P5.PN) (T.Ford),,
+22500002,4,PT03M16.00S,646,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 1 of 2,MISS Reaves Free Throw 1 of 2,,
+22500002,4,PT03M16.00S,648,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 2 of 2,Reaves Free Throw 2 of 2 (19 PTS),100.0,108.0
+22500002,4,PT02M17.00S,656,1610612744,GSW,202710,Butler III,Foul,Shooting,Butler III S.FOUL (P4.PN) (P.Ransom),,
+22500002,4,PT02M17.00S,658,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 1 of 2,Reaves Free Throw 1 of 2 (20 PTS),101.0,110.0
+22500002,4,PT02M17.00S,659,1610612747,LAL,1630559,Reaves,Free Throw,Free Throw 2 of 2,Reaves Free Throw 2 of 2 (21 PTS),102.0,110.0
+22500002,4,PT02M03.00S,660,1610612747,LAL,1629060,Hachimura,Foul,Shooting,Hachimura S.FOUL (P2.T2) (P.Ransom),,
+22500002,4,PT02M03.00S,662,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 1 of 2,Butler III Free Throw 1 of 2 (30 PTS),102.0,111.0
+22500002,4,PT02M03.00S,665,1610612744,GSW,202710,Butler III,Free Throw,Free Throw 2 of 2,Butler III Free Throw 2 of 2 (31 PTS),102.0,112.0
+22500002,4,PT01M16.00S,671,1610612747,LAL,1629029,Dončić,Foul,Personal,Doncic P.FOUL (P1.T3) (J.DeRosa),,
+22500002,4,PT00M39.10S,678,1610612747,LAL,1629216,Vincent,Foul,Personal Take,Vincent Personal Take Foul (P3.PN) (J.DeRosa),,
+22500002,4,PT00M39.10S,680,1610612744,GSW,201939,Curry,Free Throw,Free Throw 1 of 2,Curry Free Throw 1 of 2 (22 PTS),109.0,118.0
+22500002,4,PT00M39.10S,681,1610612744,GSW,201939,Curry,Free Throw,Free Throw 2 of 2,Curry Free Throw 2 of 2 (23 PTS),109.0,119.0
+22500003,1,PT10M53.00S,12,1610612739,CLE,1630596,Mobley,Foul,Shooting,Mobley S.FOUL (P1.T1) (J.Goble),,
+22500003,1,PT10M53.00S,14,1610612752,NYK,1626157,Towns,Free Throw,Free Throw 1 of 3,Towns Free Throw 1 of 3 (1 PTS),4.0,2.0
+22500003,1,PT10M53.00S,15,1610612752,NYK,1626157,Towns,Free Throw,Free Throw 2 of 3,MISS Towns Free Throw 2 of 3,,
+22500003,1,PT10M53.00S,17,1610612752,NYK,1626157,Towns,Free Throw,Free Throw 3 of 3,Towns Free Throw 3 of 3 (2 PTS),5.0,2.0
+22500003,1,PT10M02.00S,23,1610612752,NYK,1626157,Towns,Foul,Offensive,Towns OFF.Foul (P1) (J.Goble),,
+22500003,1,PT08M12.00S,44,1610612739,CLE,1642281,Tyson,Foul,Personal,Tyson P.FOUL (P1.T2) (E.Malloy),,
+22500003,1,PT07M27.00S,54,1610612752,NYK,1626157,Towns,Foul,Personal,Towns P.FOUL (P2.T1) (J.Goble),,
+22500003,1,PT04M33.00S,93,1610612739,CLE,1642281,Tyson,Foul,Shooting,Tyson S.FOUL (P2.T3) (M.Kallio),,
+22500003,1,PT04M33.00S,95,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 1 of 2,Brunson Free Throw 1 of 2 (6 PTS),18.0,13.0
+22500003,1,PT04M33.00S,96,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 2 of 2,Brunson Free Throw 2 of 2 (7 PTS),19.0,13.0
+22500003,1,PT02M37.00S,113,1610612739,CLE,1630596,Mobley,Foul,Shooting,Mobley S.FOUL (P2.T4) (E.Malloy),,
+22500003,1,PT02M37.00S,122,1610612752,NYK,1628969,Bridges,Free Throw,Free Throw 1 of 1,Bridges Free Throw 1 of 1 (10 PTS),26.0,16.0
+22500003,1,PT02M01.00S,125,1610612739,CLE,1641854,Porter Jr.,Foul,Personal,Porter Jr. P.FOUL (P1.PN) (E.Malloy),,
+22500003,1,PT02M01.00S,127,1610612752,NYK,1630540,McBride,Free Throw,Free Throw 1 of 2,McBride Free Throw 1 of 2 (1 PTS),27.0,18.0
+22500003,1,PT02M01.00S,130,1610612752,NYK,1630540,McBride,Free Throw,Free Throw 2 of 2,McBride Free Throw 2 of 2 (2 PTS),28.0,18.0
+22500003,1,PT00M22.10S,143,1610612752,NYK,1629013,Shamet,Foul,Personal,Shamet P.FOUL (P1.T2) (M.Kallio),,
+22500003,2,PT10M08.00S,176,1610612739,CLE,1642878,Proctor,Foul,Personal,Proctor P.FOUL (P1.T1) (E.Malloy),,
+22500003,2,PT09M13.00S,187,1610612739,CLE,1626204,Nance Jr.,Foul,Shooting,Nance Jr. S.FOUL (P1.T2) (M.Kallio),,
+22500003,2,PT09M13.00S,189,1610612752,NYK,1626157,Towns,Free Throw,Free Throw 1 of 2,Towns Free Throw 1 of 2 (7 PTS),41.0,27.0
+22500003,2,PT09M13.00S,192,1610612752,NYK,1626157,Towns,Free Throw,Free Throw 2 of 2,Towns Free Throw 2 of 2 (8 PTS),42.0,27.0
+22500003,2,PT08M58.00S,193,1610612752,NYK,1642278,Kolek,Foul,Personal,Kolek P.FOUL (P1.T1) (E.Malloy),,
+22500003,2,PT08M47.00S,201,1610612752,NYK,203903,Clarkson,Foul,Shooting,Clarkson S.FOUL (P1.T2) (E.Malloy),,
+22500003,2,PT08M47.00S,203,1610612739,CLE,1630596,Mobley,Free Throw,Free Throw 1 of 1,Mobley Free Throw 1 of 1 (11 PTS),42.0,30.0
+22500003,2,PT08M12.00S,209,1610612739,CLE,1642878,Proctor,Foul,Personal,Proctor P.FOUL (P2.T3) (J.Goble),,
+22500003,2,PT03M36.00S,267,1610612739,CLE,1629731,Wade,Foul,Shooting,Wade S.FOUL (P1.T4) (E.Malloy),,
+22500003,2,PT03M36.00S,269,1610612752,NYK,1629013,Shamet,Free Throw,Free Throw 1 of 3,Shamet Free Throw 1 of 3 (1 PTS),48.0,43.0
+22500003,2,PT03M36.00S,270,1610612752,NYK,1629013,Shamet,Free Throw,Free Throw 2 of 3,Shamet Free Throw 2 of 3 (2 PTS),49.0,43.0
+22500003,2,PT03M36.00S,275,1610612752,NYK,1629013,Shamet,Free Throw,Free Throw 3 of 3,Shamet Free Throw 3 of 3 (3 PTS),50.0,43.0
+22500003,2,PT02M38.00S,284,1610612739,CLE,1629731,Wade,Foul,Shooting,Wade S.FOUL (P2.PN) (J.Goble),,
+22500003,2,PT02M38.00S,286,1610612752,NYK,1630540,McBride,Free Throw,Free Throw 1 of 2,MISS McBride Free Throw 1 of 2,,
+22500003,2,PT02M38.00S,290,1610612752,NYK,1630540,McBride,Free Throw,Free Throw 2 of 2,McBride Free Throw 2 of 2 (9 PTS),54.0,46.0
+22500003,2,PT01M51.00S,299,1610612739,CLE,1630241,Merrill,Foul,Shooting,Merrill S.FOUL (P1.PN) (J.Goble),,
+22500003,2,PT01M51.00S,301,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 1 of 3,Brunson Free Throw 1 of 3 (8 PTS),58.0,46.0
+22500003,2,PT01M51.00S,302,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 2 of 3,Brunson Free Throw 2 of 3 (9 PTS),59.0,46.0
+22500003,2,PT01M51.00S,305,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 3 of 3,Brunson Free Throw 3 of 3 (10 PTS),60.0,46.0
+22500003,2,PT01M27.00S,309,1610612752,NYK,1628973,Brunson,Foul,Shooting,Brunson S.FOUL (P1.T3) (J.Goble),,
+22500003,2,PT01M27.00S,311,1610612739,CLE,1630596,Mobley,Free Throw,Free Throw 1 of 2,MISS Mobley Free Throw 1 of 2,,
+22500003,2,PT01M27.00S,313,1610612739,CLE,1630596,Mobley,Free Throw,Free Throw 2 of 2,MISS Mobley Free Throw 2 of 2,,
+22500003,2,PT00M59.20S,322,0,,201690,,Foul,Technical,Kenny Atkinson Foul:T.FOUL (E.Malloy),,
+22500003,2,PT00M59.20S,323,1610612752,NYK,1626157,Towns,Free Throw,Free Throw Technical,Towns Free Throw Technical (9 PTS),63.0,46.0
+22500003,2,PT00M38.40S,328,1610612752,NYK,1628969,Bridges,Foul,Shooting,Bridges S.FOUL (P1.PN) (M.Kallio),,
+22500003,2,PT00M38.40S,330,1610612739,CLE,1628378,Mitchell,Free Throw,Free Throw 1 of 2,Mitchell Free Throw 1 of 2 (5 PTS),63.0,47.0
+22500003,2,PT00M38.40S,331,1610612739,CLE,1628378,Mitchell,Free Throw,Free Throw 2 of 2,Mitchell Free Throw 2 of 2 (6 PTS),63.0,48.0
+22500003,3,PT11M42.00S,348,1610612752,NYK,1628969,Bridges,Foul,Shooting,Bridges S.FOUL (P2.T1) (J.Goble),,
+22500003,3,PT11M42.00S,350,1610612739,CLE,1628378,Mitchell,Free Throw,Free Throw 1 of 1,Mitchell Free Throw 1 of 1 (11 PTS),65.0,53.0
+22500003,3,PT11M28.00S,351,1610612739,CLE,1642281,Tyson,Foul,Shooting,Tyson S.FOUL (P3.T1) (J.Goble),,
+22500003,3,PT11M28.00S,353,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 1 of 2,Brunson Free Throw 1 of 2 (13 PTS),66.0,53.0
+22500003,3,PT11M28.00S,354,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 2 of 2,Brunson Free Throw 2 of 2 (14 PTS),67.0,53.0
+22500003,3,PT11M20.00S,355,1610612752,NYK,1630574,Hukporti,Foul,Personal,Hukporti P.FOUL (P1.T2) (E.Malloy),,
+22500003,3,PT10M56.00S,359,1610612739,CLE,1628378,Mitchell,Foul,Personal,Mitchell P.FOUL (P1.T2) (M.Kallio),,
+22500003,3,PT10M22.00S,364,1610612739,CLE,1642281,Tyson,Foul,Personal,Tyson P.FOUL (P4.T3) (M.Kallio),,
+22500003,3,PT09M19.00S,376,1610612739,CLE,1630241,Merrill,Foul,Offensive,Merrill OFF.Foul (P2) (J.Goble),,
+22500003,3,PT07M48.00S,391,1610612752,NYK,1630574,Hukporti,Foul,Offensive,Hukporti OFF.Foul (P2) (E.Malloy),,
+22500003,3,PT07M41.00S,394,1610612752,NYK,1628973,Brunson,Foul,Personal,Brunson P.FOUL (P2.T3) (J.Goble),,
+22500003,3,PT07M22.00S,400,1610612739,CLE,1630241,Merrill,Foul,Shooting,Merrill S.FOUL (P3.T4) (J.Goble),,
+22500003,3,PT07M22.00S,402,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 1 of 2,Brunson Free Throw 1 of 2 (17 PTS),78.0,68.0
+22500003,3,PT07M22.00S,403,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 2 of 2,Brunson Free Throw 2 of 2 (18 PTS),79.0,68.0
+22500003,3,PT07M16.00S,404,1610612752,NYK,1627824,Yabusele,Foul,Personal,Yabusele P.FOUL (P1.T4) (M.Kallio),,
+22500003,3,PT04M30.00S,451,1610612752,NYK,1630540,McBride,Foul,Shooting,McBride S.FOUL (P1.PN) (J.Goble),,
+22500003,3,PT04M30.00S,453,1610612739,CLE,1630596,Mobley,Free Throw,Free Throw 1 of 2,MISS Mobley Free Throw 1 of 2,,
+22500003,3,PT04M30.00S,455,1610612739,CLE,1630596,Mobley,Free Throw,Free Throw 2 of 2,Mobley Free Throw 2 of 2 (17 PTS),79.0,76.0
+22500003,3,PT03M27.00S,472,1610612752,NYK,1630540,McBride,Foul,Loose Ball,McBride L.B.FOUL (P2.PN) (E.Malloy),,
+22500003,3,PT03M27.00S,474,1610612739,CLE,1629731,Wade,Free Throw,Free Throw 1 of 2,MISS Wade Free Throw 1 of 2,,
+22500003,3,PT03M27.00S,480,1610612739,CLE,1629731,Wade,Free Throw,Free Throw 2 of 2,Wade Free Throw 2 of 2 (7 PTS),82.0,79.0
+22500003,3,PT00M21.10S,510,1610612752,NYK,1626157,Towns,Foul,Loose Ball,Towns L.B.FOUL (P3.PN) (J.Goble),,
+22500003,3,PT00M21.10S,512,1610612739,CLE,1628386,Allen,Free Throw,Free Throw 1 of 2,MISS Allen Free Throw 1 of 2,,
+22500003,3,PT00M21.10S,522,1610612739,CLE,1628386,Allen,Free Throw,Free Throw 2 of 2,Allen Free Throw 2 of 2 (3 PTS),87.0,87.0
+22500003,4,PT10M42.00S,545,1610612739,CLE,1626204,Nance Jr.,Foul,Shooting,Nance Jr. S.FOUL (P2.T1) (E.Malloy),,
+22500003,4,PT10M42.00S,548,1610612752,NYK,1626157,Towns,Free Throw,Free Throw 1 of 1,Towns Free Throw 1 of 1 (15 PTS),92.0,89.0
+22500003,4,PT10M01.00S,556,1610612739,CLE,1626204,Nance Jr.,Foul,Offensive,Nance Jr. OFF.Foul (P3) (E.Malloy),,
+22500003,4,PT09M46.00S,559,1610612739,CLE,1630596,Mobley,Foul,Shooting,Mobley S.FOUL (P3.T2) (E.Malloy),,
+22500003,4,PT09M46.00S,561,1610612752,NYK,1626157,Towns,Free Throw,Free Throw 1 of 2,Towns Free Throw 1 of 2 (16 PTS),96.0,89.0
+22500003,4,PT09M46.00S,562,1610612752,NYK,1626157,Towns,Free Throw,Free Throw 2 of 2,Towns Free Throw 2 of 2 (17 PTS),97.0,89.0
+22500003,4,PT07M30.00S,583,1610612752,NYK,1642278,Kolek,Foul,Personal,Kolek P.FOUL (P2.T1) (J.Goble),,
+22500003,4,PT05M52.00S,604,1610612752,NYK,1630574,Hukporti,Foul,Loose Ball,Hukporti L.B.FOUL (P3.T2) (M.Kallio),,
+22500003,4,PT05M45.00S,606,1610612752,NYK,1628969,Bridges,Foul,Personal,Bridges P.FOUL (P3.T3) (E.Malloy),,
+22500003,4,PT05M13.00S,614,1610612752,NYK,203903,Clarkson,Foul,Loose Ball,Clarkson L.B.FOUL (P2.T4) (E.Malloy),,
+22500003,4,PT04M47.00S,621,1610612739,CLE,1628378,Mitchell,Foul,Personal,Mitchell P.FOUL (P2.T3) (M.Kallio),,
+22500003,4,PT04M40.00S,627,1610612739,CLE,1629731,Wade,Foul,Shooting,Wade S.FOUL (P3.T4) (E.Malloy),,
+22500003,4,PT04M40.00S,629,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 1 of 2,MISS Brunson Free Throw 1 of 2,,
+22500003,4,PT04M40.00S,635,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 2 of 2,Brunson Free Throw 2 of 2 (21 PTS),106.0,97.0
+22500003,4,PT04M08.00S,640,1610612752,NYK,1630540,McBride,Foul,Loose Ball,McBride L.B.FOUL (P3.PN) (M.Kallio),,
+22500003,4,PT04M08.00S,642,1610612739,CLE,1630241,Merrill,Free Throw,Free Throw 1 of 2,Merrill Free Throw 1 of 2 (12 PTS),106.0,98.0
+22500003,4,PT04M08.00S,643,1610612739,CLE,1630241,Merrill,Free Throw,Free Throw 2 of 2,Merrill Free Throw 2 of 2 (13 PTS),106.0,99.0
+22500003,4,PT03M54.00S,644,1610612739,CLE,1630241,Merrill,Foul,Personal,Merrill P.FOUL (P4.PN) (E.Malloy),,
+22500003,4,PT03M54.00S,646,1610612752,NYK,1628969,Bridges,Free Throw,Free Throw 1 of 2,Bridges Free Throw 1 of 2 (13 PTS),107.0,99.0
+22500003,4,PT03M54.00S,649,1610612752,NYK,1628969,Bridges,Free Throw,Free Throw 2 of 2,Bridges Free Throw 2 of 2 (14 PTS),108.0,99.0
+22500003,4,PT03M22.00S,652,1610612752,NYK,1626157,Towns,Foul,Offensive,Towns OFF.Foul (P4) (M.Kallio),,
+22500003,4,PT01M13.00S,673,1610612752,NYK,1628973,Brunson,Foul,Personal,Brunson P.FOUL (P3.PN) (J.Goble),,
+22500003,4,PT01M13.00S,675,1610612739,CLE,1628378,Mitchell,Free Throw,Free Throw 1 of 2,Mitchell Free Throw 1 of 2 (30 PTS),113.0,106.0
+22500003,4,PT01M13.00S,676,1610612739,CLE,1628378,Mitchell,Free Throw,Free Throw 2 of 2,Mitchell Free Throw 2 of 2 (31 PTS),113.0,107.0
+22500003,4,PT00M58.80S,677,1610612739,CLE,1629731,Wade,Foul,Shooting,Wade S.FOUL (P4.PN) (M.Kallio),,
+22500003,4,PT00M58.80S,679,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 1 of 2,Brunson Free Throw 1 of 2 (22 PTS),114.0,107.0
+22500003,4,PT00M58.80S,680,1610612752,NYK,1628973,Brunson,Free Throw,Free Throw 2 of 2,Brunson Free Throw 2 of 2 (23 PTS),115.0,107.0
+22500003,4,PT00M45.60S,681,1610612752,NYK,1630540,McBride,Foul,Shooting,McBride S.FOUL (P4.PN) (M.Kallio),,
+22500003,4,PT00M45.60S,683,1610612739,CLE,1628386,Allen,Free Throw,Free Throw 1 of 2,MISS Allen Free Throw 1 of 2,,
+22500003,4,PT00M45.60S,685,1610612739,CLE,1628386,Allen,Free Throw,Free Throw 2 of 2,Allen Free Throw 2 of 2 (4 PTS),115.0,108.0
+22500003,4,PT00M39.50S,686,1610612739,CLE,1630241,Merrill,Foul,Personal Take,Merrill Personal Take Foul (P5.PN) (E.Malloy),,
+22500003,4,PT00M39.50S,688,1610612752,NYK,1628384,Anunoby,Free Throw,Free Throw 1 of 2,MISS Anunoby Free Throw 1 of 2,,
+22500003,4,PT00M39.50S,690,1610612752,NYK,1628384,Anunoby,Free Throw,Free Throw 2 of 2,Anunoby Free Throw 2 of 2 (21 PTS),116.0,108.0
+22500003,4,PT00M11.50S,705,1610612739,CLE,1630241,Merrill,Foul,Personal Take,Merrill Personal Take Foul (P6.PN) (J.Goble),,
+22500003,4,PT00M11.50S,707,1610612752,NYK,1628384,Anunoby,Free Throw,Free Throw 1 of 2,MISS Anunoby Free Throw 1 of 2,,
+22500003,4,PT00M11.50S,711,1610612752,NYK,1628384,Anunoby,Free Throw,Free Throw 2 of 2,Anunoby Free Throw 2 of 2 (24 PTS),119.0,111.0
+22500004,1,PT11M20.00S,12,1610612742,DAL,1629023,Washington,Foul,Shooting,Washington S.FOUL (P1.T1) (N.Green),,
+22500004,1,PT11M20.00S,14,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 1 of 2,Wembanyama Free Throw 1 of 2 (1 PTS),2.0,1.0
+22500004,1,PT11M20.00S,15,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 2 of 2,Wembanyama Free Throw 2 of 2 (2 PTS),2.0,2.0
+22500004,1,PT09M45.00S,28,1610612742,DAL,1629023,Washington,Foul,Shooting,Washington S.FOUL (P2.T2) (T.Brothers),,
+22500004,1,PT09M45.00S,30,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 1 of 2,Castle Free Throw 1 of 2 (1 PTS),6.0,3.0
+22500004,1,PT09M45.00S,33,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 2 of 2,Castle Free Throw 2 of 2 (2 PTS),6.0,4.0
+22500004,1,PT07M29.00S,63,1610612759,SAS,1630577,Champagnie,Foul,Shooting,Champagnie S.FOUL (P1.T1) (S.Twardoski),,
+22500004,1,PT07M29.00S,65,1610612742,DAL,203076,Davis,Free Throw,Free Throw 1 of 2,Davis Free Throw 1 of 2 (5 PTS),9.0,14.0
+22500004,1,PT07M29.00S,66,1610612742,DAL,203076,Davis,Free Throw,Free Throw 2 of 2,Davis Free Throw 2 of 2 (6 PTS),10.0,14.0
+22500004,1,PT06M17.00S,81,1610612759,SAS,1642264,Castle,Foul,Personal,Castle P.FOUL (P1.T2) (S.Twardoski),,
+22500004,1,PT06M03.00S,84,1610612742,DAL,203076,Davis,Foul,Shooting,Davis S.FOUL (P1.T3) (S.Twardoski),,
+22500004,1,PT06M03.00S,86,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 1 of 2,MISS Castle Free Throw 1 of 2,,
+22500004,1,PT06M03.00S,88,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 2 of 2,MISS Castle Free Throw 2 of 2,,
+22500004,1,PT05M16.00S,98,1610612759,SAS,1628436,Kornet,Foul,Offensive,Kornet OFF.Foul (P1) (T.Brothers),,
+22500004,1,PT04M17.00S,111,1610612759,SAS,1628436,Kornet,Foul,Flagrant Type 1,Kornet FLAGRANT.FOUL.TYPE1 (P2.T3) (S.Twardoski),,
+22500004,1,PT04M17.00S,116,1610612742,DAL,203076,Davis,Free Throw,Free Throw Flagrant 1 of 2,Davis Free Throw Flagrant 1 of 2 (7 PTS),18.0,19.0
+22500004,1,PT04M17.00S,117,1610612742,DAL,203076,Davis,Free Throw,Free Throw Flagrant 2 of 2,Davis Free Throw Flagrant 2 of 2 (8 PTS),19.0,19.0
+22500004,1,PT04M11.00S,118,1610612759,SAS,1642844,Harper,Foul,Shooting,Harper S.FOUL (P1.T4) (T.Brothers),,
+22500004,1,PT04M11.00S,120,1610612742,DAL,1626156,Russell,Free Throw,Free Throw 1 of 2,Russell Free Throw 1 of 2 (3 PTS),20.0,19.0
+22500004,1,PT04M11.00S,121,1610612742,DAL,1626156,Russell,Free Throw,Free Throw 2 of 2,MISS Russell Free Throw 2 of 2,,
+22500004,1,PT02M25.00S,148,1610612759,SAS,1642844,Harper,Foul,Shooting,Harper S.FOUL (P2.PN) (N.Green),,
+22500004,1,PT02M25.00S,150,1610612742,DAL,1626156,Russell,Free Throw,Free Throw 1 of 2,MISS Russell Free Throw 1 of 2,,
+22500004,1,PT02M25.00S,152,1610612742,DAL,1626156,Russell,Free Throw,Free Throw 2 of 2,Russell Free Throw 2 of 2 (4 PTS),25.0,23.0
+22500004,1,PT02M07.00S,155,1610612759,SAS,1628436,Kornet,Foul,Loose Ball,Kornet L.B.FOUL (P3.PN) (S.Twardoski),,
+22500004,1,PT02M07.00S,157,1610612742,DAL,1641726,Lively II,Free Throw,Free Throw 1 of 2,Lively II Free Throw 1 of 2 (3 PTS),26.0,23.0
+22500004,1,PT02M07.00S,160,1610612742,DAL,1641726,Lively II,Free Throw,Free Throw 2 of 2,Lively II Free Throw 2 of 2 (4 PTS),27.0,23.0
+22500004,1,PT01M33.00S,168,1610612742,DAL,1641726,Lively II,Foul,Loose Ball,Lively II L.B.FOUL (P1.T4) (N.Green),,
+22500004,1,PT01M15.00S,172,1610612742,DAL,1641726,Lively II,Foul,Offensive,Lively II OFF.Foul (P2) (S.Twardoski),,
+22500004,1,PT00M36.20S,179,1610612742,DAL,1641726,Lively II,Foul,Shooting,Lively II S.FOUL (P3.PN) (T.Brothers),,
+22500004,1,PT00M36.20S,181,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 1 of 2,Wembanyama Free Throw 1 of 2 (9 PTS),27.0,26.0
+22500004,1,PT00M36.20S,186,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 2 of 2,MISS Wembanyama Free Throw 2 of 2,,
+22500004,1,PT00M27.00S,188,1610612759,SAS,1629162,McLaughlin,Foul,Personal,McLaughlin P.FOUL (P1.PN) (T.Brothers),,
+22500004,1,PT00M27.00S,190,1610612742,DAL,1626156,Russell,Free Throw,Free Throw 1 of 2,Russell Free Throw 1 of 2 (5 PTS),28.0,26.0
+22500004,1,PT00M27.00S,191,1610612742,DAL,1626156,Russell,Free Throw,Free Throw 2 of 2,Russell Free Throw 2 of 2 (6 PTS),29.0,26.0
+22500004,2,PT11M07.00S,213,1610612742,DAL,1642843,Flagg,Foul,Shooting,Flagg S.FOUL (P1.T1) (T.Brothers),,
+22500004,2,PT11M07.00S,215,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 1 of 1,MISS Castle Free Throw 1 of 1,,
+22500004,2,PT10M53.00S,217,1610612759,SAS,1641705,Wembanyama,Foul,Defense 3 Second,Spurs T.Foul (Def. 3 Sec Wembanyama ) (N.Green),,
+22500004,2,PT10M53.00S,218,1610612742,DAL,202691,Thompson,Free Throw,Free Throw Technical,Thompson Free Throw Technical (3 PTS),32.0,32.0
+22500004,2,PT10M46.00S,221,1610612759,SAS,1641705,Wembanyama,Foul,Loose Ball,Wembanyama L.B.FOUL (P1.T1) (T.Brothers),,
+22500004,2,PT10M29.00S,224,1610612742,DAL,203939,Powell,Foul,Personal,Powell P.FOUL (P1.T2) (N.Green),,
+22500004,2,PT10M26.00S,226,1610612742,DAL,203939,Powell,Foul,Personal,Powell P.FOUL (P2.T3) (N.Green),,
+22500004,2,PT07M40.00S,257,1610612742,DAL,203076,Davis,Foul,Personal,Davis P.FOUL (P2.T4) (T.Brothers),,
+22500004,2,PT07M27.00S,265,1610612742,DAL,1626156,Russell,Foul,Shooting,Russell S.FOUL (P1.PN) (N.Green),,
+22500004,2,PT07M27.00S,267,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 1 of 2,Castle Free Throw 1 of 2 (12 PTS),37.0,39.0
+22500004,2,PT07M27.00S,268,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 2 of 2,MISS Castle Free Throw 2 of 2,,
+22500004,2,PT07M12.00S,272,1610612759,SAS,1641705,Wembanyama,Foul,Loose Ball,Wembanyama L.B.FOUL (P2.T2) (S.Twardoski),,
+22500004,2,PT05M28.00S,295,1610612759,SAS,1629640,Johnson,Foul,Shooting,Johnson S.FOUL (P1.T3) (S.Twardoski),,
+22500004,2,PT05M28.00S,297,1610612742,DAL,1630230,Marshall,Free Throw,Free Throw 1 of 2,Marshall Free Throw 1 of 2 (1 PTS),41.0,41.0
+22500004,2,PT05M28.00S,298,1610612742,DAL,1630230,Marshall,Free Throw,Free Throw 2 of 2,Marshall Free Throw 2 of 2 (2 PTS),42.0,41.0
+22500004,2,PT05M12.00S,301,1610612742,DAL,1629023,Washington,Foul,Shooting,Washington S.FOUL (P3.PN) (T.Brothers),,
+22500004,2,PT05M12.00S,303,1610612759,SAS,1642844,Harper,Free Throw,Free Throw 1 of 2,MISS Harper Free Throw 1 of 2,,
+22500004,2,PT05M12.00S,305,1610612759,SAS,1642844,Harper,Free Throw,Free Throw 2 of 2,MISS Harper Free Throw 2 of 2,,
+22500004,2,PT04M55.00S,307,1610612759,SAS,1629640,Johnson,Foul,Shooting,Johnson S.FOUL (P2.T4) (N.Green),,
+22500004,2,PT04M55.00S,309,1610612742,DAL,1630230,Marshall,Free Throw,Free Throw 1 of 2,MISS Marshall Free Throw 1 of 2,,
+22500004,2,PT04M55.00S,311,1610612742,DAL,1630230,Marshall,Free Throw,Free Throw 2 of 2,Marshall Free Throw 2 of 2 (3 PTS),43.0,41.0
+22500004,2,PT03M30.00S,328,1610612759,SAS,1641705,Wembanyama,Foul,Shooting,Wembanyama S.FOUL (P3.PN) (S.Twardoski),,
+22500004,2,PT03M30.00S,330,1610612742,DAL,203076,Davis,Free Throw,Free Throw 1 of 2,Davis Free Throw 1 of 2 (11 PTS),47.0,45.0
+22500004,2,PT03M30.00S,331,1610612742,DAL,203076,Davis,Free Throw,Free Throw 2 of 2,Davis Free Throw 2 of 2 (12 PTS),48.0,45.0
+22500004,2,PT02M47.00S,337,1610612742,DAL,203076,Davis,Foul,Shooting,Davis S.FOUL (P3.PN) (S.Twardoski),,
+22500004,2,PT02M47.00S,341,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 1 of 1,Wembanyama Free Throw 1 of 1 (18 PTS),48.0,50.0
+22500004,2,PT01M45.00S,353,1610612742,DAL,203076,Davis,Foul,Shooting,Davis S.FOUL (P4.PN) (N.Green),,
+22500004,2,PT01M45.00S,359,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 1 of 1,Wembanyama Free Throw 1 of 1 (21 PTS),48.0,53.0
+22500004,2,PT01M33.00S,363,1610612742,DAL,202691,Thompson,Foul,Shooting,Thompson S.FOUL (P1.PN) (T.Brothers),,
+22500004,2,PT01M33.00S,365,1610612759,SAS,1630170,Vassell,Free Throw,Free Throw 1 of 1,MISS Vassell Free Throw 1 of 1,,
+22500004,2,PT00M46.10S,374,1610612742,DAL,1630230,Marshall,Foul,Shooting,Marshall S.FOUL (P1.PN) (T.Brothers),,
+22500004,2,PT00M46.10S,376,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 1 of 2,MISS Castle Free Throw 1 of 2,,
+22500004,2,PT00M46.10S,380,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 2 of 2,Castle Free Throw 2 of 2 (13 PTS),48.0,58.0
+22500004,3,PT08M52.00S,429,1610612742,DAL,1641726,Lively II,Foul,Shooting,Lively II S.FOUL (P4.T1) (T.Brothers),,
+22500004,3,PT08M52.00S,431,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 1 of 1,Wembanyama Free Throw 1 of 1 (27 PTS),57.0,71.0
+22500004,3,PT08M24.00S,441,1610612759,SAS,203084,Barnes,Foul,Shooting,Barnes S.FOUL (P1.T1) (T.Brothers),,
+22500004,3,PT08M24.00S,445,1610612742,DAL,1629023,Washington,Free Throw,Free Throw 1 of 1,Washington Free Throw 1 of 1 (15 PTS),60.0,71.0
+22500004,3,PT07M56.00S,450,1610612742,DAL,1641726,Lively II,Foul,Personal,Lively II P.FOUL (P5.T2) (N.Green),,
+22500004,3,PT07M39.00S,454,1610612742,DAL,1630230,Marshall,Foul,Shooting,Marshall S.FOUL (P2.T3) (S.Twardoski),,
+22500004,3,PT07M39.00S,456,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 1 of 2,Wembanyama Free Throw 1 of 2 (28 PTS),60.0,72.0
+22500004,3,PT07M39.00S,457,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 2 of 2,Wembanyama Free Throw 2 of 2 (29 PTS),60.0,73.0
+22500004,3,PT06M56.00S,462,1610612759,SAS,1641705,Wembanyama,Foul,Personal,Wembanyama P.FOUL (P4.T2) (T.Brothers),,
+22500004,3,PT05M37.00S,484,1610612742,DAL,1626156,Russell,Foul,Shooting,Russell S.FOUL (P2.T4) (N.Green),,
+22500004,3,PT05M37.00S,488,1610612759,SAS,1642264,Castle,Free Throw,Free Throw 1 of 1,Castle Free Throw 1 of 1 (18 PTS),60.0,82.0
+22500004,3,PT03M54.00S,504,1610612742,DAL,1642843,Flagg,Foul,Shooting,Flagg S.FOUL (P2.PN) (N.Green),,
+22500004,3,PT03M54.00S,506,1610612759,SAS,1630577,Champagnie,Free Throw,Free Throw 1 of 3,Champagnie Free Throw 1 of 3 (4 PTS),63.0,83.0
+22500004,3,PT03M54.00S,507,1610612759,SAS,1630577,Champagnie,Free Throw,Free Throw 2 of 3,Champagnie Free Throw 2 of 3 (5 PTS),63.0,84.0
+22500004,3,PT03M54.00S,512,1610612759,SAS,1630577,Champagnie,Free Throw,Free Throw 3 of 3,MISS Champagnie Free Throw 3 of 3,,
+22500004,3,PT03M11.00S,519,1610612759,SAS,1642264,Castle,Foul,Personal,Castle P.FOUL (P2.T3) (S.Twardoski),,
+22500004,4,PT10M08.00S,588,1610612742,DAL,1642843,Flagg,Foul,Personal,Flagg P.FOUL (P3.T1) (S.Twardoski),,
+22500004,4,PT10M01.00S,594,1610612759,SAS,1642844,Harper,Foul,Loose Ball,Harper L.B.FOUL (P3.T1) (T.Brothers),,
+22500004,4,PT09M16.00S,601,1610612759,SAS,1642844,Harper,Foul,Personal,Harper P.FOUL (P4.T2) (S.Twardoski),,
+22500004,4,PT08M24.00S,609,1610612759,SAS,1642844,Harper,Foul,Shooting,Harper S.FOUL (P5.T3) (S.Twardoski),,
+22500004,4,PT08M24.00S,611,1610612742,DAL,1642843,Flagg,Free Throw,Free Throw 1 of 2,Flagg Free Throw 1 of 2 (9 PTS),77.0,103.0
+22500004,4,PT08M24.00S,616,1610612742,DAL,1642843,Flagg,Free Throw,Free Throw 2 of 2,Flagg Free Throw 2 of 2 (10 PTS),78.0,103.0
+22500004,4,PT06M42.00S,632,1610612742,DAL,1629023,Washington,Foul,Shooting,Washington S.FOUL (P4.T2) (T.Brothers),,
+22500004,4,PT06M42.00S,634,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 1 of 2,MISS Wembanyama Free Throw 1 of 2,,
+22500004,4,PT06M42.00S,636,1610612759,SAS,1641705,Wembanyama,Free Throw,Free Throw 2 of 2,Wembanyama Free Throw 2 of 2 (38 PTS),82.0,108.0
+22500004,4,PT06M31.00S,637,1610612759,SAS,203084,Barnes,Foul,Personal,Barnes P.FOUL (P2.T4) (N.Green),,
+22500004,4,PT03M54.00S,673,1610612759,SAS,202687,Biyombo,Foul,Offensive,Biyombo OFF.Foul (P1) (T.Brothers),,
+22500004,4,PT03M39.00S,676,1610612759,SAS,1642357,Jones Garcia,Foul,Shooting,Jones Garcia S.FOUL (P1.PN) (S.Twardoski),,
+22500004,4,PT03M39.00S,678,1610612742,DAL,1630314,Williams,Free Throw,Free Throw 1 of 2,MISS Williams Free Throw 1 of 2,,
+22500004,4,PT03M39.00S,680,1610612742,DAL,1630314,Williams,Free Throw,Free Throw 2 of 2,MISS Williams Free Throw 2 of 2,,
+22500004,4,PT01M27.00S,702,1610612759,SAS,1642357,Jones Garcia,Foul,Personal,Jones Garcia P.FOUL (P2.PN) (S.Twardoski),,
+22500004,4,PT01M27.00S,704,1610612742,DAL,1642948,Nembhard,Free Throw,Free Throw 1 of 2,Nembhard Free Throw 1 of 2 (7 PTS),91.0,119.0
+22500004,4,PT01M27.00S,705,1610612742,DAL,1642948,Nembhard,Free Throw,Free Throw 2 of 2,Nembhard Free Throw 2 of 2 (8 PTS),92.0,119.0
+22500004,4,PT01M20.00S,706,1610612759,SAS,202687,Biyombo,Foul,Offensive,Biyombo OFF.Foul (P2) (T.Brothers),,
+22500004,4,PT00M59.90S,712,1610612742,DAL,1630702,Hardy,Foul,Shooting,Hardy S.FOUL (P1.T3) (S.Twardoski),,
+22500004,4,PT00M59.90S,714,1610612759,SAS,1642357,Jones Garcia,Free Throw,Free Throw 1 of 1,Jones Garcia Free Throw 1 of 1 (5 PTS),92.0,122.0
+22500005,1,PT11M30.00S,10,1610612760,OKC,1629652,Dort,Foul,Offensive,Dort OFF.Foul (P1) (J.Tiven),,
+22500005,1,PT11M14.00S,13,1610612754,IND,1630543,Jackson,Foul,Offensive,Jackson OFF.Foul (P1) (J.DeRosa),,
+22500005,1,PT11M01.00S,16,1610612754,IND,1629614,Nembhard,Foul,Shooting,Nembhard S.FOUL (P1.T1) (J.DeRosa),,
+22500005,1,PT11M01.00S,18,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (1 PTS),0.0,1.0
+22500005,1,PT11M01.00S,19,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,MISS Gilgeous-Alexander Free Throw 2 of 2,,
+22500005,1,PT09M56.00S,31,1610612760,OKC,1628392,Hartenstein,Foul,Shooting,Hartenstein S.FOUL (P1.T1) (B.Schwab),,
+22500005,1,PT09M56.00S,33,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 2,Mathurin Free Throw 1 of 2 (1 PTS),1.0,3.0
+22500005,1,PT09M56.00S,34,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 2 of 2,Mathurin Free Throw 2 of 2 (2 PTS),2.0,3.0
+22500005,1,PT09M43.00S,35,1610612760,OKC,1629652,Dort,Foul,Offensive,Dort OFF.Foul (P2) (J.DeRosa),,
+22500005,1,PT09M11.00S,45,1610612754,IND,1629614,Nembhard,Foul,Shooting,Nembhard S.FOUL (P2.T2) (J.Tiven),,
+22500005,1,PT09M11.00S,47,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (2 PTS),5.0,4.0
+22500005,1,PT09M11.00S,48,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (3 PTS),5.0,5.0
+22500005,1,PT09M07.00S,49,1610612760,OKC,1630598,Wiggins,Foul,Personal,Wiggins P.FOUL (P1.T2) (J.DeRosa),,
+22500005,1,PT07M55.00S,60,1610612754,IND,1630543,Jackson,Foul,Shooting,Jackson S.FOUL (P2.T3) (J.DeRosa),,
+22500005,1,PT07M55.00S,62,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (4 PTS),11.0,8.0
+22500005,1,PT07M55.00S,67,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (5 PTS),11.0,9.0
+22500005,1,PT07M21.00S,70,1610612760,OKC,1642964,Barnhizer,Foul,Personal,Barnhizer P.FOUL (P1.T3) (J.Tiven),,
+22500005,1,PT06M56.00S,75,1610612754,IND,1630174,Nesmith,Foul,Shooting,Nesmith S.FOUL (P1.T4) (J.Tiven),,
+22500005,1,PT06M56.00S,82,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 1,Gilgeous-Alexander Free Throw 1 of 1 (8 PTS),13.0,12.0
+22500005,1,PT05M19.00S,93,1610612760,OKC,1642964,Barnhizer,Foul,Shooting,Barnhizer S.FOUL (P2.T4) (J.DeRosa),,
+22500005,1,PT05M19.00S,95,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 1 of 2,Siakam Free Throw 1 of 2 (6 PTS),16.0,14.0
+22500005,1,PT05M19.00S,100,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 2 of 2,Siakam Free Throw 2 of 2 (7 PTS),17.0,14.0
+22500005,1,PT04M10.00S,108,1610612760,OKC,1631119,Williams,Foul,Shooting,Williams S.FOUL (P1.PN) (B.Schwab),,
+22500005,1,PT04M10.00S,110,1610612754,IND,1630167,Toppin,Free Throw,Free Throw 1 of 2,Toppin Free Throw 1 of 2 (3 PTS),18.0,16.0
+22500005,1,PT04M10.00S,113,1610612754,IND,1630167,Toppin,Free Throw,Free Throw 2 of 2,Toppin Free Throw 2 of 2 (4 PTS),19.0,16.0
+22500005,1,PT01M19.00S,146,1610612754,IND,1641767,Sheppard,Foul,Shooting,Sheppard S.FOUL (P1.PN) (B.Schwab),,
+22500005,1,PT01M19.00S,148,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 1 of 2,Mitchell Free Throw 1 of 2 (3 PTS),23.0,21.0
+22500005,1,PT01M19.00S,151,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 2 of 2,Mitchell Free Throw 2 of 2 (4 PTS),23.0,22.0
+22500005,2,PT10M15.00S,183,1610612760,OKC,1642959,Youngblood,Foul,Shooting,Youngblood S.FOUL (P1.T1) (J.Tiven),,
+22500005,2,PT10M15.00S,185,1610612754,IND,1629614,Nembhard,Free Throw,Free Throw 1 of 2,Nembhard Free Throw 1 of 2 (1 PTS),28.0,26.0
+22500005,2,PT10M15.00S,186,1610612754,IND,1629614,Nembhard,Free Throw,Free Throw 2 of 2,Nembhard Free Throw 2 of 2 (2 PTS),29.0,26.0
+22500005,2,PT09M01.00S,198,1610612760,OKC,1628392,Hartenstein,Foul,Personal,Hartenstein P.FOUL (P2.T2) (J.Tiven),,
+22500005,2,PT08M29.00S,210,1610612760,OKC,1642959,Youngblood,Foul,Shooting,Youngblood S.FOUL (P2.T3) (J.DeRosa),,
+22500005,2,PT08M29.00S,212,1610612754,IND,1629614,Nembhard,Free Throw,Free Throw 1 of 2,Nembhard Free Throw 1 of 2 (3 PTS),32.0,29.0
+22500005,2,PT08M29.00S,221,1610612754,IND,1629614,Nembhard,Free Throw,Free Throw 2 of 2,Nembhard Free Throw 2 of 2 (4 PTS),33.0,29.0
+22500005,2,PT07M48.00S,223,1610612754,IND,1630543,Jackson,Foul,Offensive,Jackson OFF.Foul (P3) (J.DeRosa),,
+22500005,2,PT07M08.00S,235,1610612754,IND,1628396,Bradley,Foul,Shooting,Bradley S.FOUL (P1.T1) (J.DeRosa),,
+22500005,2,PT07M08.00S,237,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (15 PTS),33.0,35.0
+22500005,2,PT07M08.00S,239,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (16 PTS),33.0,36.0
+22500005,2,PT06M04.00S,247,1610612760,OKC,1631119,Williams,Foul,Shooting,Williams S.FOUL (P2.T4) (J.DeRosa),,
+22500005,2,PT06M04.00S,249,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 1 of 2,Siakam Free Throw 1 of 2 (14 PTS),36.0,39.0
+22500005,2,PT06M04.00S,254,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 2 of 2,MISS Siakam Free Throw 2 of 2,,
+22500005,2,PT05M48.00S,256,1610612760,OKC,1631119,Williams,Foul,Offensive,Williams OFF.Foul (P3) (B.Schwab),,
+22500005,2,PT05M24.00S,265,1610612754,IND,1628396,Bradley,Foul,Shooting,Bradley S.FOUL (P2.T2) (J.DeRosa),,
+22500005,2,PT05M24.00S,267,1610612760,OKC,1628392,Hartenstein,Free Throw,Free Throw 1 of 2,MISS Hartenstein Free Throw 1 of 2,,
+22500005,2,PT05M24.00S,271,1610612760,OKC,1628392,Hartenstein,Free Throw,Free Throw 2 of 2,MISS Hartenstein Free Throw 2 of 2,,
+22500005,2,PT05M03.00S,277,1610612760,OKC,1631096,Holmgren,Foul,Personal,Holmgren P.FOUL (P1.PN) (J.Tiven),,
+22500005,2,PT05M03.00S,279,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 1 of 2,MISS Siakam Free Throw 1 of 2,,
+22500005,2,PT05M03.00S,281,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 2 of 2,MISS Siakam Free Throw 2 of 2,,
+22500005,2,PT04M57.00S,283,1610612754,IND,1641767,Sheppard,Foul,Personal,Sheppard P.FOUL (P2.T3) (J.Tiven),,
+22500005,2,PT03M49.00S,301,1610612754,IND,1631097,Mathurin,Foul,Shooting,Mathurin S.FOUL (P1.T4) (B.Schwab),,
+22500005,2,PT03M49.00S,303,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 1 of 2,Holmgren Free Throw 1 of 2 (3 PTS),39.0,40.0
+22500005,2,PT03M49.00S,304,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 2 of 2,Holmgren Free Throw 2 of 2 (4 PTS),39.0,41.0
+22500005,2,PT03M37.00S,305,1610612754,IND,1631097,Mathurin,Foul,Offensive,Mathurin OFF.Foul (P2) (J.DeRosa),,
+22500005,2,PT02M53.00S,318,1610612760,OKC,1631096,Holmgren,Foul,Shooting,Holmgren S.FOUL (P2.PN) (J.Tiven),,
+22500005,2,PT02M53.00S,320,1610612754,IND,1630167,Toppin,Free Throw,Free Throw 1 of 2,Toppin Free Throw 1 of 2 (7 PTS),40.0,44.0
+22500005,2,PT02M53.00S,321,1610612754,IND,1630167,Toppin,Free Throw,Free Throw 2 of 2,Toppin Free Throw 2 of 2 (8 PTS),41.0,44.0
+22500005,2,PT01M38.00S,329,1610612754,IND,1641716,Walker,Foul,Shooting,Walker S.FOUL (P1.PN) (J.Tiven),,
+22500005,2,PT01M38.00S,331,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 1 of 2,Holmgren Free Throw 1 of 2 (5 PTS),41.0,47.0
+22500005,2,PT01M38.00S,336,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 2 of 2,MISS Holmgren Free Throw 2 of 2,,
+22500005,2,PT01M06.00S,340,1610612754,IND,1630174,Nesmith,Foul,Shooting,Nesmith S.FOUL (P2.PN) (B.Schwab),,
+22500005,2,PT01M06.00S,342,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 1 of 2,Mitchell Free Throw 1 of 2 (7 PTS),43.0,48.0
+22500005,2,PT01M06.00S,345,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 2 of 2,Mitchell Free Throw 2 of 2 (8 PTS),43.0,49.0
+22500005,2,PT00M22.80S,352,0,,1320,,Foul,Technical,Rick Carlisle Foul:T.FOUL (B.Schwab),,
+22500005,2,PT00M22.80S,354,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw Technical,Gilgeous-Alexander Free Throw Technical (19 PTS),45.0,50.0
+22500005,2,PT00M14.50S,357,1610612760,OKC,1631172,Dieng,Foul,Shooting,Dieng S.FOUL (P1.PN) (B.Schwab),,
+22500005,2,PT00M14.50S,359,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 2,Mathurin Free Throw 1 of 2 (8 PTS),46.0,52.0
+22500005,2,PT00M14.50S,364,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 2 of 2,Mathurin Free Throw 2 of 2 (9 PTS),47.0,52.0
+22500005,2,PT00M03.10S,365,1610612754,IND,1631097,Mathurin,Foul,Personal,Mathurin P.FOUL (P3.PN) (J.Tiven),,
+22500005,2,PT00M03.10S,367,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (20 PTS),47.0,53.0
+22500005,2,PT00M03.10S,372,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (21 PTS),47.0,54.0
+22500005,3,PT11M41.00S,388,1610612760,OKC,1628392,Hartenstein,Foul,Shooting,Hartenstein S.FOUL (P3.T1) (J.DeRosa),,
+22500005,3,PT11M41.00S,390,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 1 of 1,Siakam Free Throw 1 of 1 (17 PTS),50.0,54.0
+22500005,3,PT08M49.00S,422,1610612760,OKC,1630598,Wiggins,Foul,Offensive,Wiggins OFF.Foul (P2) (J.DeRosa),,
+22500005,3,PT08M37.00S,427,1610612754,IND,1630174,Nesmith,Foul,Shooting,Nesmith S.FOUL (P3.T1) (J.DeRosa),,
+22500005,3,PT08M37.00S,429,1610612760,OKC,1630598,Wiggins,Free Throw,Free Throw 1 of 2,Wiggins Free Throw 1 of 2 (9 PTS),54.0,58.0
+22500005,3,PT08M37.00S,430,1610612760,OKC,1630598,Wiggins,Free Throw,Free Throw 2 of 2,Wiggins Free Throw 2 of 2 (10 PTS),54.0,59.0
+22500005,3,PT08M17.00S,435,1610612754,IND,1630543,Jackson,Foul,Personal,Jackson P.FOUL (P4.T2) (J.DeRosa),,
+22500005,3,PT07M36.00S,443,1610612754,IND,1630174,Nesmith,Foul,Shooting,Nesmith S.FOUL (P4.T3) (B.Schwab),,
+22500005,3,PT07M36.00S,445,1610612760,OKC,1630598,Wiggins,Free Throw,Free Throw 1 of 2,Wiggins Free Throw 1 of 2 (11 PTS),54.0,60.0
+22500005,3,PT07M36.00S,450,1610612760,OKC,1630598,Wiggins,Free Throw,Free Throw 2 of 2,Wiggins Free Throw 2 of 2 (12 PTS),54.0,61.0
+22500005,3,PT05M41.00S,467,1610612760,OKC,1642964,Barnhizer,Foul,Shooting,Barnhizer S.FOUL (P3.T2) (J.DeRosa),,
+22500005,3,PT05M41.00S,477,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 1,Mathurin Free Throw 1 of 1 (14 PTS),65.0,68.0
+22500005,3,PT04M25.00S,493,1610612754,IND,1630643,Huff,Foul,Shooting,Huff S.FOUL (P1.T4) (J.DeRosa),,
+22500005,3,PT04M25.00S,495,1610612760,OKC,1629652,Dort,Free Throw,Free Throw 1 of 2,Dort Free Throw 1 of 2 (6 PTS),68.0,69.0
+22500005,3,PT04M25.00S,496,1610612760,OKC,1629652,Dort,Free Throw,Free Throw 2 of 2,Dort Free Throw 2 of 2 (7 PTS),68.0,70.0
+22500005,3,PT03M53.00S,502,1610612760,OKC,1631119,Williams,Foul,Shooting,Williams S.FOUL (P4.T3) (J.DeRosa),,
+22500005,3,PT03M53.00S,506,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 1,Mathurin Free Throw 1 of 1 (17 PTS),71.0,70.0
+22500005,3,PT01M54.00S,532,1610612754,IND,1641767,Sheppard,Foul,Shooting,Sheppard S.FOUL (P3.PN) (J.DeRosa),,
+22500005,3,PT01M54.00S,534,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 1,Gilgeous-Alexander Free Throw 1 of 1 (29 PTS),76.0,78.0
+22500005,3,PT01M14.00S,541,1610612760,OKC,1630598,Wiggins,Foul,Shooting,Wiggins S.FOUL (P3.T4) (J.DeRosa),,
+22500005,3,PT01M14.00S,547,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 1 of 1,MISS Siakam Free Throw 1 of 1,,
+22500005,3,PT01M00.00S,550,1610612754,IND,1643007,Peter,Foul,Shooting,Peter S.FOUL (P1.PN) (J.Tiven),,
+22500005,3,PT01M00.00S,552,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 1 of 1,Mitchell Free Throw 1 of 1 (13 PTS),78.0,81.0
+22500005,4,PT11M07.00S,576,1610612760,OKC,1631172,Dieng,Foul,Shooting,Dieng S.FOUL (P2.T1) (J.DeRosa),,
+22500005,4,PT11M07.00S,578,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 1 of 2,MISS Siakam Free Throw 1 of 2,,
+22500005,4,PT11M07.00S,582,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 2 of 2,MISS Siakam Free Throw 2 of 2,,
+22500005,4,PT10M36.00S,586,1610612760,OKC,1630598,Wiggins,Foul,Shooting,Wiggins S.FOUL (P4.T2) (J.Tiven),,
+22500005,4,PT10M36.00S,588,1610612754,IND,1641767,Sheppard,Free Throw,Free Throw 1 of 2,Sheppard Free Throw 1 of 2 (11 PTS),82.0,85.0
+22500005,4,PT10M36.00S,589,1610612754,IND,1641767,Sheppard,Free Throw,Free Throw 2 of 2,Sheppard Free Throw 2 of 2 (12 PTS),83.0,85.0
+22500005,4,PT09M30.00S,595,1610612754,IND,1628396,Bradley,Foul,Personal,Bradley P.FOUL (P3.T1) (J.DeRosa),,
+22500005,4,PT08M57.00S,605,1610612760,OKC,1628392,Hartenstein,Foul,Shooting,Hartenstein S.FOUL (P4.T3) (J.DeRosa),,
+22500005,4,PT08M57.00S,607,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 2,Mathurin Free Throw 1 of 2 (21 PTS),86.0,87.0
+22500005,4,PT08M57.00S,610,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 2 of 2,Mathurin Free Throw 2 of 2 (22 PTS),87.0,87.0
+22500005,4,PT08M20.00S,615,1610612754,IND,1631097,Mathurin,Foul,Shooting,Mathurin S.FOUL (P4.T2) (J.DeRosa),,
+22500005,4,PT08M20.00S,617,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (33 PTS),90.0,91.0
+22500005,4,PT08M20.00S,622,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (34 PTS),90.0,92.0
+22500005,4,PT06M42.00S,631,1610612760,OKC,1642349,Mitchell,Foul,Shooting,Mitchell S.FOUL (P1.T4) (J.Tiven),,
+22500005,4,PT06M42.00S,642,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 2,Mathurin Free Throw 1 of 2 (23 PTS),96.0,94.0
+22500005,4,PT06M42.00S,643,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 2 of 2,Mathurin Free Throw 2 of 2 (24 PTS),97.0,94.0
+22500005,4,PT06M29.00S,646,1610612754,IND,1630174,Nesmith,Foul,Shooting,Nesmith S.FOUL (P5.T3) (B.Schwab),,
+22500005,4,PT06M29.00S,648,1610612760,OKC,1628392,Hartenstein,Free Throw,Free Throw 1 of 1,Hartenstein Free Throw 1 of 1 (5 PTS),97.0,97.0
+22500005,4,PT06M08.00S,653,1610612754,IND,1630174,Nesmith,Foul,Personal,Nesmith P.FOUL (P6.T4) (B.Schwab),,
+22500005,4,PT05M54.00S,661,1610612760,OKC,1628392,Hartenstein,Foul,Shooting,Hartenstein S.FOUL (P5.PN) (B.Schwab),,
+22500005,4,PT05M54.00S,663,1610612754,IND,1628396,Bradley,Free Throw,Free Throw 1 of 1,MISS Bradley Free Throw 1 of 1,,
+22500005,4,PT05M39.00S,665,1610612754,IND,1630167,Toppin,Foul,Shooting,Toppin S.FOUL (P1.PN) (J.DeRosa),,
+22500005,4,PT05M39.00S,668,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 1 of 2,Holmgren Free Throw 1 of 2 (10 PTS),99.0,100.0
+22500005,4,PT05M39.00S,671,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 2 of 2,Holmgren Free Throw 2 of 2 (11 PTS),99.0,101.0
+22500005,4,PT03M22.00S,687,1610612760,OKC,1628983,Gilgeous-Alexander,Foul,Shooting,Gilgeous-Alexander S.FOUL (P1.PN) (J.Tiven),,
+22500005,4,PT03M22.00S,689,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 2,Mathurin Free Throw 1 of 2 (28 PTS),105.0,103.0
+22500005,4,PT03M22.00S,691,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 2 of 2,MISS Mathurin Free Throw 2 of 2,,
+22500005,4,PT03M10.00S,693,1610612754,IND,1630167,Toppin,Foul,Shooting,Toppin S.FOUL (P2.PN) (J.DeRosa),,
+22500005,4,PT03M10.00S,695,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,MISS Gilgeous-Alexander Free Throw 1 of 2,,
+22500005,4,PT03M10.00S,697,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (35 PTS),105.0,104.0
+22500005,4,PT02M57.00S,699,1610612760,OKC,1629652,Dort,Foul,Shooting,Dort S.FOUL (P3.PN) (J.DeRosa),,
+22500005,4,PT02M57.00S,701,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 1,MISS Mathurin Free Throw 1 of 1,,
+22500005,4,PT02M22.00S,704,1610612760,OKC,1631096,Holmgren,Foul,Personal,Holmgren P.FOUL (P3.PN) (J.Tiven),,
+22500005,4,PT02M22.00S,706,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 2,Mathurin Free Throw 1 of 2 (31 PTS),108.0,106.0
+22500005,4,PT02M22.00S,707,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 2 of 2,Mathurin Free Throw 2 of 2 (32 PTS),109.0,106.0
+22500005,4,PT01M14.00S,715,1610612754,IND,1641716,Walker,Foul,Shooting,Walker S.FOUL (P2.PN) (J.Tiven),,
+22500005,4,PT01M14.00S,717,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 1 of 2,Holmgren Free Throw 1 of 2 (12 PTS),111.0,111.0
+22500005,4,PT01M14.00S,718,1610612760,OKC,1631096,Holmgren,Free Throw,Free Throw 2 of 2,Holmgren Free Throw 2 of 2 (13 PTS),111.0,112.0
+22500005,4,PT00M13.00S,725,1610612754,IND,1630167,Toppin,Foul,Personal Take,Toppin Personal Take Foul (P3.PN) (J.Tiven),,
+22500005,4,PT00M13.00S,727,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (40 PTS),111.0,113.0
+22500005,4,PT00M13.00S,728,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,MISS Gilgeous-Alexander Free Throw 2 of 2,,
+22500005,5,PT04M36.00S,745,1610612760,OKC,1628983,Gilgeous-Alexander,Foul,Loose Ball,Gilgeous-Alexander L.B.FOUL (P2.T1) (J.DeRosa),,
+22500005,5,PT04M32.00S,747,1610612760,OKC,1642349,Mitchell,Foul,Personal,Mitchell P.FOUL (P2.T2) (J.Tiven),,
+22500005,5,PT03M30.00S,758,1610612760,OKC,1628983,Gilgeous-Alexander,Foul,Personal,Gilgeous-Alexander P.FOUL (P3.T3) (J.DeRosa),,
+22500005,5,PT03M26.00S,762,1610612760,OKC,1629652,Dort,Foul,Personal,Dort P.FOUL (P4.PN) (J.Tiven),,
+22500005,5,PT03M26.00S,766,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 1 of 2,Siakam Free Throw 1 of 2 (28 PTS),116.0,113.0
+22500005,5,PT03M26.00S,767,1610612754,IND,1627783,Siakam,Free Throw,Free Throw 2 of 2,MISS Siakam Free Throw 2 of 2,,
+22500005,5,PT03M16.00S,769,1610612760,OKC,1628983,Gilgeous-Alexander,Foul,Shooting,Gilgeous-Alexander S.FOUL (P4.PN) (J.DeRosa),,
+22500005,5,PT03M16.00S,771,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 1 of 2,Mathurin Free Throw 1 of 2 (33 PTS),117.0,113.0
+22500005,5,PT03M16.00S,772,1610612754,IND,1631097,Mathurin,Free Throw,Free Throw 2 of 2,Mathurin Free Throw 2 of 2 (34 PTS),118.0,113.0
+22500005,5,PT02M56.00S,773,1610612754,IND,1641716,Walker,Foul,Shooting,Walker S.FOUL (P3.T1) (J.DeRosa),,
+22500005,5,PT02M56.00S,775,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (41 PTS),118.0,114.0
+22500005,5,PT02M56.00S,776,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (42 PTS),118.0,115.0
+22500005,5,PT02M42.00S,779,1610612754,IND,1631097,Mathurin,Foul,Loose Ball,Mathurin L.B.FOUL (P5.T2) (J.DeRosa),,
+22500005,5,PT01M46.00S,792,1610612754,IND,1641767,Sheppard,Foul,Shooting,Sheppard S.FOUL (P4.T3) (B.Schwab),,
+22500005,5,PT01M46.00S,794,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 1 of 1,Mitchell Free Throw 1 of 1 (24 PTS),118.0,118.0
+22500005,5,PT00M54.20S,798,1610612754,IND,1641767,Sheppard,Foul,Personal,Sheppard P.FOUL (P5.PN) (J.DeRosa),,
+22500005,5,PT00M54.20S,800,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 1 of 2,Mitchell Free Throw 1 of 2 (25 PTS),122.0,121.0
+22500005,5,PT00M54.20S,802,1610612760,OKC,1642349,Mitchell,Free Throw,Free Throw 2 of 2,Mitchell Free Throw 2 of 2 (26 PTS),122.0,122.0
+22500005,6,PT04M11.00S,821,1610612754,IND,1631097,Mathurin,Foul,Shooting,Mathurin S.FOUL (P6.T1) (B.Schwab),,
+22500005,6,PT04M11.00S,825,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 1,Gilgeous-Alexander Free Throw 1 of 1 (49 PTS),126.0,127.0
+22500005,6,PT00M59.80S,853,1610612754,IND,1641767,Sheppard,Foul,Personal,Sheppard P.FOUL (P6.T2) (B.Schwab),,
+22500005,6,PT00M28.80S,867,1610612754,IND,1627783,Siakam,Foul,Personal,Siakam P.FOUL (P1.PN) (J.Tiven),,
+22500005,6,PT00M28.80S,869,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (52 PTS),133.0,138.0
+22500005,6,PT00M28.80S,870,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (53 PTS),133.0,139.0
+22500005,6,PT00M20.70S,873,1610612754,IND,1641716,Walker,Foul,Personal,Walker P.FOUL (P4.PN) (J.Tiven),,
+22500005,6,PT00M20.70S,875,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 1 of 2,Gilgeous-Alexander Free Throw 1 of 2 (54 PTS),135.0,140.0
+22500005,6,PT00M20.70S,876,1610612760,OKC,1628983,Gilgeous-Alexander,Free Throw,Free Throw 2 of 2,Gilgeous-Alexander Free Throw 2 of 2 (55 PTS),135.0,141.0

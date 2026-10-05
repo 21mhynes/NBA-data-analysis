@@ -1,0 +1,4 @@
+accuracy_result,team_games,wins,average_point_difference,average_accuracy_difference,win_percentage
+Higher accuracy,30426,16329,1.185696443830934,0.20580094415439942,53.66791559850128
+Lower accuracy,30426,14097,-1.185696443830934,-0.20580094415439942,46.33208440149872
+Tied accuracy,4342,2171,0.0,0.0,50.0
