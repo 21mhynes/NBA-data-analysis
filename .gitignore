@@ -16,3 +16,6 @@ bonus_analysis_working_backup.py
 # Python temporary files
 __pycache__/
 *.pyc
+
+# Local database credentials
+.env
