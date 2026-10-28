@@ -578,8 +578,9 @@ main::after {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   justify-content: center;
 }
+.intro { text-align: center; }
 .painted-key {
-  max-width: 1000px;
+  max-width: 1200px;
   padding: clamp(32px, 5vw, 56px);
 }
 @media (max-width: 760px) {
@@ -655,7 +656,7 @@ main::after {
         <div class="eyebrow">League finding · First to the bonus</div>
         <h2>A small edge across the full game</h2>
         <div class="big-number">{{ "%.2f"|format(data.first_bonus_pct) }}%</div>
-        <p>The team that reached the bonus before its opponent in more periods of the game won this share of the time. “First” is counted separately by period and summarized across the game; it does not mean the first team to reach the bonus anywhere in the game.</p>
+        <p>Teams that reached the bonus first in more periods than their opponents won this share of games. The edge is modest.</p>
         <p class="small-note">Recorded first bonus entries in {{ "{:,}".format(data.first_bonus_games) }} games.</p>
       </section>
 
