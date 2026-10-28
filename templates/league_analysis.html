@@ -13,10 +13,10 @@
     nav{display:flex;gap:16px;flex-wrap:wrap} a{color:var(--cream);font-weight:700}
     main{position:relative;isolation:isolate;min-height:100vh;padding:clamp(28px,5vw,66px) clamp(18px,7vw,110px);overflow:hidden;background:repeating-linear-gradient(0deg,rgba(103,62,27,.1) 0 2px,transparent 2px 58px),linear-gradient(110deg,var(--light),var(--court) 56%,#c48b49)}
     main:before{content:"";position:absolute;z-index:-1;inset:12px clamp(10px,1.8vw,28px);border:4px solid rgba(23,53,104,.78)}
-    main>*{position:relative;z-index:1}.wrap{max-width:1120px;margin:auto}
+    main>*{position:relative;z-index:1}.wrap{max-width:1500px;margin:auto}
     .eyebrow{color:var(--line);font-size:.95rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
     h1,h2,h3{color:var(--navy);font-weight:900;line-height:1.1;text-transform:uppercase}h1{font-size:clamp(2.5rem,6vw,4.8rem);margin:8px 0}h2{font-size:clamp(1.7rem,3vw,2.4rem);margin:0 0 10px}h3{font-size:1.35rem;margin:0 0 10px}
-    p{color:var(--muted)}.panel{margin:26px 0;padding:clamp(20px,3.4vw,36px);background:rgba(255,241,210,.9);border:4px solid var(--line)}
+    p{color:var(--muted)}.panel{max-width:1120px;margin:26px auto;padding:clamp(20px,3.4vw,36px);background:rgba(255,241,210,.9);border:4px solid var(--line)}
     .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
     .card{padding:17px;background:rgba(233,189,124,.52);border:3px solid rgba(23,53,104,.78)}
     .number{color:var(--line);font-size:2rem;font-weight:900}.note{padding:12px 16px;background:rgba(215,160,92,.55);border-left:5px solid var(--accent)}
@@ -30,10 +30,16 @@
     .error{padding:14px;background:var(--cream);border:3px solid var(--accent)}
     footer{border-bottom:0;border-top:4px solid var(--accent);text-align:center}
     @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}main{padding:26px 18px}.panel{padding:20px 16px}}
+@media(min-width:1200px){
+  .wrap>h1{font-size:clamp(2rem,4vw,4rem);white-space:nowrap}
+  .wrap>p:first-of-type{font-size:clamp(.74rem,.9vw,1rem);white-space:nowrap}
+}
+.tied-period-card{grid-column:1/-1;justify-self:center;width:min(100%,calc((100% - 16px)/2))}
+@media(max-width:700px){.tied-period-card{grid-column:auto;width:100%}}
   </style>
 </head>
 <body>
-  <header><div class="brand">NBA Data Analysis</div><nav><a href="/">Home</a><a href="/methods-data">Methods &amp; data</a></nav></header>
+  <header><div class="brand">NBA Data Analysis</div><nav><a href="/">Home</a></nav></header>
   <main><div class="wrap">
     <div class="eyebrow">Detailed league-wide results</div><h1>Bonus timing, game context &amp; winning</h1>
     <p>These sections add period, home-court, and historical win-rate detail to the homepage summary. The homepage season chart covers attempts and accuracy; the chart here follows win-rate gaps over time.</p>
@@ -64,7 +70,7 @@
       <p>This is different from being the first team to enter the bonus anywhere in the game. Each team’s first entry by period is compared; a team has the advantage if it is first in more periods. Ties remain a separate group.</p>
       <div class="grid">
         {% for label in ["More", "Fewer", "Tied"] %}
-          {% if label in data.period_win_rates %}<article class="card"><h3>{{ label }} periods first</h3><div class="number">{{ "%.2f"|format(data.period_win_rates[label]) }}%</div><p>{{ "{:,}".format(data.period_rows[label].rows) }} team-game rows</p></article>{% endif %}
+          {% if label in data.period_win_rates %}<article class="card{% if label == 'Tied' %} tied-period-card{% endif %}"><h3>{{ label }} periods first</h3><div class="number">{{ "%.2f"|format(data.period_win_rates[label]) }}%</div><p>{{ "{:,}".format(data.period_rows[label].rows) }} team-game rows</p></article>{% endif %}
         {% endfor %}
       </div>
       <p>For this period-count comparison, the supplied historical findings report a 9.71 percentage-point gap between teams first in more versus fewer periods.</p>
@@ -93,6 +99,6 @@
     </section>
     {% endif %}
   </div></main>
-  <footer>Associations, not proof of causation · See Methods &amp; Data for definitions and validation.</footer>
+  <footer>Associations, not proof of causation · See the homepage for project files and charts.</footer>
 </body>
 </html>
