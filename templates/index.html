@@ -555,6 +555,39 @@ main::after {
 .site-nav a { padding:5px 12px; color:var(--cream); border:1px solid rgba(255,241,210,.45); text-decoration:none; font-weight:700; }
 .site-nav a:hover,.site-nav a:focus-visible { background:var(--line); outline:2px solid var(--accent); }
 
+  
+
+/* Homepage formatting refinements */
+@media (min-width: 1200px) {
+  .research-question {
+    max-width: none;
+    white-space: nowrap;
+    padding: 16px 20px;
+    font-size: clamp(.88rem, 1.04vw, 1.16rem);
+  }
+  .intro {
+    max-width: none;
+    width: calc(100% + 2 * clamp(22px, 7vw, 110px));
+    margin-left: calc(-1 * clamp(22px, 7vw, 110px));
+    margin-right: calc(-1 * clamp(22px, 7vw, 110px));
+    white-space: nowrap;
+    font-size: clamp(.78rem, .95vw, 1rem);
+  }
+}
+.team-directory {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  justify-content: center;
+}
+.painted-key {
+  max-width: 1000px;
+  padding: clamp(32px, 5vw, 56px);
+}
+@media (max-width: 760px) {
+  .team-directory { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .team-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
   </style>
 </head>
 <body>
@@ -606,11 +639,7 @@ main::after {
       <strong>Research question</strong><br>
       How does reaching the bonus first—and then shooting more free throws while in the bonus—affect an NBA team’s chance of winning?
     </div>
-    <p class="intro">
-      League-wide results are summarized here. Select any team logo to explore that franchise’s bonus attempts,
-      free-throw accuracy, winning percentage, and season-by-season changes. Figures are read from the analysis
-      archive in TiDB.
-    </p>
+    <p class="intro">League-wide results are summarized here. Select any team logo to explore that franchise’s bonus attempts, free-throw accuracy, winning percentage, and season-by-season changes. Figures are read from the analysis archive in TiDB.</p>
 
     <section class="facts" aria-label="Dataset coverage">
       <div class="fact"><strong>{{ season_count }}</strong><span>Regular seasons analyzed</span></div>
@@ -626,7 +655,7 @@ main::after {
         <div class="eyebrow">League finding · First to the bonus</div>
         <h2>A small edge across the full game</h2>
         <div class="big-number">{{ "%.2f"|format(data.first_bonus_pct) }}%</div>
-        <p>The team that reached the bonus first won this share of the time. The association is modest and does not make first-to-bonus a strong predictor by itself.</p>
+        <p>The team that reached the bonus before its opponent in more periods of the game won this share of the time. “First” is counted separately by period and summarized across the game; it does not mean the first team to reach the bonus anywhere in the game.</p>
         <p class="small-note">Recorded first bonus entries in {{ "{:,}".format(data.first_bonus_games) }} games.</p>
       </section>
 
