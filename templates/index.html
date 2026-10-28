@@ -510,6 +510,41 @@ main::after {
   main::after { opacity: .3; }
 }
 
+  
+.team-logo {
+  color: inherit;
+  text-decoration: none;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.team-logo:hover, .team-logo:focus-visible {
+  z-index: 3;
+  transform: scale(1.12);
+  box-shadow: 0 0 0 3px var(--accent), 0 0 0 6px var(--cream);
+  outline: none;
+}
+.team-directory {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+.team-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 12px;
+  color: var(--cream);
+  background: var(--navy);
+  border: 2px solid var(--line);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.team-link:hover, .team-link:focus-visible { background: var(--line); outline: 3px solid var(--accent); }
+.team-link img { width: 34px; height: 34px; object-fit: contain; background: var(--cream); border-radius: 50%; }
+.team-explorer { margin-top: clamp(28px, 4vw, 48px); }
+
   </style>
 </head>
 <body>
@@ -517,54 +552,54 @@ main::after {
     <div class="header-inner">
       <div class="brand">NBA DATA ANALYSIS</div>
       <div class="team-ribbon" aria-label="Current NBA team logos">
-      <span class="team-logo" title="Atlanta Hawks" aria-label="Atlanta Hawks"><img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Atlanta Hawks logo" loading="lazy"></span>
-      <span class="team-logo" title="Boston Celtics" aria-label="Boston Celtics"><img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Boston Celtics logo" loading="lazy"></span>
-      <span class="team-logo" title="Brooklyn Nets" aria-label="Brooklyn Nets"><img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Brooklyn Nets logo" loading="lazy"></span>
-      <span class="team-logo" title="Charlotte Hornets" aria-label="Charlotte Hornets"><img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Charlotte Hornets logo" loading="lazy"></span>
-      <span class="team-logo" title="Chicago Bulls" aria-label="Chicago Bulls"><img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Chicago Bulls logo" loading="lazy"></span>
-      <span class="team-logo" title="Cleveland Cavaliers" aria-label="Cleveland Cavaliers"><img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Cleveland Cavaliers logo" loading="lazy"></span>
-      <span class="team-logo" title="Dallas Mavericks" aria-label="Dallas Mavericks"><img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Dallas Mavericks logo" loading="lazy"></span>
-      <span class="team-logo" title="Denver Nuggets" aria-label="Denver Nuggets"><img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Denver Nuggets logo" loading="lazy"></span>
-      <span class="team-logo" title="Detroit Pistons" aria-label="Detroit Pistons"><img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Detroit Pistons logo" loading="lazy"></span>
-      <span class="team-logo" title="Golden State Warriors" aria-label="Golden State Warriors"><img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Golden State Warriors logo" loading="lazy"></span>
-      <span class="team-logo" title="Houston Rockets" aria-label="Houston Rockets"><img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Houston Rockets logo" loading="lazy"></span>
-      <span class="team-logo" title="Indiana Pacers" aria-label="Indiana Pacers"><img src="https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg" alt="Indiana Pacers logo" loading="lazy"></span>
-      <span class="team-logo" title="LA Clippers" aria-label="LA Clippers"><img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="LA Clippers logo" loading="lazy"></span>
-      <span class="team-logo" title="Los Angeles Lakers" aria-label="Los Angeles Lakers"><img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Los Angeles Lakers logo" loading="lazy"></span>
-      <span class="team-logo" title="Memphis Grizzlies" aria-label="Memphis Grizzlies"><img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Memphis Grizzlies logo" loading="lazy"></span>
-      <span class="team-logo" title="Miami Heat" aria-label="Miami Heat"><img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Miami Heat logo" loading="lazy"></span>
-      <span class="team-logo" title="Milwaukee Bucks" aria-label="Milwaukee Bucks"><img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Milwaukee Bucks logo" loading="lazy"></span>
-      <span class="team-logo" title="Minnesota Timberwolves" aria-label="Minnesota Timberwolves"><img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Minnesota Timberwolves logo" loading="lazy"></span>
-      <span class="team-logo" title="New Orleans Pelicans" aria-label="New Orleans Pelicans"><img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="New Orleans Pelicans logo" loading="lazy"></span>
-      <span class="team-logo" title="New York Knicks" aria-label="New York Knicks"><img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="New York Knicks logo" loading="lazy"></span>
-      <span class="team-logo" title="Oklahoma City Thunder" aria-label="Oklahoma City Thunder"><img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Oklahoma City Thunder logo" loading="lazy"></span>
-      <span class="team-logo" title="Orlando Magic" aria-label="Orlando Magic"><img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Orlando Magic logo" loading="lazy"></span>
-      <span class="team-logo" title="Philadelphia 76ers" aria-label="Philadelphia 76ers"><img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Philadelphia 76ers logo" loading="lazy"></span>
-      <span class="team-logo" title="Phoenix Suns" aria-label="Phoenix Suns"><img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Phoenix Suns logo" loading="lazy"></span>
-      <span class="team-logo" title="Portland Trail Blazers" aria-label="Portland Trail Blazers"><img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Portland Trail Blazers logo" loading="lazy"></span>
-      <span class="team-logo" title="Sacramento Kings" aria-label="Sacramento Kings"><img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Sacramento Kings logo" loading="lazy"></span>
-      <span class="team-logo" title="San Antonio Spurs" aria-label="San Antonio Spurs"><img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="San Antonio Spurs logo" loading="lazy"></span>
-      <span class="team-logo" title="Toronto Raptors" aria-label="Toronto Raptors"><img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Toronto Raptors logo" loading="lazy"></span>
-      <span class="team-logo" title="Utah Jazz" aria-label="Utah Jazz"><img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Utah Jazz logo" loading="lazy"></span>
-      <span class="team-logo" title="Washington Wizards" aria-label="Washington Wizards"><img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Washington Wizards logo" loading="lazy"></span>
+      <a class="team-logo" href="/team/ATL" title="Atlanta Hawks results" aria-label="View Atlanta Hawks results"><img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Atlanta Hawks logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/BOS" title="Boston Celtics results" aria-label="View Boston Celtics results"><img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Boston Celtics logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/BKN" title="Brooklyn Nets results" aria-label="View Brooklyn Nets results"><img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Brooklyn Nets logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/CHA" title="Charlotte Hornets results" aria-label="View Charlotte Hornets results"><img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Charlotte Hornets logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/CHI" title="Chicago Bulls results" aria-label="View Chicago Bulls results"><img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Chicago Bulls logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/CLE" title="Cleveland Cavaliers results" aria-label="View Cleveland Cavaliers results"><img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Cleveland Cavaliers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/DAL" title="Dallas Mavericks results" aria-label="View Dallas Mavericks results"><img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Dallas Mavericks logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/DEN" title="Denver Nuggets results" aria-label="View Denver Nuggets results"><img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Denver Nuggets logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/DET" title="Detroit Pistons results" aria-label="View Detroit Pistons results"><img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Detroit Pistons logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/GSW" title="Golden State Warriors results" aria-label="View Golden State Warriors results"><img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Golden State Warriors logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/HOU" title="Houston Rockets results" aria-label="View Houston Rockets results"><img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Houston Rockets logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/IND" title="Indiana Pacers results" aria-label="View Indiana Pacers results"><img src="https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg" alt="Indiana Pacers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/LAC" title="LA Clippers results" aria-label="View LA Clippers results"><img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="LA Clippers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/LAL" title="Los Angeles Lakers results" aria-label="View Los Angeles Lakers results"><img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Los Angeles Lakers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/MEM" title="Memphis Grizzlies results" aria-label="View Memphis Grizzlies results"><img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Memphis Grizzlies logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/MIA" title="Miami Heat results" aria-label="View Miami Heat results"><img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Miami Heat logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/MIL" title="Milwaukee Bucks results" aria-label="View Milwaukee Bucks results"><img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Milwaukee Bucks logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/MIN" title="Minnesota Timberwolves results" aria-label="View Minnesota Timberwolves results"><img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Minnesota Timberwolves logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/NOP" title="New Orleans Pelicans results" aria-label="View New Orleans Pelicans results"><img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="New Orleans Pelicans logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/NYK" title="New York Knicks results" aria-label="View New York Knicks results"><img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="New York Knicks logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/OKC" title="Oklahoma City Thunder results" aria-label="View Oklahoma City Thunder results"><img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Oklahoma City Thunder logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/ORL" title="Orlando Magic results" aria-label="View Orlando Magic results"><img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Orlando Magic logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/PHI" title="Philadelphia 76ers results" aria-label="View Philadelphia 76ers results"><img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Philadelphia 76ers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/PHX" title="Phoenix Suns results" aria-label="View Phoenix Suns results"><img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Phoenix Suns logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/POR" title="Portland Trail Blazers results" aria-label="View Portland Trail Blazers results"><img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Portland Trail Blazers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/SAC" title="Sacramento Kings results" aria-label="View Sacramento Kings results"><img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Sacramento Kings logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/SAS" title="San Antonio Spurs results" aria-label="View San Antonio Spurs results"><img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="San Antonio Spurs logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/TOR" title="Toronto Raptors results" aria-label="View Toronto Raptors results"><img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Toronto Raptors logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/UTA" title="Utah Jazz results" aria-label="View Utah Jazz results"><img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Utah Jazz logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/WAS" title="Washington Wizards results" aria-label="View Washington Wizards results"><img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Washington Wizards logo" loading="lazy"></a>
       </div>
     </div>
   </header>
   <main>
     <div class="eyebrow">30 NBA regular seasons · {{ seasons }}</div>
-    <h1>NBA Bonus and Free-Throw Analysis</h1>
+    <h1>NBA Bonus &amp; Winning</h1>
     <div class="research-question">
       <strong>Research question</strong><br>
       How does reaching the bonus first—and then shooting more free throws while in the bonus—affect an NBA team’s chance of winning?
     </div>
     <p class="intro">
-      This project also examines whether the relationship changes by quarter,
-      home-court status, free-throw accuracy, team, and season. The figures below
-      are loaded from analysis results stored in TiDB.
+      League-wide results are summarized here. Select any team logo to explore that franchise’s bonus attempts,
+      free-throw accuracy, winning percentage, and season-by-season changes. Figures are read from the analysis
+      archive in TiDB.
     </p>
 
     <section class="facts" aria-label="Dataset coverage">
-      <div class="fact"><strong>30</strong><span>Regular seasons analyzed</span></div>
+      <div class="fact"><strong>{{ season_count }}</strong><span>Regular seasons analyzed</span></div>
       <div class="fact"><strong>{{ games }}</strong><span>Games analyzed</span></div>
       <div class="fact"><strong>{{ team_games }}</strong><span>Team-game observations</span></div>
       <div class="fact"><strong>{{ bonus_entries }}</strong><span>Recorded bonus entries</span></div>
@@ -574,66 +609,30 @@ main::after {
       <div class="error" role="alert">{{ error }}</div>
     {% elif data %}
       <section class="panel">
-        <div class="eyebrow">Finding 1 · Reaching the bonus first</div>
+        <div class="eyebrow">League finding · First to the bonus</div>
         <h2>A small edge across the full game</h2>
         <div class="big-number">{{ "%.2f"|format(data.first_bonus_pct) }}%</div>
-        <p>The team that reached the bonus first at any point in the game won this share of the time. This is associated with winning, but is not a strong predictor by itself.</p>
-        <p class="small-note">Recorded first bonus entry in {{ "{:,}".format(data.first_bonus_games) }} games.</p>
-      </section>
-
-      <section class="panel quarter-panel">
-        <div class="eyebrow">Finding 2 · First bonus by quarter</div>
-        <h2>The win rate changes by period</h2>
-        <div class="grid2 quarter-grid">
-          {% for q in data.quarters %}
-            <article class="stat-card">
-              <h3>{{ q.label }}</h3>
-              <div class="bar-label"><span>First team to bonus wins</span><strong>{{ "%.2f"|format(q.win_pct) }}%</strong></div>
-              <div class="track"><div class="fill" style="width: {{ q.win_pct }}%"></div></div>
-              <p class="small-note">{{ "{:,}".format(q.games) }} observations</p>
-            </article>
-          {% endfor %}
-        </div>
-        <p class="caveat">Interpret overtime cautiously: it occurs much less often and has a smaller sample than regulation periods.</p>
+        <p>The team that reached the bonus first won this share of the time. The association is modest and does not make first-to-bonus a strong predictor by itself.</p>
+        <p class="small-note">Recorded first bonus entries in {{ "{:,}".format(data.first_bonus_games) }} games.</p>
       </section>
 
       <section class="panel">
-        <div class="eyebrow">Finding 3 · Fourth-quarter timing</div>
-        <h2>Q4 bonus timing and win rates</h2>
+        <div class="eyebrow">League finding · Bonus free throws</div>
+        <h2>More bonus attempts align with more wins</h2>
         <div class="grid2">
-          {% for label in ['Entered before final two minutes', 'Entered during final two minutes'] %}
-            <article class="stat-card">
-              <h3>{{ label }}</h3>
-              <div class="big-number">{{ "%.2f"|format(data.q4_timing[label].win_pct) }}%</div>
-              <p class="small-note">{{ "{:,}".format(data.q4_timing[label].games) }} games</p>
-            </article>
-          {% endfor %}
+          <article class="stat-card">
+            <h3>More bonus attempts</h3>
+            <div class="big-number">{{ "%.2f"|format(data.original.more_pct) }}%</div>
+            <p>Win rate when a team attempted more bonus free throws than its opponent.</p>
+          </article>
+          <article class="stat-card">
+            <h3>Fewer bonus attempts</h3>
+            <div class="big-number">{{ "%.2f"|format(data.original.fewer_pct) }}%</div>
+            <p>Raw win-rate gap: {{ "%.2f"|format(data.original.gap) }} percentage points.</p>
+          </article>
         </div>
-        <p class="small-note">Intentional fouling and late-game strategy can influence bonus free-throw totals.</p>
+        <p class="late-callout">Late-game fouling affects this raw comparison. Excluding the final two minutes of the fourth quarter and overtime, the gap is {{ "%.2f"|format(data.adjusted.gap) }} points. This is context for interpreting the relationship, not proof of cause.</p>
       </section>
-
-      <section class="panel">
-        <div class="eyebrow">Finding 4 · Attempts and winning</div>
-        <h2>Late-game fouls account for much of the attempt gap</h2>
-        <div class="grid2">
-          {% for item in [data.original, data.adjusted] %}
-            <article class="stat-card">
-              <h3>{{ item.label }}</h3>
-              <div class="bar-row">
-                <div class="bar-label"><span>More bonus attempts</span><strong>{{ "%.2f"|format(item.more_pct) }}%</strong></div>
-                <div class="track"><div class="fill" style="width: {{ item.more_pct }}%"></div></div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-label"><span>Fewer bonus attempts</span><strong>{{ "%.2f"|format(item.fewer_pct) }}%</strong></div>
-                <div class="track"><div class="fill gold" style="width: {{ item.fewer_pct }}%"></div></div>
-              </div>
-              <div class="gap">Win-rate gap: {{ "%.2f"|format(item.gap) }} percentage points</div>
-            </article>
-          {% endfor %}
-        </div>
-        <p class="late-callout">About {{ "%.1f"|format(data.gap_removed_pct) }}% of the original gap disappears after excluding late-game attempts. This suggests much of the raw relationship reflects intentional fouling against teams that are already leading.</p>
-      </section>
-
 
       <div class="center-court" aria-label="NBA center court">
         <aside class="center-note">
@@ -652,53 +651,26 @@ main::after {
       </div>
 
       <section class="panel">
-        <div class="eyebrow">Finding 5 · Attempts compared with accuracy</div>
-        <h2>Bonus attempts relate to wins more than accuracy</h2>
+        <div class="eyebrow">League finding · Free-throw accuracy</div>
+        <h2>Attempts show a stronger raw relationship than accuracy</h2>
         <div class="grid2">
           <article class="stat-card">
-            <h3>Bonus-attempt advantage</h3>
-            {% for label in ['More attempts', 'Fewer attempts'] %}
-              <div class="bar-row">
-                <div class="bar-label"><span>{{ label }}</span><strong>{{ "%.2f"|format(data.attempts[label]) }}%</strong></div>
-                <div class="track"><div class="fill" style="width: {{ data.attempts[label] }}%"></div></div>
-              </div>
-              <p class="small-note">{% if label == 'More attempts' %}Teams with more attempts than their opponent{% else %}Teams with fewer attempts than their opponent{% endif %}</p>
-            {% endfor %}
-            <div class="gap">Gap: {{ "%.2f"|format(data.attempts['More attempts'] - data.attempts['Fewer attempts']) }} pp</div>
+            <h3>Higher bonus accuracy</h3>
+            <div class="big-number">{{ "%.2f"|format(data.accuracy["Higher accuracy"]) }}%</div>
+            <p>Win rate for teams with higher bonus free-throw accuracy.</p>
           </article>
           <article class="stat-card">
-            <h3>Bonus-accuracy advantage</h3>
-            {% for label in ['Higher accuracy', 'Lower accuracy'] %}
-              <div class="bar-row">
-                <div class="bar-label"><span>{{ label }}</span><strong>{{ "%.2f"|format(data.accuracy[label]) }}%</strong></div>
-                <div class="track"><div class="fill gold" style="width: {{ data.accuracy[label] }}%"></div></div>
-              </div>
-            {% endfor %}
-            <div class="gap">Gap: {{ "%.2f"|format(data.accuracy['Higher accuracy'] - data.accuracy['Lower accuracy']) }} pp</div>
+            <h3>Lower bonus accuracy</h3>
+            <div class="big-number">{{ "%.2f"|format(data.accuracy["Lower accuracy"]) }}%</div>
+            <p>Win rate for teams with lower accuracy. Accuracy gap: {{ "%.2f"|format(data.accuracy["Higher accuracy"] - data.accuracy["Lower accuracy"]) }} pp.</p>
           </article>
         </div>
-        <p class="small-note">The attempt comparison is strongly affected by intentional late-game fouling.</p>
       </section>
 
       <section class="panel">
-        <div class="eyebrow">Finding 6 · Home-court advantage</div>
-        <h2>Home teams reach the bonus first more often</h2>
-        <div class="grid2">
-          {% for label in ['Home', 'Away'] %}
-            <article class="stat-card">
-              <h3>{{ label }} team reaches bonus first</h3>
-              <div class="big-number">{{ "%.2f"|format(data.home_first[label].win_pct) }}%</div>
-              <p>Won when it reached the bonus first. It accounted for {{ "%.2f"|format(data.home_first[label].share_pct) }}% of first entries.</p>
-            </article>
-          {% endfor %}
-        </div>
-        <p class="late-callout">Overall home-team winning percentage: {{ "%.2f"|format(data.home_overall['Home']) }}%. Some of the first-to-bonus result may reflect the NBA’s general home-court advantage.</p>
-      </section>
-
-      <section class="panel">
-        <div class="eyebrow">Finding 7 · Changes across 30 seasons</div>
+        <div class="eyebrow">League trend · {{ data.season_span }}</div>
         <h2>Fewer bonus attempts, higher accuracy</h2>
-        <p class="section-intro">The bar chart shows average bonus attempts per team-game by season.</p>
+        <p class="section-intro">Average bonus free throws per team-game across each regular season. Hover over a bar for attempts and accuracy.</p>
         <div class="season-chart" role="img" aria-label="Average bonus free throws per team-game across seasons">
           {% for season in data.seasons %}
             <span class="season-bar" title="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts; {{ '%.2f'|format(season.accuracy) }}% accuracy" style="height: {{ season.bar_height }}%"></span>
@@ -706,72 +678,35 @@ main::after {
         </div>
         <div class="season-labels"><span>{{ data.first_season.season }}</span><span>{{ data.last_season.season }}</span></div>
         <div class="trend-stats">
-          <div class="trend-stat"><span>Attempts, first season</span><strong>{{ "%.2f"|format(data.first_season.attempts) }}</strong></div>
-          <div class="trend-stat"><span>Attempts, latest season</span><strong>{{ "%.2f"|format(data.last_season.attempts) }}</strong></div>
+          <div class="trend-stat"><span>Bonus attempts</span><strong>{{ "%.2f"|format(data.first_season.attempts) }} → {{ "%.2f"|format(data.last_season.attempts) }}</strong></div>
           <div class="trend-stat"><span>Attempts change</span><strong>{{ "%.2f"|format(data.attempts_change) }}</strong><span>{{ "%.1f"|format(data.attempts_decline_pct) }}% decline</span></div>
           <div class="trend-stat"><span>Accuracy change</span><strong>+{{ "%.2f"|format(data.accuracy_change) }} pp</strong></div>
-          <div class="trend-stat"><span>Accuracy, first season</span><strong>{{ "%.2f"|format(data.first_season.accuracy) }}%</strong></div>
-          <div class="trend-stat"><span>Accuracy, latest season</span><strong>{{ "%.2f"|format(data.last_season.accuracy) }}%</strong></div>
         </div>
-      </section>
-
-      <section class="panel">
-        <div class="eyebrow">Finding 8 · Team changes</div>
-        <h2>Attempts fell across teams; accuracy changes varied</h2>
-        <p class="section-intro">Every comparable team recorded fewer bonus attempts when its first five seasons are compared with its most recent five. The tables show selected changes; {{ data.team_count }} teams have comparable observations.</p>
-        <div class="grid2">
-          <article class="stat-card">
-            <h3>Smallest declines in bonus attempts</h3>
-            <ul class="team-list">{% for team in data.least_attempt_declines %}<li><span>{{ team.name }}</span><strong>{{ "%.2f"|format(team.change) }}</strong></li>{% endfor %}</ul>
-          </article>
-          <article class="stat-card">
-            <h3>Largest declines in bonus attempts</h3>
-            <ul class="team-list">{% for team in data.largest_attempt_declines %}<li><span>{{ team.name }}</span><strong>{{ "%.2f"|format(team.change) }}</strong></li>{% endfor %}</ul>
-          </article>
-          <article class="stat-card">
-            <h3>Largest accuracy improvements</h3>
-            <ul class="team-list">{% for team in data.largest_accuracy_improvements %}<li><span>{{ team.name }}</span><strong>+{{ "%.2f"|format(team.change) }} pp</strong></li>{% endfor %}</ul>
-          </article>
-          <article class="stat-card">
-            <h3>Teams with accuracy declines</h3>
-            <ul class="team-list">{% for team in data.accuracy_declines %}<li><span>{{ team.name }}</span><strong>{{ "%.2f"|format(team.change) }} pp</strong></li>{% endfor %}</ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="eyebrow">Finding 9 · Team changes and winning</div>
-        <h2>Attempt trends track winning more than accuracy</h2>
-        <div class="grid2">
-          <article class="stat-card"><h3>Attempt-change correlation</h3><div class="big-number">{{ "%.3f"|format(data.attempt_corr) }}</div><p>Moderate positive relationship</p></article>
-          <article class="stat-card"><h3>Accuracy-change correlation</h3><div class="big-number">{{ "%.3f"|format(data.accuracy_corr) }}</div><p>Weak positive relationship</p></article>
-        </div>
-        <p>Teams that maintained more of their bonus-attempt volume generally had better changes in winning percentage than teams that only improved accuracy.</p>
       </section>
 
       <section class="panel final-zone">
         <div class="cartoon-hoop" aria-hidden="true"><span class="hoop-board"></span><span class="hoop-rim"></span><span class="hoop-net"></span></div>
         <div class="painted-key">
-        <div class="eyebrow">Overall conclusion</div>
-        <h2>Bonus statistics connect to winning, but context matters</h2>
-        <p>Reaching the bonus first is associated with a small advantage, but does not determine a game. Teams with more bonus attempts show a large raw winning advantage, though much of that gap disappears after late-game free throws are removed. Bonus accuracy also relates to winning, but less strongly than attempts. Across 30 seasons, teams have taken fewer bonus free throws and made them more accurately.</p>
-        <p>The strongest overall conclusion is that bonus statistics are connected to winning, but game situation and late-game strategy must be considered before interpreting the relationship as causal.</p>
+          <div class="eyebrow">Overall conclusion</div>
+          <h2>Bonus statistics connect to winning, but context matters</h2>
+          <p>Reaching the bonus first is associated with a small advantage. Teams with more bonus attempts show a large raw winning advantage, while the late-game context changes how that comparison should be read. Bonus accuracy also relates to winning, but less strongly than attempts. Across the seasons studied, teams took fewer bonus free throws and made them more accurately.</p>
+          <p>The analysis identifies relationships; it does not establish that bonus timing or free throws cause a team to win.</p>
         </div>
       </section>
-
-      <section class="panel">
-        <div class="eyebrow">Limitations</div>
-        <h2>What this analysis cannot establish</h2>
-        <ul>
-          <li>The analysis identifies relationships; it does not prove that reaching the bonus or receiving more attempts causes a team to win.</li>
-          <li>Intentional late-game fouling can give leading teams additional free throws.</li>
-          <li>Home teams already win more often, so home-court advantage is difficult to isolate from the bonus.</li>
-          <li>Overtime findings use a much smaller sample than regulation-quarter findings.</li>
-          <li>Team comparisons span different players, coaches, strategies, rule changes, and league environments.</li>
-          <li>Comparing the first five seasons with the last five summarizes long-term change, not every season-to-season variation.</li>
-        </ul>
-      </section>
     {% endif %}
+
+    <section class="panel team-explorer" id="teams">
+      <div class="eyebrow">Explore by team</div>
+      <h2>Select a team for its season results</h2>
+      <div class="team-directory">
+        {% for team in team_directory %}
+          <a class="team-link" href="{{ url_for('team_page', team_code=team.code) }}">
+            <img src="https://cdn.nba.com/logos/nba/{{ team.logo_id }}/primary/L/logo.svg" alt="" loading="lazy">
+            <span>{{ team.name }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
 
     <section class="panel">
       <div class="eyebrow">Project outputs</div>

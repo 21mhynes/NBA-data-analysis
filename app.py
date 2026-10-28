@@ -4,40 +4,50 @@ import os
 
 import pymysql
 from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask, abort, render_template
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
-TEAM_NAMES = {
-    "ATL": "Atlanta",
-    "BOS": "Boston",
-    "CHI": "Chicago",
-    "CLE": "Cleveland",
-    "DAL": "Dallas",
-    "DEN": "Denver",
-    "DET": "Detroit",
-    "GSW": "Golden State",
-    "HOU": "Houston",
-    "IND": "Indiana",
-    "LAC": "Los Angeles Clippers",
-    "LAL": "Los Angeles Lakers",
-    "MIA": "Miami",
-    "MIL": "Milwaukee",
-    "MIN": "Minnesota",
-    "NYK": "New York",
-    "ORL": "Orlando",
-    "PHI": "Philadelphia",
-    "PHX": "Phoenix",
-    "POR": "Portland",
-    "SAC": "Sacramento",
-    "SAS": "San Antonio",
-    "TOR": "Toronto",
-    "UTA": "Utah",
-    "WAS": "Washington",
+TEAM_INFO = {
+    "ATL": {"name": "Atlanta Hawks", "logo_id": 1610612737, "source_codes": ["ATL"]},
+    "BOS": {"name": "Boston Celtics", "logo_id": 1610612738, "source_codes": ["BOS"]},
+    "BKN": {"name": "Brooklyn Nets", "logo_id": 1610612751, "source_codes": ["BKN","NJN"]},
+    "CHA": {"name": "Charlotte Hornets", "logo_id": 1610612766, "source_codes": ["CHA","CHH"]},
+    "CHI": {"name": "Chicago Bulls", "logo_id": 1610612741, "source_codes": ["CHI"]},
+    "CLE": {"name": "Cleveland Cavaliers", "logo_id": 1610612739, "source_codes": ["CLE"]},
+    "DAL": {"name": "Dallas Mavericks", "logo_id": 1610612742, "source_codes": ["DAL"]},
+    "DEN": {"name": "Denver Nuggets", "logo_id": 1610612743, "source_codes": ["DEN"]},
+    "DET": {"name": "Detroit Pistons", "logo_id": 1610612765, "source_codes": ["DET"]},
+    "GSW": {"name": "Golden State Warriors", "logo_id": 1610612744, "source_codes": ["GSW"]},
+    "HOU": {"name": "Houston Rockets", "logo_id": 1610612745, "source_codes": ["HOU"]},
+    "IND": {"name": "Indiana Pacers", "logo_id": 1610612754, "source_codes": ["IND"]},
+    "LAC": {"name": "LA Clippers", "logo_id": 1610612746, "source_codes": ["LAC"]},
+    "LAL": {"name": "Los Angeles Lakers", "logo_id": 1610612747, "source_codes": ["LAL"]},
+    "MEM": {"name": "Memphis Grizzlies", "logo_id": 1610612763, "source_codes": ["MEM","VAN"]},
+    "MIA": {"name": "Miami Heat", "logo_id": 1610612748, "source_codes": ["MIA"]},
+    "MIL": {"name": "Milwaukee Bucks", "logo_id": 1610612749, "source_codes": ["MIL"]},
+    "MIN": {"name": "Minnesota Timberwolves", "logo_id": 1610612750, "source_codes": ["MIN"]},
+    "NOP": {"name": "New Orleans Pelicans", "logo_id": 1610612740, "source_codes": ["NOP","NOH","NOK"]},
+    "NYK": {"name": "New York Knicks", "logo_id": 1610612752, "source_codes": ["NYK"]},
+    "OKC": {"name": "Oklahoma City Thunder", "logo_id": 1610612760, "source_codes": ["OKC","SEA"]},
+    "ORL": {"name": "Orlando Magic", "logo_id": 1610612753, "source_codes": ["ORL"]},
+    "PHI": {"name": "Philadelphia 76ers", "logo_id": 1610612755, "source_codes": ["PHI"]},
+    "PHX": {"name": "Phoenix Suns", "logo_id": 1610612756, "source_codes": ["PHX"]},
+    "POR": {"name": "Portland Trail Blazers", "logo_id": 1610612757, "source_codes": ["POR"]},
+    "SAC": {"name": "Sacramento Kings", "logo_id": 1610612758, "source_codes": ["SAC"]},
+    "SAS": {"name": "San Antonio Spurs", "logo_id": 1610612759, "source_codes": ["SAS"]},
+    "TOR": {"name": "Toronto Raptors", "logo_id": 1610612761, "source_codes": ["TOR"]},
+    "UTA": {"name": "Utah Jazz", "logo_id": 1610612762, "source_codes": ["UTA"]},
+    "WAS": {"name": "Washington Wizards", "logo_id": 1610612764, "source_codes": ["WAS"]},
 }
+TEAM_NAMES = {code: info["name"] for code, info in TEAM_INFO.items()}
+TEAM_DIRECTORY = [
+    {"code": code, "name": info["name"], "logo_id": info["logo_id"]}
+    for code, info in TEAM_INFO.items()
+]
 
 
 def get_connection():
@@ -78,6 +88,15 @@ def read_rows(cursor, source_file, fields):
     """
     cursor.execute(query, (source_file,))
     return cursor.fetchall()
+
+
+def archive_count(cursor, source_file):
+    """Count rows for one prepared result file stored in the TiDB archive."""
+    cursor.execute(
+        "SELECT COUNT(*) AS row_count FROM analysis_results_archive WHERE source_file = %s",
+        (source_file,),
+    )
+    return int(cursor.fetchone()["row_count"])
 
 
 def as_float(value):
@@ -194,6 +213,17 @@ def load_dashboard_data():
                     "win_percentage_change",
                 ],
             )
+            coverage_team_games = archive_count(
+                cursor, "results/historical_bonus_team_games.csv"
+            )
+            coverage = {
+                "seasons": len(season_rows),
+                "games": coverage_team_games // 2,
+                "team_games": coverage_team_games,
+                "bonus_entries": archive_count(
+                    cursor, "results/historical_bonus_entries.csv"
+                ),
+            }
             original = comparison(
                 cursor,
                 "results/historical_bonus_team_games.csv",
@@ -296,10 +326,13 @@ def load_dashboard_data():
         else 0
     )
     first_season, last_season = seasons[0], seasons[-1]
+    season_span = f"{first_season['season']} through {last_season['season']}"
     attempts_change = last_season["attempts"] - first_season["attempts"]
     accuracy_change = last_season["accuracy"] - first_season["accuracy"]
 
     return {
+        "coverage": coverage,
+        "season_span": season_span,
         "first_bonus_pct": first_bonus_pct,
         "first_bonus_games": first_bonus_games,
         "quarters": quarters,
@@ -352,14 +385,116 @@ def home():
             "settings in your local .env file, then refresh."
         )
 
+    coverage = data["coverage"] if data else {}
     return render_template(
         "index.html",
         data=data,
         error=error,
-        seasons="1996–97 through 2025–26",
-        games="35,546",
-        team_games="71,092",
-        bonus_entries="158,332",
+        seasons=data["season_span"] if data else "—",
+        games=f"{coverage.get('games', '—'):,}" if data else "—",
+        team_games=f"{coverage.get('team_games', '—'):,}" if data else "—",
+        bonus_entries=f"{coverage.get('bonus_entries', '—'):,}" if data else "—",
+        season_count=coverage.get("seasons", "—") if data else "—",
+        team_directory=TEAM_DIRECTORY,
+    )
+
+
+def load_team_page_data(team_code):
+    """Load one franchise's season summaries from the TiDB analysis archive."""
+    team = TEAM_INFO[team_code]
+    connection = get_connection()
+    try:
+        with connection.cursor() as cursor:
+            rows = read_rows(
+                cursor,
+                "results/team_trends/team_by_season_summary.csv",
+                [
+                    "season", "team", "games", "wins", "average_bonus_fta",
+                    "total_bonus_fta", "total_bonus_ftm", "win_percentage",
+                    "bonus_ft_percentage",
+                ],
+            )
+    finally:
+        connection.close()
+
+    seasons = []
+    for row in rows:
+        if row["team"] not in team["source_codes"]:
+            continue
+        seasons.append({
+            "season": row["season"],
+            "games": int(float(row["games"])),
+            "wins": int(float(row["wins"])),
+            "attempts": as_float(row["average_bonus_fta"]),
+            "total_attempts": int(float(row["total_bonus_fta"])),
+            "made": int(float(row["total_bonus_ftm"])),
+            "win_pct": as_float(row["win_percentage"]),
+            "accuracy": as_float(row["bonus_ft_percentage"]),
+        })
+    seasons.sort(key=lambda row: row["season"])
+    if not seasons:
+        raise RuntimeError(
+            "No team-season rows were found in the TiDB analysis archive."
+        )
+
+    min_attempts = min(row["attempts"] for row in seasons)
+    max_attempts = max(row["attempts"] for row in seasons)
+    spread = max_attempts - min_attempts or 1
+    for row in seasons:
+        row["bar_height"] = 18 + 82 * (row["attempts"] - min_attempts) / spread
+
+    first_five, last_five = seasons[:5], seasons[-5:]
+    def mean(rows, field):
+        return sum(row[field] for row in rows) / len(rows)
+
+    first5 = {
+        "attempts": mean(first_five, "attempts"),
+        "accuracy": mean(first_five, "accuracy"),
+        "win_pct": mean(first_five, "win_pct"),
+    }
+    last5 = {
+        "attempts": mean(last_five, "attempts"),
+        "accuracy": mean(last_five, "accuracy"),
+        "win_pct": mean(last_five, "win_pct"),
+    }
+    return team, {
+        "seasons": seasons,
+        "latest": seasons[-1],
+        "first_season": seasons[0]["season"],
+        "last_season": seasons[-1]["season"],
+        "season_count": len(seasons),
+        "game_count": sum(row["games"] for row in seasons),
+        "first5": first5,
+        "last5": last5,
+        "five_year_changes": {
+            field: last5[field] - first5[field]
+            for field in ("attempts", "accuracy", "win_pct")
+        },
+    }
+
+
+@app.route("/team/<team_code>")
+def team_page(team_code):
+    team_code = team_code.upper()
+    if team_code not in TEAM_INFO:
+        abort(404)
+    error = None
+    team = TEAM_INFO[team_code]
+    data = None
+    try:
+        team, data = load_team_page_data(team_code)
+    except Exception:
+        logging.exception("Could not load team findings from TiDB")
+        error = (
+            "This team page could not load its season results from TiDB. "
+            "Check the database connection settings, then refresh."
+        )
+    return render_template(
+        "team.html",
+        team={**team, "code": team_code},
+        data=data,
+        error=error,
+        team_directory=TEAM_DIRECTORY,
     )
 
 
