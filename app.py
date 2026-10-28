@@ -522,15 +522,10 @@ def load_league_analysis_data():
                 "results/home_accuracy_analysis/home_away_bonus_summary.csv",
                 ["location", "win_percentage"],
             )
-            period_outcomes = read_rows(
-                cursor,
-                "results/historical_season_outcome_summary.csv",
-                ["first_bonus_result", "team_game_rows", "wins"],
-            )
             season_gaps = read_rows(
                 cursor,
                 "results/final_historical_season_results.csv",
-                ["season", "first_bonus_win_gap", "bonus_fta_win_gap", "combined_win_gap"],
+                ["season", "bonus_fta_win_gap"],
             )
             adjusted_gaps = read_rows(
                 cursor,
@@ -545,25 +540,12 @@ def load_league_analysis_data():
     finally:
         connection.close()
 
-    period_totals = {}
-    for row in period_outcomes:
-        key = row["first_bonus_result"]
-        bucket = period_totals.setdefault(key, {"rows": 0, "wins": 0})
-        bucket["rows"] += int(float(row["team_game_rows"]))
-        bucket["wins"] += int(float(row["wins"]))
-    period_win_rates = {
-        key: bucket["wins"] / bucket["rows"] * 100
-        for key, bucket in period_totals.items()
-        if bucket["rows"]
-    }
     season_gap_data = []
     adjusted_by_season = {row["season"]: as_float(row["win_percentage_gap"]) for row in adjusted_gaps}
     for row in season_gaps:
         season_gap_data.append({
             "season": row["season"],
-            "first_bonus_gap": as_float(row["first_bonus_win_gap"]),
             "attempt_gap": as_float(row["bonus_fta_win_gap"]),
-            "combined_gap": as_float(row["combined_win_gap"]),
             "adjusted_gap": adjusted_by_season.get(row["season"]),
         })
 
@@ -601,8 +583,6 @@ def load_league_analysis_data():
             for row in home_first
         ],
         "home_overall": {row["location"]: as_float(row["win_percentage"]) for row in home_overall},
-        "period_win_rates": period_win_rates,
-        "period_rows": period_totals,
         "season_gaps": season_gap_data,
         "attempt_change_corr": corr_for_team_change("bonus_fta_change"),
         "accuracy_change_corr": corr_for_team_change("bonus_ft_percentage_change"),
