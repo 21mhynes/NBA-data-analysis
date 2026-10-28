@@ -63,14 +63,14 @@
 <body>
   <header>
     <div class="brand">NBA Data Analysis</div>
-    <nav class="subnav"><a href="{{ url_for('home') }}">Home</a><a href="{{ url_for('league_analysis') }}">League analysis</a><a href="{{ url_for('methods_data') }}">Methods &amp; data</a></nav>
+    <nav class="subnav"><a href="{{ url_for('home') }}">Home</a><a href="{{ url_for('league_analysis') }}">League analysis</a></nav>
   </header>
   <main>
     <section class="team-hero">
       <div>
         <div class="eyebrow">Franchise detail · {{ data.first_season if data else "NBA analysis" }}{% if data %} through {{ data.last_season }}{% endif %}</div>
         <h1>{{ team.name }}</h1>
-        <p>Bonus free throws, accuracy, and winning by season. These summaries come from the project’s team-season results in TiDB.</p>
+        <p>Explore this team’s bonus free throws, free-throw accuracy, and win rate season by season. These figures come from the project’s team-season data in TiDB.</p>
       </div>
       <img src="https://cdn.nba.com/logos/nba/{{ team.logo_id }}/primary/L/logo.svg" alt="{{ team.name }} logo">
     </section>
@@ -121,10 +121,6 @@
             </tbody>
           </table>
         </div>
-      </section>
-      <section class="panel">
-        <h2>How to read these numbers</h2>
-        <p>These are team-season summaries. The relationship between bonus attempts, accuracy, and wins is descriptive; it does not show that one directly caused another. For teams with a prior franchise abbreviation in the source data, the page groups the listed historical codes with the current franchise.</p>
       </section>
     {% endif %}
   </main>
