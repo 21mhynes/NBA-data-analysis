@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NBA bonus study definitions, data handling, validation, and limitations.">
+  <title>Methods &amp; Data · NBA Bonus Study</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap');
+    :root{--court:#d7a05c;--light:#e9bd7c;--navy:#102b58;--line:#173568;--cream:#fff1d2;--ink:#152744;--muted:#354968;--accent:#b95832}
+    *{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--ink);font:18px/1.5 'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+    header,footer{padding:15px clamp(18px,4vw,54px);color:var(--cream);background:var(--navy)}header{display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:4px solid var(--accent)}
+    .brand{font-weight:900;letter-spacing:.1em;text-transform:uppercase}nav{display:flex;gap:16px;flex-wrap:wrap}a{color:var(--cream);font-weight:700}
+    main{position:relative;isolation:isolate;min-height:100vh;padding:clamp(28px,5vw,66px) clamp(18px,7vw,110px);overflow:hidden;background:repeating-linear-gradient(0deg,rgba(103,62,27,.1) 0 2px,transparent 2px 58px),linear-gradient(110deg,var(--light),var(--court) 56%,#c48b49)}
+    main:before{content:"";position:absolute;z-index:-1;inset:12px clamp(10px,1.8vw,28px);border:4px solid rgba(23,53,104,.78)}main>*{position:relative;z-index:1}.wrap{max-width:1050px;margin:auto}
+    .eyebrow{color:var(--line);font-size:.95rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+    h1,h2,h3{color:var(--navy);font-weight:900;line-height:1.1;text-transform:uppercase}h1{font-size:clamp(2.5rem,6vw,4.8rem);margin:8px 0}h2{font-size:clamp(1.65rem,3vw,2.35rem)}p,li{color:var(--muted)}
+    .panel{margin:26px 0;padding:clamp(20px,3.4vw,36px);background:rgba(255,241,210,.9);border:4px solid var(--line)}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:16px 0;border:3px solid var(--line)}
+    .stat{padding:14px;background:rgba(233,189,124,.55);border:1px solid rgba(23,53,104,.35)}.stat strong{display:block;color:var(--line);font-size:1.8rem;font-weight:900}.error{padding:14px;background:var(--cream);border:3px solid var(--accent)}
+    footer{text-align:center;border-top:4px solid var(--accent)}@media(max-width:700px){header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding:26px 18px}}
+  </style>
+</head>
+<body>
+<header><div class="brand">NBA Data Analysis</div><nav><a href="/">Home</a><a href="/league-analysis">League analysis</a></nav></header>
+<main><div class="wrap"><div class="eyebrow">Study design and checks</div><h1>Methods &amp; Data</h1>
+<p>This page explains how to interpret the metrics shown elsewhere. It avoids repeating the homepage’s headline figures and team pages’ season tables.</p>
+{% if error %}<div class="error" role="alert">{{ error }}</div>{% elif data %}
+<section class="panel"><div class="eyebrow">Accuracy validation</div><h2>Checks on detected bonus entries</h2>
+<p>The validation report in TiDB contains {{ "{:,}".format(data.validated_entries) }} detected entries.</p>
+<div class="grid">
+<div class="stat"><span>Matched raw foul event</span><strong>{{ "%.1f"|format(data.foul_match_pct) }}%</strong></div>
+<div class="stat"><span>Distinct team and opponent</span><strong>{{ "%.1f"|format(data.distinct_teams_pct) }}%</strong></div>
+<div class="stat"><span>Valid recorded clock</span><strong>{{ "%.1f"|format(data.valid_clock_pct) }}%</strong></div>
+<div class="stat"><span>Duplicate team-period entries</span><strong>{{ data.duplicate_count }}</strong></div>
+</div></section>
+{% endif %}
+<section class="panel"><div class="eyebrow">Bonus-entry definition</div><h2>Team-foul penalty is tracked by period</h2>
+<p>A team enters the bonus when its opponent reaches the applicable team-foul limit in that period. The analysis separately accounts for the special final-two-minute foul rule.</p>
+<p>Technical, flagrant, and clear-path free throws are excluded from standard bonus free-throw totals.</p></section>
+<section class="panel"><div class="eyebrow">Two first-to-bonus measures</div><h2>Keep the definitions distinct</h2>
+<p><strong>More periods first:</strong> compare each team's first bonus entry in each period. A team has the game-level advantage if it reaches the bonus first in more periods than its opponent; ties remain a separate outcome.</p>
+<p><strong>First anywhere in the game:</strong> identify which team records the earliest bonus entry in the game. This is a different measure from the period-count comparison.</p>
+<p><strong>By-quarter:</strong> compare which team first enters the bonus within each individual quarter or overtime period.</p></section>
+<section class="panel"><div class="eyebrow">Late-game adjustment</div><h2>Adjusted attempts are a sensitivity comparison</h2>
+<p>The adjusted analysis removes bonus free throws during the final two minutes of the fourth quarter and overtime. This helps show how late-game fouling changes the raw attempt relationship; it does not remove all game-situation or team-quality effects.</p></section>
+<section class="panel"><div class="eyebrow">Interpretation</div><h2>Associations do not establish cause</h2>
+<p>Team quality, score at the time of the foul, home-court advantage, opponent style, quarter, intentional fouling, and differences across NBA eras may influence both bonus opportunities and game outcomes.</p></section>
+<section class="panel"><div class="eyebrow">Reproducibility</div><h2>Analysis code and results</h2>
+<p>Analysis scripts and source result files are maintained in the project repository. The website reads prepared summary rows from the TiDB analysis archive; the code and CSV files provide the reproducible project record.</p>
+<ul><li><code>bonus_analysis.py</code> and <code>historical_bonus_analysis.py</code></li><li><code>historical_bonus_no_late_fouls.py</code></li><li><code>historical_bonus_no_late_fouls.py</code></li><li><code>results/bonus_accuracy_report.csv</code></li><li><code>results/final_historical_season_results.csv</code></li><li><code>results/historical_season_outcome_summary.csv</code></li></ul>
+</section>
+</div></main><footer>Methods are presented with the analysis definitions used in the project.</footer></body></html>
