@@ -1,21 +1,23 @@
-# NBA Bonus Findings Website
+# NBA Bonus and Free-Throw Analysis Website
 
-This Flask site reads the original and late-game-adjusted win-rate comparisons from
-`NBA_Project.analysis_results_archive` in TiDB. It uses read-only SQL queries.
+This Flask site reads the project's prepared analysis results from
+`NBA_Project.analysis_results_archive` in TiDB. It presents the research
+question, dataset coverage, all nine findings, the overall conclusion,
+limitations, and project output paths. It uses read-only SQL queries.
 
 ## Run locally in VS Code
 
 1. Open the repository folder in VS Code.
-2. In the Terminal, activate your existing virtual environment if you have one.
+2. Activate your existing virtual environment if you have one.
 3. Install the website dependencies:
 
    ```bash
    python3 -m pip install -r requirements.txt
    ```
 
-4. Add the variables listed in `.env.example` to your existing local `.env` file.
-   Use the TiDB connection details from the TiDB Cloud Connect dialog. Keep the
-   real password in `.env`; never commit it.
+4. Add the variables listed in `.env.example` to your existing local `.env`
+   file, using the connection values from the TiDB Cloud Connect dialog. Keep
+   the actual password in `.env`; never commit it.
 5. Start the site:
 
    ```bash
@@ -24,11 +26,9 @@ This Flask site reads the original and late-game-adjusted win-rate comparisons f
 
 6. Open `http://127.0.0.1:5000` in your browser.
 
-The page reports a connection message if it cannot reach TiDB. The app reads the
-following analysis fields from the archived result rows:
-- `results/historical_bonus_team_games.csv`: `bonus_fta_difference` and `win`
-- `results/historical_bonus_without_late_fouls.csv`:
-  `bonus_fta_difference_before_final_2` and `win`
+The page reads the prepared result files by `source_file` from the
+`analysis_results_archive` table. The route only runs SELECT queries. It does
+not modify or import database data.
 
 ## Deploy to Vercel after the local page works
 
