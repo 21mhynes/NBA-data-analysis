@@ -589,6 +589,14 @@ main::after {
 @media (max-width: 480px) {
   .team-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+  
+.question-guide .question-intro { max-width: 900px; margin-bottom: 0; }
+.question-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:20px; }
+.question-card { min-width:0; padding:18px; background:rgba(233,189,124,.52); border:3px solid rgba(23,53,104,.78); }
+.question-card .eyebrow { display:block; margin-bottom:10px; font-size:.85rem; }
+.question-card p { margin:0; color:var(--ink); font-weight:600; font-size:1.05rem; line-height:1.35; }
+@media(max-width:900px) { .question-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:560px) { .question-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -748,6 +756,23 @@ main::after {
             <span>{{ team.name }}</span>
           </a>
         {% endfor %}
+      </div>
+    </section>
+
+    <section class="panel question-guide" id="questions">
+      <div class="eyebrow">What this analysis examines</div>
+      <h2>Questions this project explores</h2>
+      <p class="question-intro">The analysis looks at how bonus timing, free throws, game situations, teams, and seasons relate to winning.</p>
+      <div class="question-grid">
+        <article class="question-card"><div class="eyebrow">01 · BONUS TIMING</div><p>Do teams that reach the bonus first in more periods than their opponents win more often?</p></article>
+        <article class="question-card"><div class="eyebrow">02 · BY PERIOD</div><p>How does the first-to-bonus win rate vary by quarter and overtime?</p></article>
+        <article class="question-card"><div class="eyebrow">03 · FOURTH QUARTER</div><p>How does win rate differ when a team first reaches the fourth-quarter bonus before versus during the final two minutes?</p></article>
+        <article class="question-card"><div class="eyebrow">04 · BONUS ATTEMPTS</div><p>How does having more bonus free-throw attempts relate to winning, and what changes when late-game attempts are excluded?</p></article>
+        <article class="question-card"><div class="eyebrow">05 · FREE-THROW ACCURACY</div><p>Is winning more closely associated with higher bonus-attempt volume or higher bonus free-throw accuracy?</p></article>
+        <article class="question-card"><div class="eyebrow">06 · HOME COURT</div><p>How do home-court advantage and first-to-bonus results overlap?</p></article>
+        <article class="question-card"><div class="eyebrow">07 · LEAGUE TRENDS</div><p>Across seasons, how have bonus attempts and free-throw accuracy changed?</p></article>
+        <article class="question-card"><div class="eyebrow">08 · TEAM TRENDS</div><p>How have each team’s bonus attempts and accuracy changed from its first five to its most recent five seasons?</p></article>
+        <article class="question-card"><div class="eyebrow">09 · TEAM CHANGES &amp; WINNING</div><p>Are team changes in bonus attempts or accuracy associated with changes in winning percentage?</p></article>
       </div>
     </section>
 
