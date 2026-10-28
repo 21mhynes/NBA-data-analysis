@@ -11,6 +11,34 @@ logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
+TEAM_NAMES = {
+    "ATL": "Atlanta",
+    "BOS": "Boston",
+    "CHI": "Chicago",
+    "CLE": "Cleveland",
+    "DAL": "Dallas",
+    "DEN": "Denver",
+    "DET": "Detroit",
+    "GSW": "Golden State",
+    "HOU": "Houston",
+    "IND": "Indiana",
+    "LAC": "Los Angeles Clippers",
+    "LAL": "Los Angeles Lakers",
+    "MIA": "Miami",
+    "MIL": "Milwaukee",
+    "MIN": "Minnesota",
+    "NYK": "New York",
+    "ORL": "Orlando",
+    "PHI": "Philadelphia",
+    "PHX": "Phoenix",
+    "POR": "Portland",
+    "SAC": "Sacramento",
+    "SAS": "San Antonio",
+    "TOR": "Toronto",
+    "UTA": "Utah",
+    "WAS": "Washington",
+}
+
 
 def get_connection():
     """Open a short-lived, TLS-verified connection to TiDB."""
@@ -37,7 +65,7 @@ def get_connection():
 
 def read_rows(cursor, source_file, fields):
     """Read selected fields from one archived result CSV in TiDB."""
-    # fields and source_file are constants in this application, not user input.
+    # fields and source_file are constants in this app, never URL/form input.
     selected = ", ".join(
         f"JSON_UNQUOTE(JSON_EXTRACT(row_json, '$.{field}')) AS `{field}`"
         for field in fields
@@ -108,6 +136,10 @@ def pearson(rows, x_field, y_field):
     return numerator / denominator if denominator else None
 
 
+def team_name(code):
+    return TEAM_NAMES.get(code, code)
+
+
 def load_dashboard_data():
     connection = get_connection()
     try:
@@ -122,10 +154,20 @@ def load_dashboard_data():
                 "results/quarter_bonus_analysis/first_to_bonus_by_quarter.csv",
                 ["period_label", "games", "win_percentage"],
             )
-            home_rows = read_rows(
+            fourth_quarter_rows = read_rows(
+                cursor,
+                "results/quarter_bonus_analysis/fourth_quarter_sensitivity.csv",
+                ["group", "games", "win_percentage"],
+            )
+            home_first_rows = read_rows(
                 cursor,
                 "results/home_accuracy_analysis/home_away_first_in_game.csv",
                 ["location", "share_of_first_entries", "win_percentage"],
+            )
+            home_overall_rows = read_rows(
+                cursor,
+                "results/home_accuracy_analysis/home_away_bonus_summary.csv",
+                ["location", "win_percentage"],
             )
             attempt_rows = read_rows(
                 cursor,
@@ -162,7 +204,7 @@ def load_dashboard_data():
                 cursor,
                 "results/historical_bonus_without_late_fouls.csv",
                 "bonus_fta_difference_before_final_2",
-                "Final two minutes excluded",
+                "After excluding final 2:00 of Q4 and overtime",
             )
     finally:
         connection.close()
@@ -172,7 +214,7 @@ def load_dashboard_data():
 
     first_bonus_pct = as_float(first_bonus_rows[0]["win_percentage"])
     first_bonus_games = int(float(first_bonus_rows[0]["games"]))
-    quarter_data = [
+    quarters = [
         {
             "label": row["period_label"],
             "games": int(float(row["games"])),
@@ -180,16 +222,32 @@ def load_dashboard_data():
         }
         for row in quarter_rows
     ]
-    home_data = [
-        {
-            "label": row["location"],
+    q4_timing = {
+        row["group"]: {
+            "games": int(float(row["games"])),
+            "win_pct": as_float(row["win_percentage"]),
+        }
+        for row in fourth_quarter_rows
+    }
+    home_first = {
+        row["location"]: {
             "share_pct": as_float(row["share_of_first_entries"]),
             "win_pct": as_float(row["win_percentage"]),
         }
-        for row in home_rows
-    ]
-    attempts = {row["attempt_result"]: as_float(row["win_percentage"]) for row in attempt_rows}
-    accuracy = {row["accuracy_result"]: as_float(row["win_percentage"]) for row in accuracy_rows}
+        for row in home_first_rows
+    }
+    home_overall = {
+        row["location"]: as_float(row["win_percentage"])
+        for row in home_overall_rows
+    }
+    attempts = {
+        row["attempt_result"]: as_float(row["win_percentage"])
+        for row in attempt_rows
+    }
+    accuracy = {
+        row["accuracy_result"]: as_float(row["win_percentage"])
+        for row in accuracy_rows
+    }
 
     seasons = [
         {
@@ -205,47 +263,79 @@ def load_dashboard_data():
     for row in seasons:
         row["bar_height"] = 18 + 82 * (row["attempts"] - min_attempts) / span
 
-    comparable_teams = [
-        {
-            **row,
-            "attempt_change": as_float(row["bonus_fta_change"]),
-            "accuracy_change": as_float(row["bonus_ft_percentage_change"]),
-            "win_change": as_float(row["win_percentage_change"]),
-        }
-        for row in team_rows
-        if as_float(row["bonus_fta_change"]) is not None
-    ]
-    attempt_change_sorted = sorted(comparable_teams, key=lambda row: row["attempt_change"])
-    accuracy_change_sorted = sorted(
-        [row for row in comparable_teams if row["accuracy_change"] is not None],
+    teams = []
+    for row in team_rows:
+        attempt_change = as_float(row["bonus_fta_change"])
+        accuracy_change = as_float(row["bonus_ft_percentage_change"])
+        win_change = as_float(row["win_percentage_change"])
+        if attempt_change is None:
+            continue
+        teams.append({
+            "code": row["team"],
+            "name": team_name(row["team"]),
+            "attempt_change": attempt_change,
+            "accuracy_change": accuracy_change,
+            "win_change": win_change,
+        })
+
+    attempt_change_sorted = sorted(teams, key=lambda row: row["attempt_change"])
+    accuracy_comparable = [row for row in teams if row["accuracy_change"] is not None]
+    largest_accuracy_improvements = sorted(
+        [row for row in accuracy_comparable if row["accuracy_change"] > 0],
         key=lambda row: row["accuracy_change"],
         reverse=True,
+    )[:5]
+    accuracy_declines = sorted(
+        [row for row in accuracy_comparable if row["accuracy_change"] < 0],
+        key=lambda row: row["accuracy_change"],
     )
-    adjusted_pct_of_gap_removed = (
-        (original["gap"] - adjusted["gap"]) / original["gap"] * 100
-        if original["gap"]
+    original_gap = original["gap"]
+    gap_removed_pct = (
+        (original_gap - adjusted["gap"]) / original_gap * 100
+        if original_gap
         else 0
     )
+    first_season, last_season = seasons[0], seasons[-1]
+    attempts_change = last_season["attempts"] - first_season["attempts"]
+    accuracy_change = last_season["accuracy"] - first_season["accuracy"]
 
     return {
         "first_bonus_pct": first_bonus_pct,
         "first_bonus_games": first_bonus_games,
-        "quarters": quarter_data,
-        "home": home_data,
+        "quarters": quarters,
+        "q4_timing": q4_timing,
+        "home_first": home_first,
+        "home_overall": home_overall,
         "attempts": attempts,
         "accuracy": accuracy,
         "seasons": seasons,
-        "first_season": seasons[0],
-        "last_season": seasons[-1],
-        "team_count": len(comparable_teams),
+        "first_season": first_season,
+        "last_season": last_season,
+        "attempts_change": attempts_change,
+        "attempts_decline_pct": abs(attempts_change / first_season["attempts"] * 100),
+        "accuracy_change": accuracy_change,
+        "team_count": len(teams),
+        "least_attempt_declines": [
+            {"name": row["name"], "change": row["attempt_change"]}
+            for row in reversed(attempt_change_sorted[-3:])
+        ],
+        "largest_attempt_declines": [
+            {"name": row["name"], "change": row["attempt_change"]}
+            for row in attempt_change_sorted[:3]
+        ],
+        "largest_accuracy_improvements": [
+            {"name": row["name"], "change": row["accuracy_change"]}
+            for row in largest_accuracy_improvements
+        ],
+        "accuracy_declines": [
+            {"name": row["name"], "change": row["accuracy_change"]}
+            for row in accuracy_declines
+        ],
         "attempt_corr": pearson(team_rows, "bonus_fta_change", "win_percentage_change"),
         "accuracy_corr": pearson(team_rows, "bonus_ft_percentage_change", "win_percentage_change"),
-        "least_attempt_declines": list(reversed(attempt_change_sorted[-3:])),
-        "largest_attempt_declines": attempt_change_sorted[:3],
-        "largest_accuracy_improvements": accuracy_change_sorted[:3],
         "original": original,
         "adjusted": adjusted,
-        "gap_removed_pct": adjusted_pct_of_gap_removed,
+        "gap_removed_pct": gap_removed_pct,
     }
 
 
