@@ -545,6 +545,11 @@ main::after {
 .team-link img { width: 34px; height: 34px; object-fit: contain; background: var(--cream); border-radius: 50%; }
 .team-explorer { margin-top: clamp(28px, 4vw, 48px); }
 
+  
+.site-nav { display:flex; justify-content:center; gap:10px; margin:10px auto 0; }
+.site-nav a { padding:5px 12px; color:var(--cream); border:1px solid rgba(255,241,210,.45); text-decoration:none; font-weight:700; }
+.site-nav a:hover,.site-nav a:focus-visible { background:var(--line); outline:2px solid var(--accent); }
+
   </style>
 </head>
 <body>
@@ -584,6 +589,10 @@ main::after {
       <a class="team-logo" href="/team/WAS" title="Washington Wizards results" aria-label="View Washington Wizards results"><img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Washington Wizards logo" loading="lazy"></a>
       </div>
     </div>
+    <nav class="site-nav" aria-label="Project pages">
+      <a href="/league-analysis">League analysis</a>
+      <a href="/methods-data">Methods &amp; data</a>
+    </nav>
   </header>
   <main>
     <div class="eyebrow">30 NBA regular seasons · {{ seasons }}</div>
