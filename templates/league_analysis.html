@@ -31,8 +31,9 @@
     footer{border-bottom:0;border-top:4px solid var(--accent);text-align:center}
     @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}main{padding:26px 18px}.panel{padding:20px 16px}}
 @media(min-width:1200px){
-  .wrap>h1{font-size:clamp(2rem,4vw,4rem);white-space:nowrap}
-  .wrap>p:first-of-type{font-size:clamp(.74rem,.9vw,1rem);white-space:nowrap}
+  .page-intro{width:100%;max-width:1500px;margin:0 auto 26px;padding-left:max(0px,calc((100% - 1120px)/2))}
+  .page-intro>h1{font-size:clamp(2rem,4vw,4rem);white-space:nowrap}
+  .page-intro>p{font-size:clamp(.74rem,.9vw,1rem);white-space:nowrap}
 }
 .tied-period-card{grid-column:1/-1;justify-self:center;width:min(100%,calc((100% - 16px)/2))}
 @media(max-width:700px){.tied-period-card{grid-column:auto;width:100%}}
@@ -41,8 +42,11 @@
 <body>
   <header><div class="brand">NBA Data Analysis</div><nav><a href="/">Home</a></nav></header>
   <main><div class="wrap">
-    <div class="eyebrow">Detailed league-wide results</div><h1>Bonus timing, game context &amp; winning</h1>
-    <p>These sections add period, home-court, and historical win-rate detail to the homepage summary. The homepage season chart covers attempts and accuracy; the chart here follows win-rate gaps over time.</p>
+    <div class="page-intro">
+      <div class="eyebrow">Detailed league-wide results</div>
+      <h1>Bonus timing, game context &amp; winning</h1>
+      <p>These sections add period, home-court, and historical win-rate detail to the homepage summary. The homepage season chart covers attempts and accuracy; the chart here follows win-rate gaps over time.</p>
+    </div>
     {% if error %}<div class="error" role="alert">{{ error }}</div>{% elif data %}
     <section class="panel">
       <div class="eyebrow">First to the bonus by period</div><h2>Win rate among teams first into the bonus in that period</h2>
