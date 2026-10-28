@@ -433,7 +433,9 @@ def load_team_page_data(team_code):
         })
     seasons.sort(key=lambda row: row["season"])
     if not seasons:
-        return team, None
+        raise RuntimeError(
+            "No team-season rows were found in the TiDB analysis archive."
+        )
 
     min_attempts = min(row["attempts"] for row in seasons)
     max_attempts = max(row["attempts"] for row in seasons)
