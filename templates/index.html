@@ -1,11 +1,10 @@
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A 30-season NBA analysis of bonus timing, free throws, and winning.">
-  <title>NBA Bonus &amp; Free-Throw Analysis</title>
+  <meta name="description" content="A 30-season NBA study of bonus timing, bonus free throws, and winning.">
+  <title>NBA Bonus and Free-Throw Analysis</title>
   <style>
     :root {
       color-scheme: light;
@@ -21,68 +20,69 @@
       color: var(--white); border-bottom: 4px solid var(--gold); }
     .brand { font-weight: 800; letter-spacing: .07em; }
     main { width: min(1120px, calc(100% - 40px)); margin: 40px auto 72px; }
-    .eyebrow { color: var(--blue); font-size: .79rem; font-weight: 800;
+    .eyebrow { color: var(--blue); font-size: .78rem; font-weight: 800;
       letter-spacing: .12em; text-transform: uppercase; }
-    h1 { max-width: 850px; margin: 10px 0 14px; font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.04; }
-    h2 { margin: 0 0 8px; font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.25; }
+    h1 { max-width: 900px; margin: 10px 0 14px; font-size: clamp(2.25rem, 6vw, 3.8rem); line-height: 1.07; }
+    h2 { margin: 0 0 10px; font-size: clamp(1.3rem, 3vw, 1.65rem); line-height: 1.3; }
     h3 { margin: 0 0 14px; font-size: 1.05rem; }
     p { color: var(--muted); }
-    .intro { max-width: 790px; font-size: 1.1rem; }
-    .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin: 26px 0 36px; }
+    .research-question { max-width: 900px; padding: 22px 24px; border-left: 5px solid var(--gold);
+      background: var(--white); border-radius: 0 14px 14px 0; font-size: 1.13rem; color: var(--ink); }
+    .intro { max-width: 850px; font-size: 1.05rem; }
+    .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin: 26px 0 34px; }
     .fact, .panel { background: var(--white); border: 1px solid var(--line); border-radius: 16px; }
     .fact { padding: 17px 19px; }
     .fact strong { display: block; color: var(--blue); font-size: 1.35rem; line-height: 1.3; }
     .fact span { color: var(--muted); font-size: .88rem; }
     .panel { padding: clamp(20px, 4vw, 32px); margin: 18px 0; box-shadow: 0 8px 28px rgb(16 29 53 / 4%); }
-    .section-intro { max-width: 800px; margin: 4px 0 22px; }
+    .section-intro { max-width: 860px; margin: 4px 0 20px; }
     .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 18px; }
     .stat-card { padding: 18px; border: 1px solid var(--line); border-radius: 13px; }
-    .stat-card h3 { margin-bottom: 16px; }
-    .big-number { color: var(--blue); font-size: 2rem; font-weight: 800; line-height: 1.1; }
-    .small-note { color: var(--muted); font-size: .88rem; }
     .bar-row { margin: 12px 0; }
-    .bar-label { display: flex; justify-content: space-between; gap: 12px; font-size: .91rem; }
+    .bar-label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: .91rem; }
     .track { height: 10px; margin-top: 5px; background: #edf0f5; border-radius: 99px; overflow: hidden; }
     .fill { height: 100%; background: var(--blue); border-radius: inherit; }
     .fill.gold { background: var(--gold); }
     .gap { margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--line); font-weight: 750; }
-    .season-chart { height: 190px; display: flex; align-items: end; gap: 3px; padding: 8px 0 0; border-bottom: 1px solid var(--line); }
+    .big-number { color: var(--blue); font-size: 2rem; font-weight: 800; line-height: 1.2; }
+    .small-note, .caveat { color: var(--muted); font-size: .9rem; }
+    .season-chart { height: 170px; display: flex; align-items: end; gap: 3px; padding: 8px 0 0; border-bottom: 1px solid var(--line); }
     .season-bar { flex: 1; min-width: 3px; background: #315a8e; border-radius: 3px 3px 0 0; }
     .season-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: .8rem; }
     .trend-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
     .trend-stat { padding: 14px; background: #f6f8fb; border-radius: 12px; }
-    .trend-stat strong { display: block; color: var(--blue); font-size: 1.35rem; }
+    .trend-stat strong { display: block; color: var(--blue); font-size: 1.25rem; }
     .team-list { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
-    .team-list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0;
-      border-bottom: 1px solid var(--line); }
-    .late-callout { padding: 16px 18px; border-left: 4px solid var(--gold); background: #fff9ed;
-      border-radius: 0 12px 12px 0; }
-    .error { padding: 14px 18px; border: 1px solid #f0c5bd; border-radius: 12px;
-      background: #fff5f2; color: #8c2f20; }
-    .caveat { font-size: .9rem; }
+    .team-list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .late-callout { padding: 16px 18px; border-left: 4px solid var(--gold); background: #fff9ed; border-radius: 0 12px 12px 0; }
+    .error { padding: 14px 18px; border: 1px solid #f0c5bd; border-radius: 12px; background: #fff5f2; color: #8c2f20; }
+    .outputs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 22px; padding-left: 20px; }
+    .outputs code { color: var(--blue); overflow-wrap: anywhere; }
     footer { padding: 24px; background: var(--navy); color: #dce4f0; text-align: center; font-size: .9rem; }
-    footer a { color: #fff; }
     @media (max-width: 760px) {
       main { width: min(100% - 28px, 1120px); margin-top: 28px; }
-      .facts, .grid2, .trend-stats { grid-template-columns: repeat(2, 1fr); }
+      .facts, .grid2, .trend-stats, .outputs { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 480px) { .facts, .grid2, .trend-stats { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .facts, .grid2, .trend-stats, .outputs { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <header><div class="brand">NBA DATA ANALYSIS</div></header>
   <main>
-    <div class="eyebrow">30-season study · {{ seasons }}</div>
-    <h1>NBA bonus timing, free throws, and winning</h1>
+    <div class="eyebrow">30 NBA regular seasons · {{ seasons }}</div>
+    <h1>NBA Bonus and Free-Throw Analysis</h1>
+    <div class="research-question">
+      <strong>Research question</strong><br>
+      How does reaching the bonus first—and then shooting more free throws while in the bonus—affect an NBA team’s chance of winning?
+    </div>
     <p class="intro">
-      How does reaching the bonus first—and then shooting more free throws while
-      in the bonus—relate to a team’s chance of winning? This study follows the
-      relationship across quarters, home and away games, free-throw accuracy,
-      teams, and seasons.
+      This project also examines whether the relationship changes by quarter,
+      home-court status, free-throw accuracy, team, and season. The figures below
+      are loaded from analysis results stored in TiDB.
     </p>
 
     <section class="facts" aria-label="Dataset coverage">
-      <div class="fact"><strong>{{ seasons }}</strong><span>Regular seasons</span></div>
+      <div class="fact"><strong>30</strong><span>Regular seasons analyzed</span></div>
       <div class="fact"><strong>{{ games }}</strong><span>Games analyzed</span></div>
       <div class="fact"><strong>{{ team_games }}</strong><span>Team-game observations</span></div>
       <div class="fact"><strong>{{ bonus_entries }}</strong><span>Recorded bonus entries</span></div>
@@ -92,168 +92,199 @@
       <div class="error" role="alert">{{ error }}</div>
     {% elif data %}
       <section class="panel">
-        <div class="eyebrow">First team to reach the bonus</div>
-        <h2>A small overall edge, with results that vary by period</h2>
-        <p class="section-intro">
-          Across {{ data.first_bonus_games|int }} games with a recorded first bonus entry,
-          the team that reached the bonus first won {{ "%.2f"|format(data.first_bonus_pct) }}%.
-          The period-by-period results show how much the pattern changes over a game.
-        </p>
-        <div class="grid2">
-          <article class="stat-card">
-            <h3>Win rate by period</h3>
-            {% for q in data.quarters %}
-              <div class="bar-row">
-                <div class="bar-label"><span>{{ q.label }}</span><strong>{{ "%.2f"|format(q.win_pct) }}%</strong></div>
-                <div class="track"><div class="fill" style="width: {{ q.win_pct }}%"></div></div>
-              </div>
-            {% endfor %}
-            <p class="small-note">Overtime has a smaller sample than regulation periods.</p>
-          </article>
-          <article class="stat-card">
-            <h3>Home and away</h3>
-            {% for item in data.home %}
-              <div class="bar-row">
-                <div class="bar-label">
-                  <span>{{ item.label }} team reached first · {{ "%.2f"|format(item.share_pct) }}% of first entries</span>
-                  <strong>{{ "%.2f"|format(item.win_pct) }}% wins</strong>
-                </div>
-                <div class="track"><div class="fill {% if item.label == 'Home' %}gold{% endif %}" style="width: {{ item.win_pct }}%"></div></div>
-              </div>
-            {% endfor %}
-            <p class="small-note">Home teams already win more often overall, so this split does not isolate the bonus from home-court advantage.</p>
-          </article>
-        </div>
+        <div class="eyebrow">Finding 1 · Reaching the bonus first</div>
+        <h2>A small edge across the full game</h2>
+        <div class="big-number">{{ "%.2f"|format(data.first_bonus_pct) }}%</div>
+        <p>The team that reached the bonus first at any point in the game won this share of the time. This is associated with winning, but is not a strong predictor by itself.</p>
+        <p class="small-note">Recorded first bonus entry in {{ "{:,}".format(data.first_bonus_games) }} games.</p>
       </section>
 
       <section class="panel">
-        <div class="eyebrow">Attempts and accuracy</div>
-        <h2>More attempts track more closely with winning than higher accuracy</h2>
-        <p class="section-intro">Each comparison groups team-game observations by whether a team had the advantage over its opponent.</p>
+        <div class="eyebrow">Finding 2 · First bonus by quarter</div>
+        <h2>The win rate changes by period</h2>
         <div class="grid2">
-          <article class="stat-card">
-            <h3>Bonus free-throw attempts</h3>
-            {% for label in ['More attempts', 'Fewer attempts'] %}
-              <div class="bar-row">
-                <div class="bar-label"><span>{{ label }}</span><strong>{{ "%.2f"|format(data.attempts[label]) }}%</strong></div>
-                <div class="track"><div class="fill" style="width: {{ data.attempts[label] }}%"></div></div>
-              </div>
-            {% endfor %}
-            <div class="gap">Win-rate gap: {{ "%.2f"|format(data.original.gap) }} percentage points</div>
-          </article>
-          <article class="stat-card">
-            <h3>Bonus free-throw accuracy</h3>
-            {% for label in ['Higher accuracy', 'Lower accuracy'] %}
-              <div class="bar-row">
-                <div class="bar-label"><span>{{ label }}</span><strong>{{ "%.2f"|format(data.accuracy[label]) }}%</strong></div>
-                <div class="track"><div class="fill gold" style="width: {{ data.accuracy[label] }}%"></div></div>
-              </div>
-            {% endfor %}
-            <div class="gap">Win-rate gap: {{ "%.2f"|format(data.accuracy['Higher accuracy'] - data.accuracy['Lower accuracy']) }} percentage points</div>
-          </article>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="eyebrow">League-wide trends</div>
-        <h2>Bonus attempts declined while accuracy improved</h2>
-        <p class="section-intro">Average bonus free throws per team-game, by season. Hover over a bar to see its value.</p>
-        <div class="season-chart" role="img" aria-label="Average bonus free throws per team-game across seasons">
-          {% for season in data.seasons %}
-            <span class="season-bar" title="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts" style="height: {{ season.bar_height }}%"></span>
+          {% for q in data.quarters %}
+            <article class="stat-card">
+              <h3>{{ q.label }}</h3>
+              <div class="bar-label"><span>First team to bonus wins</span><strong>{{ "%.2f"|format(q.win_pct) }}%</strong></div>
+              <div class="track"><div class="fill" style="width: {{ q.win_pct }}%"></div></div>
+              <p class="small-note">{{ "{:,}".format(q.games) }} observations</p>
+            </article>
           {% endfor %}
         </div>
-        <div class="season-labels"><span>{{ data.first_season.season }}</span><span>{{ data.last_season.season }}</span></div>
-        <div class="trend-stats">
-          <div class="trend-stat"><span>Attempts, first season</span><strong>{{ "%.2f"|format(data.first_season.attempts) }}</strong></div>
-          <div class="trend-stat"><span>Attempts, latest season</span><strong>{{ "%.2f"|format(data.last_season.attempts) }}</strong></div>
-          <div class="trend-stat"><span>Accuracy, first season</span><strong>{{ "%.2f"|format(data.first_season.accuracy) }}%</strong></div>
-          <div class="trend-stat"><span>Accuracy, latest season</span><strong>{{ "%.2f"|format(data.last_season.accuracy) }}%</strong></div>
-        </div>
+        <p class="caveat">Interpret overtime cautiously: it occurs much less often and has a smaller sample than regulation periods.</p>
       </section>
 
       <section class="panel">
-        <div class="eyebrow">Team changes</div>
-        <h2>Teams changed in both attempts and accuracy</h2>
-        <p class="section-intro">First five seasons compared with each team’s most recent five seasons where both periods are available. {{ data.team_count }} teams have comparable attempt data.</p>
+        <div class="eyebrow">Finding 3 · Fourth-quarter timing</div>
+        <h2>When the first bonus entry happens in Q4 is associated with different outcomes</h2>
         <div class="grid2">
-          <article class="stat-card">
-            <h3>Smallest declines in attempts</h3>
-            <ul class="team-list">
-              {% for team in data.least_attempt_declines %}
-                <li><span>{{ team.team }}</span><strong>{{ "%.2f"|format(team.attempt_change) }}</strong></li>
-              {% endfor %}
-            </ul>
-          </article>
-          <article class="stat-card">
-            <h3>Largest declines in attempts</h3>
-            <ul class="team-list">
-              {% for team in data.largest_attempt_declines %}
-                <li><span>{{ team.team }}</span><strong>{{ "%.2f"|format(team.attempt_change) }}</strong></li>
-              {% endfor %}
-            </ul>
-          </article>
-          <article class="stat-card">
-            <h3>Largest accuracy improvements</h3>
-            <ul class="team-list">
-              {% for team in data.largest_accuracy_improvements %}
-                <li><span>{{ team.team }}</span><strong>+{{ "%.2f"|format(team.accuracy_change) }} pp</strong></li>
-              {% endfor %}
-            </ul>
-          </article>
-          <article class="stat-card">
-            <h3>Changes and winning percentage</h3>
-            <p>Attempts change correlation: <strong>{{ "%.3f"|format(data.attempt_corr) }}</strong></p>
-            <p>Accuracy change correlation: <strong>{{ "%.3f"|format(data.accuracy_corr) }}</strong></p>
-            <p class="small-note">These describe relationships across teams, not causal effects.</p>
-          </article>
+          {% for label in ['Entered before final two minutes', 'Entered during final two minutes'] %}
+            <article class="stat-card">
+              <h3>{{ label }}</h3>
+              <div class="big-number">{{ "%.2f"|format(data.q4_timing[label].win_pct) }}%</div>
+              <p class="small-note">{{ "{:,}".format(data.q4_timing[label].games) }} games</p>
+            </article>
+          {% endfor %}
         </div>
+        <p class="small-note">Intentional fouling and late-game strategy can influence bonus free-throw totals.</p>
       </section>
 
       <section class="panel">
-        <div class="eyebrow">Late-game sensitivity check</div>
-        <h2>The raw attempt comparison shrinks after late-game free throws are excluded</h2>
-        <p class="section-intro">This is one sensitivity check within the broader analysis. It helps show how late-game strategy affects the raw relationship.</p>
+        <div class="eyebrow">Finding 4 · Attempts and winning</div>
+        <h2>The raw attempt advantage shrinks after late-game free throws are excluded</h2>
         <div class="grid2">
           {% for item in [data.original, data.adjusted] %}
             <article class="stat-card">
               <h3>{{ item.label }}</h3>
               <div class="bar-row">
-                <div class="bar-label"><span>More attempts</span><strong>{{ "%.2f"|format(item.more_pct) }}%</strong></div>
+                <div class="bar-label"><span>More bonus attempts</span><strong>{{ "%.2f"|format(item.more_pct) }}%</strong></div>
                 <div class="track"><div class="fill" style="width: {{ item.more_pct }}%"></div></div>
               </div>
               <div class="bar-row">
-                <div class="bar-label"><span>Fewer attempts</span><strong>{{ "%.2f"|format(item.fewer_pct) }}%</strong></div>
+                <div class="bar-label"><span>Fewer bonus attempts</span><strong>{{ "%.2f"|format(item.fewer_pct) }}%</strong></div>
                 <div class="track"><div class="fill gold" style="width: {{ item.fewer_pct }}%"></div></div>
               </div>
               <div class="gap">Win-rate gap: {{ "%.2f"|format(item.gap) }} percentage points</div>
             </article>
           {% endfor %}
         </div>
-        <p class="late-callout">
-          Excluding late-game attempts reduces the raw gap by approximately
-          {{ "%.1f"|format(data.gap_removed_pct) }}%. Intentional fouling against
-          a team that is already ahead can contribute to the raw pattern.
-        </p>
+        <p class="late-callout">About {{ "%.1f"|format(data.gap_removed_pct) }}% of the original gap disappears after excluding late-game attempts. This suggests much of the raw relationship reflects intentional fouling against teams that are already leading.</p>
       </section>
 
       <section class="panel">
-        <div class="eyebrow">Conclusion and limits</div>
-        <h2>Bonus statistics are connected to winning, but game context matters</h2>
-        <p>
-          Reaching the bonus first is associated with a small win advantage.
-          Attempt and accuracy patterns differ, and the attempt relationship is
-          sensitive to late-game strategy. These results do not prove that bonus
-          opportunities cause teams to win.
-        </p>
-        <p class="caveat">
-          Limitations include home-court advantage, intentional fouling, smaller
-          overtime samples, team and rule changes over time, and differences in
-          the eras being compared.
-        </p>
+        <div class="eyebrow">Finding 5 · Attempts compared with accuracy</div>
+        <h2>Bonus attempts have a stronger raw relationship with wins than accuracy</h2>
+        <div class="grid2">
+          <article class="stat-card">
+            <h3>Bonus-attempt advantage</h3>
+            {% for label in ['More attempts', 'Fewer attempts'] %}
+              <div class="bar-row">
+                <div class="bar-label"><span>{{ label }}</span><strong>{{ "%.2f"|format(data.attempts[label]) }}%</strong></div>
+                <div class="track"><div class="fill" style="width: {{ data.attempts[label] }}%"></div></div>
+              </div>
+              <p class="small-note">{% if label == 'More attempts' %}Teams with more attempts than their opponent{% else %}Teams with fewer attempts than their opponent{% endif %}</p>
+            {% endfor %}
+            <div class="gap">Gap: {{ "%.2f"|format(data.attempts['More attempts'] - data.attempts['Fewer attempts']) }} pp</div>
+          </article>
+          <article class="stat-card">
+            <h3>Bonus-accuracy advantage</h3>
+            {% for label in ['Higher accuracy', 'Lower accuracy'] %}
+              <div class="bar-row">
+                <div class="bar-label"><span>{{ label }}</span><strong>{{ "%.2f"|format(data.accuracy[label]) }}%</strong></div>
+                <div class="track"><div class="fill gold" style="width: {{ data.accuracy[label] }}%"></div></div>
+              </div>
+            {% endfor %}
+            <div class="gap">Gap: {{ "%.2f"|format(data.accuracy['Higher accuracy'] - data.accuracy['Lower accuracy']) }} pp</div>
+          </article>
+        </div>
+        <p class="small-note">The attempt comparison is strongly affected by intentional late-game fouling.</p>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">Finding 6 · Home-court advantage</div>
+        <h2>Home teams reach the bonus first more often and already win more often overall</h2>
+        <div class="grid2">
+          {% for label in ['Home', 'Away'] %}
+            <article class="stat-card">
+              <h3>{{ label }} team reaches bonus first</h3>
+              <div class="big-number">{{ "%.2f"|format(data.home_first[label].win_pct) }}%</div>
+              <p>Won when it reached the bonus first. It accounted for {{ "%.2f"|format(data.home_first[label].share_pct) }}% of first entries.</p>
+            </article>
+          {% endfor %}
+        </div>
+        <p class="late-callout">Overall home-team winning percentage: {{ "%.2f"|format(data.home_overall['Home']) }}%. Some of the first-to-bonus result may reflect the NBA’s general home-court advantage.</p>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">Finding 7 · Changes across 30 seasons</div>
+        <h2>Teams take fewer bonus free throws, but make them more accurately</h2>
+        <p class="section-intro">The bar chart shows average bonus attempts per team-game by season.</p>
+        <div class="season-chart" role="img" aria-label="Average bonus free throws per team-game across seasons">
+          {% for season in data.seasons %}
+            <span class="season-bar" title="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts; {{ '%.2f'|format(season.accuracy) }}% accuracy" style="height: {{ season.bar_height }}%"></span>
+          {% endfor %}
+        </div>
+        <div class="season-labels"><span>{{ data.first_season.season }}</span><span>{{ data.last_season.season }}</span></div>
+        <div class="trend-stats">
+          <div class="trend-stat"><span>Attempts, first season</span><strong>{{ "%.2f"|format(data.first_season.attempts) }}</strong></div>
+          <div class="trend-stat"><span>Attempts, latest season</span><strong>{{ "%.2f"|format(data.last_season.attempts) }}</strong></div>
+          <div class="trend-stat"><span>Attempts change</span><strong>{{ "%.2f"|format(data.attempts_change) }}</strong><span>{{ "%.1f"|format(data.attempts_decline_pct) }}% decline</span></div>
+          <div class="trend-stat"><span>Accuracy change</span><strong>+{{ "%.2f"|format(data.accuracy_change) }} pp</strong></div>
+          <div class="trend-stat"><span>Accuracy, first season</span><strong>{{ "%.2f"|format(data.first_season.accuracy) }}%</strong></div>
+          <div class="trend-stat"><span>Accuracy, latest season</span><strong>{{ "%.2f"|format(data.last_season.accuracy) }}%</strong></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">Finding 8 · Team changes</div>
+        <h2>Long-term team comparisons show a broad decline in attempts and mixed accuracy changes</h2>
+        <p class="section-intro">First five seasons compared with each team’s most recent five seasons where both periods are available. {{ data.team_count }} teams have comparable observations.</p>
+        <div class="grid2">
+          <article class="stat-card">
+            <h3>Smallest declines in bonus attempts</h3>
+            <ul class="team-list">{% for team in data.least_attempt_declines %}<li><span>{{ team.name }}</span><strong>{{ "%.2f"|format(team.change) }}</strong></li>{% endfor %}</ul>
+          </article>
+          <article class="stat-card">
+            <h3>Largest declines in bonus attempts</h3>
+            <ul class="team-list">{% for team in data.largest_attempt_declines %}<li><span>{{ team.name }}</span><strong>{{ "%.2f"|format(team.change) }}</strong></li>{% endfor %}</ul>
+          </article>
+          <article class="stat-card">
+            <h3>Largest accuracy improvements</h3>
+            <ul class="team-list">{% for team in data.largest_accuracy_improvements %}<li><span>{{ team.name }}</span><strong>+{{ "%.2f"|format(team.change) }} pp</strong></li>{% endfor %}</ul>
+          </article>
+          <article class="stat-card">
+            <h3>Teams with accuracy declines</h3>
+            <ul class="team-list">{% for team in data.accuracy_declines %}<li><span>{{ team.name }}</span><strong>{{ "%.2f"|format(team.change) }} pp</strong></li>{% endfor %}</ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">Finding 9 · Team changes and winning</div>
+        <h2>Changes in attempts have a stronger association with winning changes than accuracy does</h2>
+        <div class="grid2">
+          <article class="stat-card"><h3>Attempt-change correlation</h3><div class="big-number">{{ "%.3f"|format(data.attempt_corr) }}</div><p>Moderate positive relationship</p></article>
+          <article class="stat-card"><h3>Accuracy-change correlation</h3><div class="big-number">{{ "%.3f"|format(data.accuracy_corr) }}</div><p>Weak positive relationship</p></article>
+        </div>
+        <p>Teams that maintained more of their bonus-attempt volume generally had better changes in winning percentage than teams that only improved accuracy.</p>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">Overall conclusion</div>
+        <h2>Bonus statistics connect to winning, but context matters</h2>
+        <p>Reaching the bonus first is associated with a small advantage, but does not determine a game. Teams with more bonus attempts show a large raw winning advantage, though much of that gap disappears after late-game free throws are removed. Bonus accuracy also relates to winning, but less strongly than attempts. Across 30 seasons, teams have taken fewer bonus free throws and made them more accurately.</p>
+        <p>The strongest overall conclusion is that bonus statistics are connected to winning, but game situation and late-game strategy must be considered before interpreting the relationship as causal.</p>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">Limitations</div>
+        <h2>What this analysis cannot establish</h2>
+        <ul>
+          <li>The analysis identifies relationships; it does not prove that reaching the bonus or receiving more attempts causes a team to win.</li>
+          <li>Intentional late-game fouling can give leading teams additional free throws.</li>
+          <li>Home teams already win more often, so home-court advantage is difficult to isolate from the bonus.</li>
+          <li>Overtime findings use a much smaller sample than regulation-quarter findings.</li>
+          <li>Team comparisons span different players, coaches, strategies, rule changes, and league environments.</li>
+          <li>Comparing the first five seasons with the last five summarizes long-term change, not every season-to-season variation.</li>
+        </ul>
       </section>
     {% endif %}
+
+    <section class="panel">
+      <div class="eyebrow">Project outputs</div>
+      <h2>Analysis files and charts</h2>
+      <ul class="outputs">
+        <li><code>results/historical_bonus_team_games.csv</code></li>
+        <li><code>results/historical_bonus_entries.csv</code></li>
+        <li><code>results/team_trends/team_by_season_summary.csv</code></li>
+        <li><code>results/team_trends/league_season_trends.csv</code></li>
+        <li><code>results/team_trends/team_changes_first5_vs_last5.csv</code></li>
+        <li><code>results/charts/team_trends/</code></li>
+        <li><code>results/charts/final_relationships/</code></li>
+      </ul>
+    </section>
   </main>
-  <footer>NBA play-by-play analysis · {{ seasons }} · Results read from TiDB database NBA_Project</footer>
+  <footer>NBA play-by-play · {{ seasons }} · Findings are associations, not causal proof.</footer>
 </body>
 </html>
