@@ -64,6 +64,339 @@
       .facts, .grid2, .trend-stats, .outputs { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) { .facts, .grid2, .trend-stats, .outputs { grid-template-columns: 1fr; } }
+  
+    /* NBA Cartoon Court Theme */
+    :root {
+      color-scheme: light;
+      --navy: #102552;
+      --blue: #1d428a;
+      --gold: #c8102e;
+      --ink: #182235;
+      --muted: #43516b;
+      --paper: #efbf70;
+      --line: #1d428a;
+      --white: #fff0c7;
+    }
+
+    body {
+      background: #101a31;
+      color: var(--ink);
+    }
+
+    header {
+      background: linear-gradient(100deg, #102552, #1d428a 70%, #c8102e);
+      color: #fff;
+      border-bottom: 8px solid #c8102e;
+    }
+
+    .brand {
+      color: #fff;
+      font-size: .9rem;
+      text-transform: uppercase;
+    }
+
+    .brand::before {
+      content: "🏀";
+      margin-right: .55rem;
+    }
+
+    main {
+      position: relative;
+      width: min(1120px, calc(100% - 32px));
+      margin: 30px auto 0;
+      padding: clamp(22px, 4vw, 44px);
+      background-color: #efbf70;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(116,65,23,.13) 0 2px, transparent 2px 38px),
+        repeating-linear-gradient(90deg, rgba(255,247,221,.32) 0 3px, transparent 3px 150px),
+        linear-gradient(115deg, #f7d28c, #eeb462);
+      border-left: 12px solid #1d428a;
+      border-right: 12px solid #1d428a;
+      border-top: 10px solid #c8102e;
+      border-bottom: 10px solid #c8102e;
+      border-radius: 20px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.28);
+    }
+
+    h1, h2, h3 { color: #102552; }
+
+    .eyebrow {
+      color: #1d428a;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .research-question {
+      background: #1d428a;
+      color: #fff;
+      border-left-color: #c8102e;
+      box-shadow: 0 5px 0 rgba(16,37,82,.18);
+    }
+
+    .research-question strong { color: #fff; }
+    .intro { color: #263653; }
+
+    .facts {
+      padding: 8px;
+      background: #102552;
+      border: 6px solid #c8102e;
+      border-radius: 14px;
+      box-shadow: 0 6px 0 rgba(16,37,82,.18);
+    }
+
+    .fact {
+      background: transparent;
+      border: 0;
+      border-right: 2px solid rgba(255,255,255,.28);
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .fact:last-child { border-right: 0; }
+    .fact strong { color: #fff; }
+    .fact span { color: #e8efff; }
+
+    .panel {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,240,199,.94);
+      border: 5px solid #1d428a;
+      border-radius: 18px;
+      box-shadow: 0 6px 0 rgba(16,37,82,.16);
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 7px;
+      background: #c8102e;
+    }
+
+    .panel .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border: 2px solid #1d428a;
+      border-radius: 999px;
+      background: #fff8e7;
+    }
+
+    /* Alternate matching cartoon basketball and hoop markers. */
+    .panel:nth-of-type(odd) .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 21px;
+      height: 21px;
+      flex: 0 0 21px;
+      border: 2px solid #713b1b;
+      border-radius: 50%;
+      background:
+        linear-gradient(90deg, transparent 43%, #713b1b 45% 50%, transparent 52%),
+        linear-gradient(0deg, transparent 43%, #713b1b 45% 50%, transparent 52%),
+        #f1842b;
+    }
+
+    .panel:nth-of-type(even) .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 23px;
+      height: 15px;
+      flex: 0 0 23px;
+      border: 3px solid #c8102e;
+      border-top: 0;
+      border-radius: 0 0 50% 50%;
+      box-shadow: 0 -8px 0 -4px #1d428a;
+    }
+
+    .stat-card {
+      background: #fff8e7;
+      border: 3px solid #1d428a;
+      border-radius: 12px;
+      box-shadow: inset 0 -4px 0 rgba(29,66,138,.1);
+    }
+
+    .big-number, .fact strong, .fact strong { color: #1d428a; }
+    .track { height: 16px; background: #fff; border: 3px solid #1d428a; }
+    .fill { background: #1d428a; }
+    .fill.gold { background: #c8102e; }
+
+    .season-chart {
+      background:
+        repeating-linear-gradient(0deg, transparent 0 32px, rgba(29,66,138,.22) 33px 35px);
+      border-bottom: 5px solid #1d428a;
+    }
+
+    .season-bar {
+      background: linear-gradient(180deg, #c8102e, #1d428a);
+      border: 1px solid #fff8e7;
+    }
+
+    .trend-stat {
+      background: #fff8e7;
+      border: 3px solid #1d428a;
+      color: #182235;
+    }
+
+    .late-callout {
+      background: #ffe0d8;
+      border-left: 6px solid #c8102e;
+    }
+
+    .error {
+      background: #ffe0d8;
+      color: #7b1828;
+      border: 3px solid #c8102e;
+    }
+
+    .outputs code { color: #1d428a; }
+
+    .center-court {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px minmax(0, 1fr);
+      align-items: center;
+      gap: 18px;
+      margin: 48px -12px;
+      padding: 34px 18px;
+      border-top: 7px solid #1d428a;
+      border-bottom: 7px solid #c8102e;
+      background: rgba(255,240,199,.72);
+    }
+
+    .center-court::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #1d428a;
+    }
+
+    .center-note {
+      position: relative;
+      z-index: 1;
+      padding: 16px 12px;
+      text-align: center;
+      background: #fff0c7;
+      border: 4px solid #1d428a;
+      border-radius: 14px;
+      box-shadow: 0 5px 0 rgba(16,37,82,.15);
+    }
+
+    .center-note span, .center-note small { display: block; color: #263653; }
+    .center-note strong { display: block; margin: 5px 0; color: #c8102e; font-size: 1.8rem; }
+
+    .center-circle {
+      position: relative;
+      z-index: 2;
+      width: 250px;
+      height: 250px;
+      display: grid;
+      place-items: center;
+      margin: auto;
+      border: 8px solid #1d428a;
+      outline: 5px solid #c8102e;
+      outline-offset: 5px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f7d28c 0 68%, #1d428a 69% 71%, #efbf70 72%);
+    }
+
+    .center-circle img {
+      display: block;
+      width: 90px;
+      height: 166px;
+      object-fit: contain;
+    }
+
+    .final-zone {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
+      text-align: center;
+    }
+
+    .final-zone::before { display: none; }
+    .final-zone .eyebrow { margin: 0 auto 14px; }
+
+    .cartoon-hoop {
+      position: relative;
+      width: 120px;
+      height: 86px;
+      margin: 0 auto -4px;
+    }
+
+    .hoop-board {
+      position: absolute;
+      top: 0;
+      left: 25px;
+      width: 70px;
+      height: 18px;
+      background: #fff;
+      border: 5px solid #1d428a;
+      border-radius: 5px;
+    }
+
+    .hoop-rim {
+      position: absolute;
+      top: 25px;
+      left: 37px;
+      width: 46px;
+      height: 20px;
+      border: 5px solid #c8102e;
+      border-top: 0;
+      border-radius: 0 0 50% 50%;
+    }
+
+    .hoop-net {
+      position: absolute;
+      top: 42px;
+      left: 44px;
+      width: 32px;
+      height: 28px;
+      background:
+        repeating-linear-gradient(60deg, transparent 0 6px, #1d428a 7px 8px),
+        repeating-linear-gradient(-60deg, transparent 0 6px, #1d428a 7px 8px);
+      clip-path: polygon(0 0, 100% 0, 76% 100%, 24% 100%);
+    }
+
+    .painted-key {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: clamp(22px, 4vw, 36px);
+      color: #fff;
+      text-align: left;
+      background: #1d428a;
+      border: 8px solid #c8102e;
+      border-radius: 18px;
+      box-shadow: 0 7px 0 rgba(16,37,82,.2);
+    }
+
+    .painted-key h2, .painted-key p { color: #fff; }
+    .painted-key .eyebrow { color: #fff; border-color: #fff; background: #102552; }
+
+    footer {
+      margin-top: 0;
+      background: linear-gradient(100deg, #102552, #1d428a 70%, #c8102e);
+      color: #fff;
+      border-top: 8px solid #c8102e;
+    }
+
+    @media (max-width: 760px) {
+      main { width: calc(100% - 16px); padding: 18px; border-left-width: 7px; border-right-width: 7px; }
+      .center-court { grid-template-columns: 1fr; margin: 34px -6px; }
+      .center-circle { grid-row: 1; width: 210px; height: 210px; }
+      .center-note { max-width: 360px; width: 100%; margin: auto; }
+      .fact { border-right: 0; border-bottom: 2px solid rgba(255,255,255,.28); }
+      .fact:last-child { border-bottom: 0; }
+    }
+
   </style>
 </head>
 <body>
@@ -151,6 +484,23 @@
         </div>
         <p class="late-callout">About {{ "%.1f"|format(data.gap_removed_pct) }}% of the original gap disappears after excluding late-game attempts. This suggests much of the raw relationship reflects intentional fouling against teams that are already leading.</p>
       </section>
+
+
+      <div class="center-court" aria-label="NBA center court">
+        <aside class="center-note">
+          <span>First to the bonus</span>
+          <strong>{{ "%.2f"|format(data.first_bonus_pct) }}%</strong>
+          <small>win rate</small>
+        </aside>
+        <div class="center-circle">
+          <img src="https://cdn.nba.com/logos/leagues/L/logo-nba.svg" alt="NBA logo">
+        </div>
+        <aside class="center-note">
+          <span>More bonus attempts</span>
+          <strong>{{ "%.2f"|format(data.original.gap) }} pp</strong>
+          <small>raw win-rate gap</small>
+        </aside>
+      </div>
 
       <section class="panel">
         <div class="eyebrow">Finding 5 · Attempts compared with accuracy</div>
@@ -250,11 +600,14 @@
         <p>Teams that maintained more of their bonus-attempt volume generally had better changes in winning percentage than teams that only improved accuracy.</p>
       </section>
 
-      <section class="panel">
+      <section class="panel final-zone">
+        <div class="cartoon-hoop" aria-hidden="true"><span class="hoop-board"></span><span class="hoop-rim"></span><span class="hoop-net"></span></div>
+        <div class="painted-key">
         <div class="eyebrow">Overall conclusion</div>
         <h2>Bonus statistics connect to winning, but context matters</h2>
         <p>Reaching the bonus first is associated with a small advantage, but does not determine a game. Teams with more bonus attempts show a large raw winning advantage, though much of that gap disappears after late-game free throws are removed. Bonus accuracy also relates to winning, but less strongly than attempts. Across 30 seasons, teams have taken fewer bonus free throws and made them more accurately.</p>
         <p>The strongest overall conclusion is that bonus statistics are connected to winning, but game situation and late-game strategy must be considered before interpreting the relationship as causal.</p>
+        </div>
       </section>
 
       <section class="panel">
