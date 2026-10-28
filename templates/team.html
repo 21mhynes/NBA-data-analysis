@@ -38,6 +38,8 @@
      .bar::after { content:attr(data-tooltip); position:absolute; z-index:20; left:50%; bottom:calc(100% + 9px); transform:translateX(-50%); width:max-content; max-width:min(260px,70vw); padding:8px 10px; color:var(--cream); background:var(--navy); border:2px solid var(--accent); font:700 .9rem/1.3 'Barlow Condensed','Arial Narrow',Arial,sans-serif; text-align:center; white-space:normal; box-shadow:0 4px 12px rgba(0,0,0,.25); opacity:0; visibility:hidden; pointer-events:none; }
      .bar:hover::after, .bar:focus::after { opacity:1; visibility:visible; }
      .bar:hover, .bar:focus { outline:2px solid var(--accent); outline-offset:2px; }
+     .chart .bar:first-child::after { left:0; transform:none; }
+     .chart .bar:last-child::after { left:auto; right:0; transform:none; }
     .chart-labels { display:flex; justify-content:space-between; color:var(--ink); font-weight:700; }
     .table-wrap { overflow-x:auto; margin-top:18px; }
     table { width:100%; border-collapse:collapse; min-width:620px; background:rgba(255,241,210,.62); }
