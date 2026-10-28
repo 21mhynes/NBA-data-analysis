@@ -609,38 +609,6 @@ def load_league_analysis_data():
     }
 
 
-def load_methods_data():
-    connection = get_connection()
-    try:
-        with connection.cursor() as cursor:
-            validation_rows = read_rows(
-                cursor,
-                "results/bonus_accuracy_report.csv",
-                [
-                    "matching_raw_foul",
-                    "teams_are_different",
-                    "valid_seconds_remaining",
-                    "duplicate_team_period_entry",
-                ],
-            )
-    finally:
-        connection.close()
-
-    def true_value(value):
-        return str(value).strip().lower() in {"true", "1", "yes"}
-
-    if not validation_rows:
-        raise RuntimeError("No bonus accuracy validation rows were found in the TiDB archive.")
-    total = len(validation_rows)
-    return {
-        "validated_entries": total,
-        "foul_match_pct": sum(true_value(row["matching_raw_foul"]) for row in validation_rows) / total * 100,
-        "distinct_teams_pct": sum(true_value(row["teams_are_different"]) for row in validation_rows) / total * 100,
-        "valid_clock_pct": sum(true_value(row["valid_seconds_remaining"]) for row in validation_rows) / total * 100,
-        "duplicate_count": sum(true_value(row["duplicate_team_period_entry"]) for row in validation_rows),
-    }
-
-
 @app.route("/league-analysis")
 def league_analysis():
     data = None
@@ -651,18 +619,6 @@ def league_analysis():
         logging.exception("Could not load detailed league analysis from TiDB")
         error = "Detailed league results could not be loaded from TiDB. Check that the listed analysis files are in the archive."
     return render_template("league_analysis.html", data=data, error=error)
-
-
-@app.route("/methods-data")
-def methods_data():
-    data = None
-    error = None
-    try:
-        data = load_methods_data()
-    except Exception:
-        logging.exception("Could not load validation results from TiDB")
-        error = "Validation results could not be loaded from TiDB. Check that the bonus accuracy report is in the archive."
-    return render_template("methods_data.html", data=data, error=error)
 
 
 if __name__ == "__main__":
