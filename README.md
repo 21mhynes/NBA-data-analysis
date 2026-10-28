@@ -54,6 +54,25 @@ These are associations in the data; they do not show that bonus timing or free t
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
+   ```
+2. Install the requirements:
+
+   ```bash
+   python3 -m pip install -r requirements.txt
+   ```
+ 3. Create a local environment file:
+
+   ```bash
+   cp .env.example .env
+   ```
+4. Add your TiDB connection values to `.env`: `TIDB_HOST`, `TIDB_PORT`, `TIDB_USER`, `TIDB_PASSWORD`, and `TIDB_DATABASE`. Never commit your actual password.
+5. Start the website:
+
+   ```bash
+   python3 app.py
+   ```
+
+6. Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser.
 
 ## Key project files
 
