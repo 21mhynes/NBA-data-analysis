@@ -428,6 +428,88 @@ h1 {
   .team-logo img { width: 30px; height: 30px; }
 }
 
+  
+/* Combined visual polish discussed with Michael */
+body { font-size: 17px; }
+.eyebrow { font-size: .9rem; }
+h1 {
+  font-size: clamp(1rem, 4.55vw, 4.25rem);
+  letter-spacing: -.045em;
+}
+h2 { font-size: clamp(1.65rem, 3.2vw, 2.5rem); }
+h3 { font-size: 1.35rem; }
+.research-question {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.28rem;
+}
+.intro { font-size: 1.14rem; }
+.fact strong { font-size: 1.9rem; }
+.fact span { font-size: 1rem; }
+.big-number { font-size: clamp(2.1rem, 4.7vw, 3rem); }
+.small-note, .caveat { font-size: .96rem; }
+.bar-label { font-size: 1rem; }
+.gap { font-size: 1.04rem; }
+.panel {
+  background: rgba(255,241,210,.78);
+  border-width: 3px;
+  border-color: rgba(23,53,104,.82);
+}
+.panel::before { display: none; }
+
+/* End-zone keys and three-point arcs make the long scroll read as a court. */
+main::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: .42;
+  background:
+    radial-gradient(ellipse 47% 360px at 50% 0, transparent calc(100% - 3px), rgba(23,53,104,.72) calc(100% - 2px) calc(100% + 2px), transparent calc(100% + 3px)) top / 100% 390px no-repeat,
+    linear-gradient(90deg, transparent 34.7%, rgba(23,53,104,.78) 35% 35.4%, transparent 35.7% 64.3%, rgba(23,53,104,.78) 64.6% 65%, transparent 65.3%) top / 100% 245px no-repeat,
+    linear-gradient(90deg, transparent 35%, rgba(23,53,104,.78) 35% 65%, transparent 65%) 0 242px / 100% 3px no-repeat,
+    radial-gradient(ellipse 15% 60px at 50% 245px, transparent 95%, rgba(23,53,104,.78) 97% 100%, transparent 103%) top / 100% 315px no-repeat,
+    radial-gradient(ellipse 47% 360px at 50% 100%, transparent calc(100% - 3px), rgba(23,53,104,.72) calc(100% - 2px) calc(100% + 2px), transparent calc(100% + 3px)) bottom / 100% 390px no-repeat,
+    linear-gradient(90deg, transparent 34.7%, rgba(23,53,104,.78) 35% 35.4%, transparent 35.7% 64.3%, rgba(23,53,104,.78) 64.6% 65%, transparent 65.3%) bottom / 100% 245px no-repeat,
+    linear-gradient(90deg, transparent 35%, rgba(23,53,104,.78) 35% 65%, transparent 65%) 0 calc(100% - 245px) / 100% 3px no-repeat,
+    radial-gradient(ellipse 15% 60px at 50% 70px, transparent 95%, rgba(23,53,104,.78) 97% 100%, transparent 103%) bottom / 100% 315px no-repeat;
+}
+
+/* Spread badges across the available header width; retain 44px-plus hit areas. */
+.team-ribbon {
+  width: 100%;
+  grid-template-columns: repeat(15, minmax(0, 1fr));
+  gap: clamp(4px, .7vw, 10px);
+}
+.team-logo { justify-self: center; width: 46px; height: 46px; }
+.team-logo img { width: 32px; height: 32px; }
+@media (max-width: 900px) {
+  .team-ribbon {
+    width: min(100%, 900px);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+@media (max-width: 760px) {
+  .team-ribbon {
+    width: min(100%, 600px);
+    grid-template-columns: repeat(9, minmax(42px, 1fr));
+    gap: 6px;
+  }
+}
+@media (max-width: 480px) {
+  .team-ribbon {
+    width: auto;
+    grid-template-columns: repeat(6, 44px);
+    gap: 7px;
+  }
+  .team-logo { width: 44px; height: 44px; }
+  .team-logo img { width: 30px; height: 30px; }
+  .research-question { padding: 18px; }
+  main::after { opacity: .3; }
+}
+
   </style>
 </head>
 <body>
@@ -517,7 +599,7 @@ h1 {
 
       <section class="panel">
         <div class="eyebrow">Finding 3 · Fourth-quarter timing</div>
-        <h2>When the first bonus entry happens in Q4 is associated with different outcomes</h2>
+        <h2>Q4 bonus timing and win rates</h2>
         <div class="grid2">
           {% for label in ['Entered before final two minutes', 'Entered during final two minutes'] %}
             <article class="stat-card">
@@ -532,7 +614,7 @@ h1 {
 
       <section class="panel">
         <div class="eyebrow">Finding 4 · Attempts and winning</div>
-        <h2>The raw attempt advantage shrinks after late-game free throws are excluded</h2>
+        <h2>Late-game fouls account for much of the attempt gap</h2>
         <div class="grid2">
           {% for item in [data.original, data.adjusted] %}
             <article class="stat-card">
@@ -571,7 +653,7 @@ h1 {
 
       <section class="panel">
         <div class="eyebrow">Finding 5 · Attempts compared with accuracy</div>
-        <h2>Bonus attempts have a stronger raw relationship with wins than accuracy</h2>
+        <h2>Bonus attempts relate to wins more than accuracy</h2>
         <div class="grid2">
           <article class="stat-card">
             <h3>Bonus-attempt advantage</h3>
@@ -600,7 +682,7 @@ h1 {
 
       <section class="panel">
         <div class="eyebrow">Finding 6 · Home-court advantage</div>
-        <h2>Home teams reach the bonus first more often and already win more often overall</h2>
+        <h2>Home teams reach the bonus first more often</h2>
         <div class="grid2">
           {% for label in ['Home', 'Away'] %}
             <article class="stat-card">
@@ -615,7 +697,7 @@ h1 {
 
       <section class="panel">
         <div class="eyebrow">Finding 7 · Changes across 30 seasons</div>
-        <h2>Teams take fewer bonus free throws, but make them more accurately</h2>
+        <h2>Fewer bonus attempts, higher accuracy</h2>
         <p class="section-intro">The bar chart shows average bonus attempts per team-game by season.</p>
         <div class="season-chart" role="img" aria-label="Average bonus free throws per team-game across seasons">
           {% for season in data.seasons %}
@@ -635,7 +717,7 @@ h1 {
 
       <section class="panel">
         <div class="eyebrow">Finding 8 · Team changes</div>
-        <h2>Long-term team comparisons show a broad decline in attempts and mixed accuracy changes</h2>
+        <h2>Attempts fell across teams; accuracy changes varied</h2>
         <p class="section-intro">Every comparable team recorded fewer bonus attempts when its first five seasons are compared with its most recent five. The tables show selected changes; {{ data.team_count }} teams have comparable observations.</p>
         <div class="grid2">
           <article class="stat-card">
@@ -659,7 +741,7 @@ h1 {
 
       <section class="panel">
         <div class="eyebrow">Finding 9 · Team changes and winning</div>
-        <h2>Changes in attempts have a stronger association with winning changes than accuracy does</h2>
+        <h2>Attempt trends track winning more than accuracy</h2>
         <div class="grid2">
           <article class="stat-card"><h3>Attempt-change correlation</h3><div class="big-number">{{ "%.3f"|format(data.attempt_corr) }}</div><p>Moderate positive relationship</p></article>
           <article class="stat-card"><h3>Accuracy-change correlation</h3><div class="big-number">{{ "%.3f"|format(data.accuracy_corr) }}</div><p>Weak positive relationship</p></article>
