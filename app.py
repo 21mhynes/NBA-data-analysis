@@ -414,13 +414,20 @@ def load_team_page_data(team_code):
                     "bonus_ft_percentage",
                 ],
             )
+            league_rows = read_rows(
+                cursor,
+                "results/team_trends/league_season_trends.csv",
+                ["season", "average_bonus_fta", "bonus_ft_percentage"],
+            )
     finally:
         connection.close()
 
+    league_by_season = {row["season"]: row for row in league_rows}
     seasons = []
     for row in rows:
         if row["team"] not in team["source_codes"]:
             continue
+        league_row = league_by_season.get(row["season"], {})
         seasons.append({
             "season": row["season"],
             "games": int(float(row["games"])),
@@ -430,6 +437,8 @@ def load_team_page_data(team_code):
             "made": int(float(row["total_bonus_ftm"])),
             "win_pct": as_float(row["win_percentage"]),
             "accuracy": as_float(row["bonus_ft_percentage"]),
+            "league_attempts": as_float(league_row.get("average_bonus_fta")),
+            "league_accuracy": as_float(league_row.get("bonus_ft_percentage")),
         })
     seasons.sort(key=lambda row: row["season"])
     if not seasons:
@@ -437,11 +446,21 @@ def load_team_page_data(team_code):
             "No team-season rows were found in the TiDB analysis archive."
         )
 
-    min_attempts = min(row["attempts"] for row in seasons)
-    max_attempts = max(row["attempts"] for row in seasons)
+    chart_values = [row["attempts"] for row in seasons]
+    chart_values.extend(
+        row["league_attempts"] for row in seasons
+        if row["league_attempts"] is not None
+    )
+    min_attempts = min(chart_values)
+    max_attempts = max(chart_values)
     spread = max_attempts - min_attempts or 1
     for row in seasons:
-        row["bar_height"] = 18 + 82 * (row["attempts"] - min_attempts) / spread
+        row["bar_height"] = 8 + 84 * (row["attempts"] - min_attempts) / spread
+        row["league_bar_height"] = (
+            8 + 84 * (row["league_attempts"] - min_attempts) / spread
+            if row["league_attempts"] is not None
+            else None
+        )
 
     first_five, last_five = seasons[:5], seasons[-5:]
     def mean(rows, field):
