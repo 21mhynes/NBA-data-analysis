@@ -5,9 +5,9 @@
   <meta name="description" content="Detailed NBA bonus timing, home-court, and win-rate trend results.">
   <title>League Analysis · NBA Bonus Study</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=Roboto+Condensed:wght@400;500;600;700;800;900&display=swap');
     :root { --court:#d7a05c; --light:#e9bd7c; --navy:#102b58; --line:#173568; --cream:#fff1d2; --ink:#152744; --muted:#354968; --accent:#b95832; }
-    *{box-sizing:border-box} body{margin:0;background:var(--navy);color:var(--ink);font:18px/1.5 'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+    *{box-sizing:border-box} body{margin:0;background:var(--navy);color:var(--ink);font:18px/1.5 'Roboto',Arial,sans-serif}
     header,footer{padding:15px clamp(18px,4vw,54px);color:var(--cream);background:var(--navy);border-bottom:4px solid var(--accent)}
     header{display:flex;justify-content:space-between;align-items:center;gap:18px}.brand{font-weight:900;letter-spacing:.1em;text-transform:uppercase}
     nav{display:flex;gap:16px;flex-wrap:wrap} a{color:var(--cream);font-weight:700}
@@ -23,7 +23,7 @@
     table{width:100%;border-collapse:collapse;margin-top:12px;background:rgba(255,241,210,.6)}th,td{padding:9px 11px;border:1px solid rgba(23,53,104,.35);text-align:right}th:first-child,td:first-child{text-align:left}th{color:var(--cream);background:var(--navy)}
     .table-wrap{overflow-x:auto}.trend{display:flex;align-items:end;height:220px;gap:3px;border-bottom:4px solid var(--line);background:repeating-linear-gradient(0deg,transparent 0 42px,rgba(23,53,104,.2) 43px 45px)}
     .bar{flex:1;min-width:3px;display:block;position:relative;padding:0;margin:0;appearance:none;-webkit-appearance:none;background:var(--line);border:0;cursor:help}
-    .bar::after{content:attr(data-tooltip);position:absolute;z-index:20;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%);width:max-content;max-width:min(260px,70vw);padding:8px 10px;color:var(--cream);background:var(--navy);border:2px solid var(--accent);font:700 .9rem/1.3 'Barlow Condensed','Arial Narrow',Arial,sans-serif;text-align:center;white-space:normal;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;visibility:hidden;pointer-events:none}
+    .bar::after{content:attr(data-tooltip);position:absolute;z-index:20;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%);width:max-content;max-width:min(260px,70vw);padding:8px 10px;color:var(--cream);background:var(--navy);border:2px solid var(--accent);font:700 .9rem/1.3 'Roboto',Arial,sans-serif;text-align:center;white-space:normal;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;visibility:hidden;pointer-events:none}
     .bar:hover::after,.bar:focus::after{opacity:1;visibility:visible}.bar:hover,.bar:focus{outline:2px solid var(--accent);outline-offset:2px}
     .trend .bar:first-child::after{left:0;transform:none}.trend .bar:last-child::after{left:auto;right:0;transform:none}
     .labels{display:flex;justify-content:space-between;font-weight:700}
@@ -34,13 +34,13 @@
     .timing-logo-choice img{width:100%;height:100%;object-fit:contain}
     .timing-logo-choice[data-timing-team="ALL"] img{width:34px;height:42px}
     .timing-period-picker{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:0 0 14px}
-    .timing-period-choice{min-width:54px;padding:6px 14px;color:var(--navy);background:rgba(255,241,210,.75);border:2px solid var(--line);font:800 1rem 'Barlow Condensed','Arial Narrow',Arial,sans-serif;cursor:pointer}
+    .timing-period-choice{min-width:54px;padding:6px 14px;color:var(--navy);background:rgba(255,241,210,.75);border:2px solid var(--line);font:800 1rem 'Roboto',Arial,sans-serif;cursor:pointer}
     .timing-period-choice:hover,.timing-period-choice:focus-visible{border-color:var(--accent);outline:2px solid rgba(185,88,50,.3);outline-offset:2px}
     .timing-period-choice.is-selected{color:var(--cream);background:var(--navy);border-color:var(--accent)}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .timing-chart-wrap{overflow-x:auto;padding:8px 0}
     .timing-chart{display:block;width:100%;min-width:680px;height:auto}
-    .timing-chart text{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;fill:var(--muted);font-size:14px}
+    .timing-chart text{font-family:'Roboto',Arial,sans-serif;fill:var(--muted);font-size:14px}
     .timing-chart .axis{stroke:rgba(23,53,104,.48);stroke-width:1}
     .timing-chart .series-line{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
     .timing-chart .series-point{stroke:var(--cream);stroke-width:2}
@@ -60,13 +60,15 @@
 .tied-period-card{grid-column:1/-1;justify-self:center;width:min(100%,calc((100% - 16px)/2))}
 @media(max-width:700px){.tied-period-card{grid-column:auto;width:100%}}
   
-.csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Barlow Condensed','Arial Narrow',Arial,sans-serif;white-space:nowrap;cursor:pointer}
+.csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Roboto',Arial,sans-serif;white-space:nowrap;cursor:pointer}
 .csv-download:hover{background:var(--cream);border-color:var(--accent)}
 .csv-download:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .data-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .data-heading h2{margin-bottom:0}
 @media(max-width:480px){.data-heading{align-items:flex-start}}
-</style>
+
+    h1,h2,h3,h4,h5,h6,.brand{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif}
+  </style>
 </head>
 <body>
   <header><div class="brand">NBA Data Analysis</div><nav><a href="/">Home</a><a href="/league-analysis" aria-current="page">League analysis</a><a href="/season-leaderboard">Season leaderboard</a><a href="/compare-teams">Compare teams</a></nav></header>
