@@ -104,7 +104,7 @@
     .metric-line span{display:block;height:100%;min-width:2px}
     .metric-line.left span{background:var(--left-team-color,var(--navy))}
     .metric-line.right span{background:var(--right-team-color,var(--accent))}
-    .verdict{margin:9px 0 0;padding:7px 10px;color:var(--navy);background:rgba(215,160,92,.35);border-left:4px solid var(--line);font-weight:800}
+    .verdict{margin:9px 0 0;text-align:center;padding:7px 10px;color:var(--navy);background:rgba(215,160,92,.35);border-left:4px solid var(--line);font-weight:800}
     .verdict.positive{border-color:var(--navy)}
     .verdict.volume{border-color:var(--accent)}
     .no-common{padding:18px;text-align:center;background:rgba(233,189,124,.45);border:2px dashed var(--line);font-weight:700}
@@ -323,20 +323,7 @@
         rightText.className = "metric-value";
         rightText.textContent = format(rightValue);
 
-        const maxValue = Math.max(leftValue || 0, rightValue || 0);
-        const scale = maxValue > 0 ? maxValue : 1;
-        const lines = document.createElement("div");
-        lines.className = "metric-lines";
-        lines.setAttribute("aria-hidden", "true");
-        for (const pair of [["left", leftValue], ["right", rightValue]]) {
-          const line = document.createElement("div");
-          line.className = "metric-line " + pair[0];
-          const fill = document.createElement("span");
-          fill.style.width = Math.max(2, (pair[1] / scale) * 100) + "%";
-          line.append(fill);
-          lines.append(line);
-        }
-        values.append(leftText, lines, rightText);
+        values.append(leftText, rightText);
 
         const verdict = document.createElement("p");
         verdict.className = "verdict";
@@ -346,12 +333,13 @@
           const leader = leftValue > rightValue ? teamByCode[selected.left] : teamByCode[selected.right];
           const other = leftValue > rightValue ? teamByCode[selected.right] : teamByCode[selected.left];
           verdict.classList.add("positive");
-          verdict.textContent = "Positive for " + leader.name + "; negative for " + other.name + " on this metric.";
+          verdict.textContent = "Positive for " + leader.name;
         } else {
           const leader = leftValue > rightValue ? teamByCode[selected.left] : teamByCode[selected.right];
           verdict.classList.add("volume");
-          verdict.textContent = "Higher volume for " + leader.name + "; more attempts alone is not automatically better.";
+          verdict.textContent = "Higher for " + leader.name;
         }
+        verdict.classList.add("metric-center-result");
         row.append(heading, values, verdict);
         return row;
       }
@@ -422,7 +410,7 @@
         outcomes.append(outcomesTitle);
         outcomes.append(metricRow(
           "Win rate",
-          "Higher is favorable; this is an observed result.",
+          "",
           left.games ? (left.wins / left.games) * 100 : 0,
           right.games ? (right.wins / right.games) * 100 : 0,
           value => value.toFixed(2) + "%",
@@ -437,7 +425,7 @@
         bonus.append(bonusTitle);
         bonus.append(metricRow(
           "Attempts per team-game",
-          "Shows volume, not an automatic advantage.",
+          "",
           left.games ? left.attempts / left.games : 0,
           right.games ? right.attempts / right.games : 0,
           value => value.toFixed(2),
@@ -446,7 +434,7 @@
         ));
         bonus.append(metricRow(
           "Free-throw accuracy",
-          "Higher is favorable.",
+          "",
           left.attempts ? (left.made / left.attempts) * 100 : 0,
           right.attempts ? (right.made / right.attempts) * 100 : 0,
           value => value.toFixed(2) + "%",
