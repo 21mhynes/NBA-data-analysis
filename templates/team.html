@@ -33,13 +33,22 @@
     .stat:last-child { border-right:0; }
     .stat span { display:block; color:var(--cream); font-weight:600; }
     .stat strong { display:block; color:var(--cream); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:900; line-height:1.1; }
-    .chart { height:230px; display:flex; align-items:end; gap:3px; margin:24px 0 8px; padding:8px 0 0; border-bottom:4px solid var(--team-primary,var(--line)); background:repeating-linear-gradient(0deg,transparent 0 43px,rgba(23,53,104,.2) 44px 46px); }
-    .bar { flex:1; min-width:2px; display:block; position:relative; padding:0; margin:0; appearance:none; -webkit-appearance:none; background:var(--team-primary,var(--line)); border:1px solid rgba(255,241,210,.7); box-shadow:inset 0 -4px 0 var(--team-secondary,var(--accent)); cursor:help; }
+    .trend-controls { display:flex; justify-content:space-between; align-items:end; gap:14px; flex-wrap:wrap; margin:14px 0 4px; }
+    .trend-controls label { display:grid; gap:4px; color:var(--navy); font-weight:800; }
+    .trend-controls select { min-height:38px; padding:5px 34px 5px 9px; color:var(--navy); background:var(--cream); border:2px solid var(--line); font:700 1rem 'Barlow Condensed','Arial Narrow',Arial,sans-serif; }
+    .chart-legend { display:flex; flex-wrap:wrap; gap:16px; color:var(--muted); font-size:.95rem; font-weight:700; }
+    .chart-legend span { display:inline-flex; align-items:center; gap:7px; }
+    .legend-team-key { width:14px; height:14px; background:var(--team-primary,var(--line)); border:1px solid var(--line); }
+    .legend-league-key { width:18px; height:3px; background:var(--accent); box-shadow:0 0 0 1px var(--cream); }
+    .chart { height:230px; display:flex; align-items:stretch; gap:3px; margin:24px 0 8px; padding:8px 0 0; border-bottom:4px solid var(--team-primary,var(--line)); background:repeating-linear-gradient(0deg,transparent 0 43px,rgba(23,53,104,.2) 44px 46px); }
+    .season-column { position:relative; flex:1; min-width:2px; height:100%; display:flex; align-items:flex-end; }
+    .bar { flex:1; min-width:2px; height:var(--bar-height); display:block; position:relative; padding:0; margin:0; appearance:none; -webkit-appearance:none; background:var(--team-primary,var(--line)); border:1px solid rgba(255,241,210,.7); box-shadow:inset 0 -4px 0 var(--team-secondary,var(--accent)); cursor:help; }
+    .league-marker { position:absolute; z-index:2; left:0; right:0; bottom:var(--league-height); height:3px; background:var(--accent); box-shadow:0 0 0 1px var(--cream); pointer-events:none; }
      .bar::after { content:attr(data-tooltip); position:absolute; z-index:20; left:50%; bottom:calc(100% + 9px); transform:translateX(-50%); width:max-content; max-width:min(260px,70vw); padding:8px 10px; color:var(--cream); background:var(--navy); border:2px solid var(--team-secondary,var(--accent)); font:700 .9rem/1.3 'Barlow Condensed','Arial Narrow',Arial,sans-serif; text-align:center; white-space:normal; box-shadow:0 4px 12px rgba(0,0,0,.25); opacity:0; visibility:hidden; pointer-events:none; }
      .bar:hover::after, .bar:focus::after { opacity:1; visibility:visible; }
      .bar:hover, .bar:focus { outline:2px solid var(--team-secondary,var(--accent)); outline-offset:2px; }
-     .chart .bar:first-child::after { left:0; transform:none; }
-     .chart .bar:last-child::after { left:auto; right:0; transform:none; }
+     .chart .season-column:first-child .bar::after { left:0; transform:none; }
+     .chart .season-column:last-child .bar::after { left:auto; right:0; transform:none; }
     .chart-labels { display:flex; justify-content:space-between; color:var(--ink); font-weight:700; }
     .table-wrap { overflow-x:auto; margin-top:18px; }
     table { width:100%; border-collapse:collapse; min-width:620px; background:rgba(255,241,210,.62); }
@@ -99,13 +108,61 @@
           <div><div class="eyebrow">Season-by-season trend</div><h2>Bonus attempts per team-game</h2></div>
           <button type="button" class="csv-download" data-download-chart="team-season-chart" data-filename="{{ team.code|lower }}-season-results.csv" aria-label="Download {{ team.name }} season chart and table data as CSV" title="Download season data as CSV">↓ CSV</button>
         </div>
-        <p>Each bar is one season. Point to, focus, or tap a bar to see attempts, accuracy, and win rate.</p>
-        <div class="chart" id="team-season-chart" data-csv-headers='["Season","Games","Wins","Bonus FT attempts per team-game","Bonus FT accuracy (%)","Win rate (%)"]' role="group" aria-label="{{ team.name }} average bonus attempts per team-game by season">
+        <p>Choose a metric to compare the team with the league average in each season. The orange marker shows the league average.</p>
+        <div class="trend-controls">
+          <label for="team-chart-metric">Metric
+            <select id="team-chart-metric">
+              <option value="attempts">Bonus attempts per team-game</option>
+              <option value="accuracy">Bonus free-throw accuracy</option>
+            </select>
+          </label>
+          <div class="chart-legend" aria-label="Chart legend"><span><i class="legend-team-key" aria-hidden="true"></i>{{ team.name }}</span><span><i class="legend-league-key" aria-hidden="true"></i>League average</span></div>
+        </div>
+        <div class="chart" id="team-season-chart" data-csv-headers='["Season","Games","Wins","Bonus FT attempts per team-game","Bonus FT accuracy (%)","Win rate (%)","League average bonus attempts per team-game","League average bonus FT accuracy (%)"]' role="group" aria-label="{{ team.name }} season metric compared with league average">
           {% for season in data.seasons %}
-            <button type="button" class="bar" title="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy · {{ '%.2f'|format(season.win_pct) }}% wins" aria-label="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts, {{ '%.2f'|format(season.accuracy) }}% accuracy, {{ '%.2f'|format(season.win_pct) }}% wins" data-tooltip="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy · {{ '%.2f'|format(season.win_pct) }}% wins" data-csv-row='{{ [season.season, season.games, season.wins, season.attempts, season.accuracy, season.win_pct]|tojson }}' style="height:{{ season.bar_height }}%"></button>
+            <div class="season-column" data-attempts="{{ season.attempts }}" data-accuracy="{{ season.accuracy }}" data-league-attempts="{{ season.league_attempts if season.league_attempts is not none else '' }}" data-league-accuracy="{{ season.league_accuracy if season.league_accuracy is not none else '' }}">
+              <button type="button" class="bar" title="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy · {{ '%.2f'|format(season.win_pct) }}% wins{% if season.league_attempts is not none %} · league: {{ '%.2f'|format(season.league_attempts) }} attempts{% endif %}{% if season.league_accuracy is not none %} · {{ '%.2f'|format(season.league_accuracy) }}% accuracy{% endif %}" aria-label="{{ season.season }}: team {{ '%.2f'|format(season.attempts) }} attempts per game and {{ '%.2f'|format(season.accuracy) }}% accuracy{% if season.league_attempts is not none %}; league average {{ '%.2f'|format(season.league_attempts) }} attempts{% endif %}{% if season.league_accuracy is not none %} and {{ '%.2f'|format(season.league_accuracy) }}% accuracy{% endif %}; win rate {{ '%.2f'|format(season.win_pct) }}%" data-tooltip="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy · {{ '%.2f'|format(season.win_pct) }}% wins{% if season.league_attempts is not none %} · league avg: {{ '%.2f'|format(season.league_attempts) }} attempts{% endif %}{% if season.league_accuracy is not none %} · league avg accuracy: {{ '%.2f'|format(season.league_accuracy) }}%{% endif %}" data-csv-row='{{ [season.season, season.games, season.wins, season.attempts, season.accuracy, season.win_pct, season.league_attempts, season.league_accuracy]|tojson }}' style="--bar-height:{{ season.bar_height }}%;{% if season.league_bar_height is not none %}--league-height:{{ season.league_bar_height }}%;{% endif %}"></button>
+              {% if season.league_bar_height is not none %}<span class="league-marker" aria-hidden="true"></span>{% endif %}
+            </div>
           {% endfor %}
         </div>
         <div class="chart-labels"><span>{{ data.first_season }}</span><span>{{ data.last_season }}</span></div>
+        <script>
+          (() => {
+            const chart = document.getElementById("team-season-chart");
+            const metricSelect = document.getElementById("team-chart-metric");
+            const columns = [...chart.querySelectorAll(".season-column")];
+            function renderMetric() {
+              const key = metricSelect.value;
+              const teamKey = key;
+              const leagueKey = "league-" + key;
+              const values = columns.flatMap(column => [Number(column.dataset[teamKey]), Number(column.dataset[leagueKey])]).filter(Number.isFinite);
+              const min = Math.min(...values);
+              const span = Math.max(...values) - min || 1;
+              for (const column of columns) {
+                const teamValue = Number(column.dataset[teamKey]);
+                const leagueValue = Number(column.dataset[leagueKey]);
+                const bar = column.querySelector(".bar");
+                const marker = column.querySelector(".league-marker");
+                if (!Number.isFinite(teamValue)) { bar.hidden = true; continue; }
+                bar.hidden = false;
+                bar.style.setProperty("--bar-height", (8 + 84 * (teamValue - min) / span) + "%");
+                if (Number.isFinite(leagueValue)) {
+                  if (!marker) {
+                    const newMarker = document.createElement("span");
+                    newMarker.className = "league-marker";
+                    newMarker.setAttribute("aria-hidden", "true");
+                    column.append(newMarker);
+                  }
+                  column.querySelector(".league-marker").style.setProperty("--league-height", (8 + 84 * (leagueValue - min) / span) + "%");
+                } else if (marker) marker.remove();
+              }
+              chart.setAttribute("aria-label", "{{ team.name }} " + (key === "attempts" ? "bonus attempts per team-game" : "bonus free-throw accuracy") + " compared with the league average by season");
+            }
+            metricSelect.addEventListener("change", renderMetric);
+            renderMetric();
+          })();
+        </script>
       </section>
 
       <section class="panel">
