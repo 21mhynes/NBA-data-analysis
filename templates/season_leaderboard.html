@@ -46,6 +46,18 @@
     .metric-choice{min-height:42px;padding:8px 12px;color:var(--navy);background:rgba(255,241,210,.75);border:2px solid var(--line);font:700 1rem 'Roboto Condensed','Arial Narrow',Arial,sans-serif;cursor:pointer}
     .metric-choice:hover,.metric-choice:focus-visible{border-color:var(--accent);outline:2px solid rgba(185,88,50,.3);outline-offset:2px}
     .metric-choice.is-selected{color:var(--cream);background:var(--navy);border-color:var(--accent);box-shadow:0 0 0 2px rgba(185,88,50,.18)}
+  
+/* Compact ranking choices so all three stay on one row on desktop. */
+@media (min-width:1161px) {
+  .metric-picker { flex-wrap:nowrap; gap:5px; }
+  .metric-choice { flex:1 1 0; min-width:0; min-height:36px; padding:6px 7px; font-size:.82rem; letter-spacing:-.02em; white-space:nowrap; }
+}
+@media (min-width:681px) and (max-width:1160px) {
+  .controls { grid-template-columns:1fr; }
+  .metric-picker { flex-wrap:nowrap; gap:7px; }
+  .metric-choice { flex:1 1 0; min-width:0; padding:7px 9px; font-size:.9rem; white-space:nowrap; }
+}
+
   </style>
 </head>
 <body>
