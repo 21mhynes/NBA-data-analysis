@@ -579,7 +579,11 @@ def load_league_analysis_data():
                 "results/team_trends/team_changes_first5_vs_last5.csv",
                 ["bonus_fta_change", "bonus_ft_percentage_change", "win_percentage_change"],
             )
-            timing_rows = read_bonus_entry_timing(cursor)
+            try:
+                timing_rows = read_bonus_entry_timing(cursor)
+            except Exception:
+                logging.exception("Could not load optional bonus-entry timing chart data")
+                timing_rows = []
     finally:
         connection.close()
 
