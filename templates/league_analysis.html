@@ -27,6 +27,20 @@
     .bar:hover::after,.bar:focus::after{opacity:1;visibility:visible}.bar:hover,.bar:focus{outline:2px solid var(--accent);outline-offset:2px}
     .trend .bar:first-child::after{left:0;transform:none}.trend .bar:last-child::after{left:auto;right:0;transform:none}
     .labels{display:flex;justify-content:space-between;font-weight:700}
+    .timing-controls{display:flex;flex-wrap:wrap;align-items:end;gap:14px;margin:18px 0}
+    .timing-controls label{display:grid;gap:5px;color:var(--navy);font-weight:800}
+    .timing-controls select{min-width:190px;padding:9px 12px;color:var(--ink);background:var(--cream);border:2px solid var(--line);font:700 1rem 'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+    .timing-chart-wrap{overflow-x:auto;padding:8px 0}
+    .timing-chart{display:block;width:100%;min-width:680px;height:auto}
+    .timing-chart text{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;fill:var(--muted);font-size:14px}
+    .timing-chart .axis{stroke:rgba(23,53,104,.48);stroke-width:1}
+    .timing-chart .series-line{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+    .timing-chart .series-point{stroke:var(--cream);stroke-width:2}
+    .timing-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:6px;font-weight:800}
+    .timing-legend span{display:inline-flex;align-items:center;gap:7px}
+    .timing-legend i{width:22px;height:4px;background:currentColor}
+    .timing-summary{min-height:1.5em;font-weight:700}
+    .timing-download{margin-left:auto}
     .error{padding:14px;background:var(--cream);border:3px solid var(--accent)}
     footer{border-bottom:0;border-top:4px solid var(--accent);text-align:center}
     @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}main{padding:26px 18px}.panel{padding:20px 16px}}
@@ -71,6 +85,31 @@
       {% endif %}{% endfor %}</div>
       <p>Late fouling strategy can affect the final-two-minute results.</p>
     </section>
+    <section class="panel" id="bonus-entry-timing">
+      <div class="data-heading">
+        <div><div class="eyebrow">Bonus entry clock by season</div><h2>When does each team enter the bonus?</h2></div>
+        <button type="button" class="csv-download timing-download" id="timing-download">↓ CSV</button>
+      </div>
+      <p>Compare the average clock time remaining at bonus entry across seasons. More time on the clock means an earlier entry.</p>
+      <div class="timing-controls">
+        <label>Team
+          <select id="timing-team" aria-label="Choose a team for bonus entry timing">
+            <option value="ALL">League average</option>
+            {% for team in team_directory %}<option value="{{ team.code }}">{{ team.name }}</option>{% endfor %}
+          </select>
+        </label>
+        <label>Period
+          <select id="timing-period" aria-label="Choose a period for bonus entry timing">
+            <option value="1">First quarter</option><option value="2">Second quarter</option>
+            <option value="3">Third quarter</option><option value="4">Fourth quarter</option>
+            <option value="OT">Overtime</option>
+          </select>
+        </label>
+      </div>
+      <div class="timing-chart-wrap"><svg class="timing-chart" id="timing-chart" viewBox="0 0 1000 390" role="img" aria-label="Average time remaining when teams entered the bonus by season"></svg></div>
+      <div class="timing-legend" id="timing-legend"></div>
+      <p class="timing-summary" id="timing-summary" aria-live="polite"></p>
+    </section>
     <section class="panel">
       <div class="eyebrow">Home-court context</div><h2>First to the bonus and home-team results</h2>
       <div class="grid">{% for row in data.home_first %}
@@ -103,6 +142,119 @@
     {% endif %}
   </div></main>
   <footer>Associations, not proof of causation · See the homepage for project files and charts.</footer>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const rows = {{ data.bonus_timing.rows|tojson }};
+    const seasons = {{ data.bonus_timing.seasons|tojson }};
+    const teams = {{ team_directory|tojson }};
+    const teamSelect = document.getElementById("timing-team");
+    const periodSelect = document.getElementById("timing-period");
+    const svg = document.getElementById("timing-chart");
+    const legend = document.getElementById("timing-legend");
+    const summary = document.getElementById("timing-summary");
+    const ns = "http://www.w3.org/2000/svg";
+    const x0 = 72, x1 = 970, y0 = 28, y1 = 325;
+    const labelPeriod = value => value === "OT" ? "Overtime" : "Q" + value;
+    const clock = seconds => {
+      const value = Math.max(0, Math.round(seconds));
+      return String(Math.floor(value / 60)).padStart(2, "0") + ":" + String(value % 60).padStart(2, "0");
+    };
+    function el(tag, attrs = {}, parent = svg) {
+      const node = document.createElementNS(ns, tag);
+      for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+      parent.appendChild(node);
+      return node;
+    }
+    function render() {
+      const period = periodSelect.value;
+      const team = teamSelect.value;
+      const visible = rows.filter(row => row.period === period);
+      const leagueRows = visible.filter(row => row.team === "ALL");
+      const teamRows = team === "ALL" ? [] : visible.filter(row => row.team === team);
+      const maxSeconds = period === "OT" ? 300 : 720;
+      svg.replaceChildren();
+      legend.replaceChildren();
+      const x = index => seasons.length < 2 ? (x0 + x1) / 2 : x0 + index * (x1 - x0) / (seasons.length - 1);
+      const y = seconds => y1 - seconds / maxSeconds * (y1 - y0);
+      [0, maxSeconds / 2, maxSeconds].forEach(value => {
+        const yy = y(value);
+        el("line", {x1:x0, x2:x1, y1:yy, y2:yy, class:"axis"});
+        const label = el("text", {x:x0 - 12, y:yy + 5, "text-anchor":"end"});
+        label.textContent = clock(value);
+      });
+      const bottom = el("line", {x1:x0, x2:x1, y1:y1, y2:y1, class:"axis"});
+      const yLabel = el("text", {x:16, y:18});
+      yLabel.textContent = "Clock remaining";
+      const labelIndexes = new Set([0, Math.floor((seasons.length - 1) / 2), seasons.length - 1]);
+      seasons.forEach((season, index) => {
+        if (labelIndexes.has(index)) {
+          const label = el("text", {x:x(index), y:y1 + 30, "text-anchor":"middle"});
+          label.textContent = season;
+        }
+      });
+      function draw(series, color, name, dashed = false) {
+        const points = seasons.map((season, index) => {
+          const row = series.find(item => item.season === season);
+          return row ? {x:x(index), y:y(Number(row.average_seconds)), row} : null;
+        }).filter(Boolean);
+        if (!points.length) return;
+        const path = el("path", {
+          d:points.map((point,index) => (index ? "L" : "M") + point.x + " " + point.y).join(" "),
+          class:"series-line", stroke:color, "stroke-dasharray":dashed ? "9 7" : ""
+        });
+        points.forEach(point => {
+          const circle = el("circle", {cx:point.x, cy:point.y, r:5, fill:color, class:"series-point"});
+          const title = el("title", {}, circle);
+          title.textContent = name + " · " + point.row.season + " · " + clock(point.row.average_seconds) + " remaining · " + Number(point.row.entries).toLocaleString() + " entries";
+        });
+        const item = document.createElement("span");
+        item.style.color = color;
+        const swatch = document.createElement("i");
+        item.append(swatch, document.createTextNode(name));
+        legend.appendChild(item);
+      }
+      const teamInfo = teams.find(item => item.code === team);
+      if (team === "ALL") {
+        draw(leagueRows, "#b95832", "League average");
+      } else {
+        draw(teamRows, teamInfo?.primary_color || "#102b58", teamInfo?.name || team);
+        draw(leagueRows, "#b95832", "League average", true);
+      }
+      const latestSeason = [...seasons].reverse().find(season =>
+        visible.some(row => row.season === season && (row.team === team || row.team === "ALL"))
+      );
+      if (!latestSeason) {
+        summary.textContent = "No archived bonus-entry clock data is available for this selection.";
+        return;
+      }
+      const latestTeam = team === "ALL" ? null : teamRows.find(row => row.season === latestSeason);
+      const latestLeague = leagueRows.find(row => row.season === latestSeason);
+      if (team === "ALL" && latestLeague) {
+        summary.textContent = labelPeriod(period) + " league average in " + latestSeason + ": " + clock(latestLeague.average_seconds) + " remaining.";
+      } else if (latestTeam && latestLeague) {
+        const diff = Number(latestTeam.average_seconds) - Number(latestLeague.average_seconds);
+        const direction = Math.abs(diff) < 1 ? "about the same time" : diff > 0 ? "earlier" : "later";
+        summary.textContent = teamInfo.name + " entered " + labelPeriod(period) + " bonus " + direction + " than the league average in " + latestSeason + " (" + clock(latestTeam.average_seconds) + " vs. " + clock(latestLeague.average_seconds) + " remaining).";
+      } else {
+        summary.textContent = "No archived bonus-entry clock data is available for this selection in " + latestSeason + ".";
+      }
+    }
+    teamSelect.addEventListener("change", render);
+    periodSelect.addEventListener("change", render);
+    document.getElementById("timing-download").addEventListener("click", () => {
+      const period = periodSelect.value, team = teamSelect.value;
+      const selected = rows.filter(row => row.period === period && (row.team === "ALL" || team === "ALL" || row.team === team));
+      const csv = [["Season","Team","Period","Average clock remaining (seconds)","Bonus entries"], ...selected.map(row => [row.season, row.team === "ALL" ? "League average" : (teams.find(t => t.code === row.team)?.name || row.team), labelPeriod(row.period), Number(row.average_seconds).toFixed(1), row.entries])]
+        .map(record => record.map(value => '"' + String(value).replaceAll('"','""') + '"').join(",")).join("\\n");
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8"}));
+      link.download = "bonus-entry-timing-by-season.csv";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+    render();
+  });
+  </script>
   <script src="{{ url_for('static', filename='download.js') }}" defer></script>
 </body>
 </html>
