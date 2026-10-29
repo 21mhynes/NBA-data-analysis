@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare NBA team bonus free throws, free-throw accuracy, and winning across seasons.">
+  <title>Compare Teams · NBA Bonus Study</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap');
+    :root {
+      --court:#d7a05c; --court-light:#e9bd7c; --court-dark:#c48b49;
+      --navy:#102b58; --line:#173568; --cream:#fff1d2; --ink:#152744;
+      --muted:#354968; --accent:#b95832;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--navy);color:var(--ink);font:18px/1.5 'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+    header,footer{padding:14px clamp(18px,4vw,54px);color:var(--cream);background:var(--navy)}
+    header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:4px solid var(--accent)}
+    .brand{font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+    nav{display:flex;gap:18px;flex-wrap:wrap}
+    nav a{color:var(--cream);font-weight:800;text-decoration:none}
+    nav a:hover,nav a:focus-visible,nav a[aria-current=page]{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:5px}
+    main{position:relative;isolation:isolate;min-height:100vh;padding:clamp(26px,5vw,62px) clamp(16px,5vw,72px);overflow:hidden;
+      background-color:var(--court);
+      background-image:radial-gradient(circle at 50% 50%,transparent 0 150px,rgba(23,53,104,.23) 152px 155px,transparent 157px),
+      linear-gradient(90deg,transparent calc(50% - 2px),rgba(23,53,104,.18) calc(50% - 1px) calc(50% + 1px),transparent calc(50% + 2px)),
+      repeating-linear-gradient(0deg,rgba(103,62,27,.1) 0 2px,transparent 2px 58px),
+      repeating-linear-gradient(90deg,rgba(255,245,220,.14) 0 2px,transparent 2px 172px),
+      linear-gradient(110deg,var(--court-light),var(--court) 56%,var(--court-dark))}
+    main:before{content:"";position:absolute;z-index:-1;inset:12px clamp(10px,1.8vw,28px);border:4px solid rgba(23,53,104,.72);pointer-events:none}
+    main>*{position:relative;z-index:1}
+    .wrap{max-width:1450px;margin:auto}
+    .eyebrow{color:var(--line);font-size:.94rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+    h1,h2,h3{margin:0;color:var(--navy);font-weight:900;line-height:1.08;text-transform:uppercase}
+    h1{font-size:clamp(2.5rem,6vw,4.7rem)}
+    h2{font-size:clamp(1.7rem,3vw,2.35rem)}
+    h3{font-size:1.35rem}
+    p{color:var(--muted)}
+    .page-intro{margin:0 auto 24px;text-align:center}
+    .page-intro .eyebrow{display:inline-block;margin-bottom:7px}
+    .page-intro p{max-width:760px;margin:12px auto 0;font-size:1.15rem}
+    .panel{margin:22px 0;padding:clamp(18px,3vw,32px);background:rgba(255,241,210,.91);border:4px solid var(--line)}
+    .range-panel{padding-bottom:24px}
+    .range-heading{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+    .range-heading p{margin:3px 0 0}
+    .range-output{display:flex;justify-content:space-between;gap:16px;margin:18px 3px 4px;color:var(--navy);font-weight:800}
+    .range-output strong{font-size:1.18rem}
+    .range-wrap{position:relative;height:34px;margin:0 10px}
+    .range-rail,.range-fill{position:absolute;top:14px;height:7px;border:1px solid var(--line)}
+    .range-rail{left:0;right:0;background:rgba(16,43,88,.17)}
+    .range-fill{background:var(--accent);border-color:var(--navy)}
+    .range-wrap input{position:absolute;inset:0;width:100%;height:34px;margin:0;appearance:none;background:transparent;pointer-events:none}
+    .range-wrap input::-webkit-slider-runnable-track{height:7px;background:transparent}
+    .range-wrap input::-moz-range-track{height:7px;background:transparent}
+    .range-wrap input::-webkit-slider-thumb{width:23px;height:23px;margin-top:-8px;appearance:none;pointer-events:auto;border:3px solid var(--cream);border-radius:50%;background:var(--navy);box-shadow:0 0 0 2px var(--line);cursor:ew-resize}
+    .range-wrap input::-moz-range-thumb{width:18px;height:18px;pointer-events:auto;border:3px solid var(--cream);border-radius:50%;background:var(--navy);box-shadow:0 0 0 2px var(--line);cursor:ew-resize}
+    .range-wrap input:focus-visible{outline:none}
+    .range-wrap input:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px var(--accent)}
+    .range-ends{display:flex;justify-content:space-between;margin:0 2px;color:var(--muted);font-size:.95rem;font-weight:700}
+    .matchup-panel{padding:clamp(17px,3vw,30px)}
+    .matchup-head{text-align:center;margin-bottom:16px}
+    .matchup-head p{margin:5px 0 0}
+    .matchup-board{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:clamp(10px,2vw,24px)}
+    .selected-team{min-width:0;min-height:180px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:18px;color:var(--cream);background:var(--navy);border:4px solid var(--line);font:inherit;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
+    .selected-team:hover,.selected-team:focus-visible{transform:translateY(-3px);box-shadow:0 7px 0 var(--accent);outline:3px solid var(--cream);outline-offset:2px}
+    .selected-team img{width:clamp(76px,10vw,118px);height:clamp(76px,10vw,118px);object-fit:contain;padding:9px;background:var(--cream);border:3px solid var(--cream);border-radius:50%}
+    .selected-team strong{font-size:clamp(1.25rem,2vw,1.7rem);line-height:1.05}
+    .selected-team small{color:var(--cream);font-weight:700}
+    .slot-empty{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--cream)}
+    .slot-empty strong{font-size:1.45rem}
+    .versus{align-self:center;padding:9px 12px;color:var(--cream);background:var(--accent);border:3px solid var(--line);border-radius:50%;font-size:1.1rem;font-weight:900}
+    .selection-help{margin:12px 0 0;text-align:center;font-size:1rem}
+    .team-picker{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:18px}
+    .team-choice{min-width:0;min-height:112px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;padding:9px 7px;color:var(--navy);background:rgba(233,189,124,.55);border:2px solid rgba(23,53,104,.62);font:inherit;font-weight:800;text-align:center;cursor:grab;transition:background .14s ease,transform .14s ease,border-color .14s ease}
+    .team-choice:hover,.team-choice:focus-visible{background:var(--cream);border-color:var(--accent);transform:translateY(-2px);outline:3px solid rgba(185,88,50,.35);outline-offset:1px}
+    .team-choice:active{cursor:grabbing}
+    .team-choice.is-selected{background:var(--cream);border-color:var(--accent);box-shadow:inset 0 -4px 0 var(--accent)}
+    .team-choice img{width:55px;height:55px;object-fit:contain}
+    .team-choice span{line-height:1.08}
+    .compare-results[hidden]{display:none}
+    .comparison-meta{margin:10px 0 16px;padding:11px 14px;color:var(--navy);background:rgba(215,160,92,.42);border-left:5px solid var(--accent);font-weight:700}
+    .record-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 24px}
+    .record-card{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:12px;padding:13px 15px;background:rgba(233,189,124,.48);border:2px solid rgba(23,53,104,.55)}
+    .record-card img{width:48px;height:48px;object-fit:contain}
+    .record-card span,.record-card strong{display:block}
+    .record-card span{font-weight:700}
+    .record-card strong{color:var(--navy);font-size:1.3rem;font-weight:900}
+    .metric-group{margin-top:22px}
+    .metric-group h3{margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid rgba(23,53,104,.35)}
+    .metric-row{margin:10px 0;padding:15px;background:rgba(255,241,210,.72);border:2px solid rgba(23,53,104,.38)}
+    .metric-heading{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+    .metric-heading strong{color:var(--navy);font-size:1.2rem;font-weight:900}
+    .metric-heading span{color:var(--muted);font-size:.98rem;font-weight:700}
+    .metric-values{display:grid;grid-template-columns:minmax(82px,.8fr) minmax(100px,1.4fr) minmax(82px,.8fr);align-items:center;gap:14px}
+    .metric-value{color:var(--navy);font-size:clamp(1.2rem,2.6vw,1.7rem);font-weight:900}
+    .metric-value:last-child{text-align:right}
+    .metric-lines{display:grid;gap:7px}
+    .metric-line{height:9px;overflow:hidden;background:rgba(16,43,88,.13);border:1px solid rgba(23,53,104,.45)}
+    .metric-line span{display:block;height:100%;min-width:2px}
+    .metric-line.left span{background:var(--navy)}
+    .metric-line.right span{background:var(--accent)}
+    .verdict{margin:9px 0 0;padding:7px 10px;color:var(--navy);background:rgba(215,160,92,.35);border-left:4px solid var(--line);font-weight:800}
+    .verdict.positive{border-color:var(--navy)}
+    .verdict.volume{border-color:var(--accent)}
+    .no-common{padding:18px;text-align:center;background:rgba(233,189,124,.45);border:2px dashed var(--line);font-weight:700}
+    .interpretation{margin:14px 0 0;padding:12px 14px;color:var(--muted);background:rgba(215,160,92,.32);border-left:4px solid var(--accent)}
+    .error{max-width:900px;margin:20px auto;padding:14px;background:var(--cream);border:3px solid var(--accent)}
+    footer{border-top:4px solid var(--accent);text-align:center}
+    @media(max-width:950px){.team-picker{grid-template-columns:repeat(5,minmax(0,1fr))}}
+    @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.team-picker{grid-template-columns:repeat(3,minmax(0,1fr))}.matchup-board{gap:8px}.selected-team{min-height:145px;padding:12px 7px}.versus{padding:6px 8px}.metric-values{grid-template-columns:1fr 1.2fr 1fr;gap:8px}.record-grid{grid-template-columns:1fr}}
+    @media(max-width:420px){.team-picker{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-values{grid-template-columns:1fr 1fr}.metric-lines{grid-column:1/-1;grid-row:2}.metric-value:last-child{text-align:right}.range-output{font-size:.95rem}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">NBA Data Analysis</div>
+    <nav aria-label="Project pages">
+      <a href="/">Home</a>
+      <a href="/league-analysis">League analysis</a>
+      <a href="/compare-teams" aria-current="page">Compare teams</a>
+    </nav>
+  </header>
+  <main>
+    <div class="wrap">
+      <section class="page-intro">
+        <div class="eyebrow">Head-to-head · Team season data</div>
+        <h1>Compare teams</h1>
+        <p>Choose a season range and any two teams. Their shared seasons update the matchup as you choose.</p>
+      </section>
+      {% if error %}
+        <div class="error" role="alert">{{ error }}</div>
+      {% elif data %}
+        <section class="panel range-panel" aria-labelledby="range-title">
+          <div class="range-heading">
+            <div><div class="eyebrow">Choose the seasons</div><h2 id="range-title">Season range</h2></div>
+            <p>Move either handle to set the start and end.</p>
+          </div>
+          <div class="range-output">
+            <strong>From <span id="start-label">{{ data.seasons[0] }}</span></strong>
+            <strong>Through <span id="end-label">{{ data.seasons[-1] }}</span></strong>
+          </div>
+          <div class="range-wrap" aria-label="Season range selector">
+            <div class="range-rail"></div><div class="range-fill" id="range-fill"></div>
+            <input id="start-season" class="range-start" type="range" min="0" max="{{ (data.seasons|length) - 1 }}" value="0" aria-label="First season">
+            <input id="end-season" class="range-end" type="range" min="0" max="{{ (data.seasons|length) - 1 }}" value="{{ (data.seasons|length) - 1 }}" aria-label="Last season">
+          </div>
+          <div class="range-ends"><span>{{ data.seasons[0] }}</span><span>{{ data.seasons[-1] }}</span></div>
+        </section>
+
+        <section class="panel matchup-panel" aria-labelledby="matchup-title">
+          <div class="matchup-head">
+            <div class="eyebrow">Pick any two franchises</div>
+            <h2 id="matchup-title">Choose the matchup</h2>
+            <p>Click a team below, or drag its logo into the matchup.</p>
+          </div>
+          <div class="matchup-board" id="matchup-board" aria-live="polite">
+            <button type="button" class="selected-team" id="left-slot" aria-label="First team slot. Select a team below.">
+              <span class="slot-empty"><small>First team · left side</small><strong>Choose a team</strong><small>Click here to deselect</small></span>
+            </button>
+            <div class="versus" aria-hidden="true">VS</div>
+            <button type="button" class="selected-team" id="right-slot" aria-label="Second team slot. Select a team below.">
+              <span class="slot-empty"><small>Second team · right side</small><strong>Choose a team</strong><small>Click here to deselect</small></span>
+            </button>
+          </div>
+          <p class="selection-help">Click a selected logo above to remove it. When both sides are filled, choosing another team replaces the right-side team.</p>
+          <div class="team-picker" id="team-picker" aria-label="All 30 NBA teams">
+            {% for team in team_directory %}
+              <button type="button" class="team-choice" data-team="{{ team.code }}" aria-pressed="false" draggable="true" title="Select {{ team.name }}">
+                <img src="https://cdn.nba.com/logos/nba/{{ team.logo_id }}/primary/L/logo.svg" alt="" loading="lazy">
+                <span>{{ team.name }}</span>
+              </button>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="panel compare-results" id="compare-results" aria-labelledby="results-title" aria-live="polite" hidden>
+          <div class="eyebrow">Selected matchup · selected seasons</div>
+          <h2 id="results-title">Team comparison</h2>
+          <div class="comparison-meta" id="comparison-meta"></div>
+          <div id="comparison-content"></div>
+          <p class="interpretation">Positive and negative labels describe which way a metric compares in these data; they do not show that bonus attempts or accuracy cause wins. Attempt volume is shown as volume, not automatically as an advantage.</p>
+        </section>
+      {% endif %}
+    </div>
+  </main>
+  <footer>NBA play-by-play analysis · Team-season results from TiDB</footer>
+  {% if data %}
+  <script id="comparison-data" type="application/json">{{ data|tojson }}</script>
+  <script>
+    (() => {
+      const data = JSON.parse(document.getElementById("comparison-data").textContent);
+      const teams = {{ team_directory|tojson }};
+      const seasons = data.seasons;
+      const startInput = document.getElementById("start-season");
+      const endInput = document.getElementById("end-season");
+      const startLabel = document.getElementById("start-label");
+      const endLabel = document.getElementById("end-label");
+      const rangeFill = document.getElementById("range-fill");
+      const leftSlot = document.getElementById("left-slot");
+      const rightSlot = document.getElementById("right-slot");
+      const picker = document.getElementById("team-picker");
+      const board = document.getElementById("matchup-board");
+      const results = document.getElementById("compare-results");
+      const meta = document.getElementById("comparison-meta");
+      const content = document.getElementById("comparison-content");
+      const teamByCode = Object.fromEntries(teams.map(team => [team.code, team]));
+      const selected = {left: null, right: null};
+
+      function seasonBounds() {
+        return [Number(startInput.value), Number(endInput.value)];
+      }
+
+      function updateRangeLabels() {
+        const [start, end] = seasonBounds();
+        startLabel.textContent = seasons[start];
+        endLabel.textContent = seasons[end];
+        const last = Math.max(seasons.length - 1, 1);
+        rangeFill.style.left = (start / last) * 100 + "%";
+        rangeFill.style.width = ((end - start) / last) * 100 + "%";
+      }
+
+      function renderSlot(slot, code, side) {
+        slot.replaceChildren();
+        if (!code) {
+          const empty = document.createElement("span");
+          empty.className = "slot-empty";
+          const small = document.createElement("small");
+          small.textContent = side === "left" ? "First team · left side" : "Second team · right side";
+          const title = document.createElement("strong");
+          title.textContent = "Choose a team";
+          const hint = document.createElement("small");
+          hint.textContent = "Click here to deselect";
+          empty.append(small, title, hint);
+          slot.append(empty);
+          slot.setAttribute("aria-label", (side === "left" ? "First" : "Second") + " team slot. Select a team below.");
+          slot.dataset.team = "";
+          return;
+        }
+        const team = teamByCode[code];
+        const image = document.createElement("img");
+        image.src = "https://cdn.nba.com/logos/nba/" + team.logo_id + "/primary/L/logo.svg";
+        image.alt = "";
+        image.loading = "lazy";
+        const name = document.createElement("strong");
+        name.textContent = team.name;
+        const hint = document.createElement("small");
+        hint.textContent = "Click logo to deselect";
+        slot.append(image, name, hint);
+        slot.setAttribute("aria-label", "Deselect " + team.name);
+        slot.dataset.team = code;
+      }
+
+      function getRangeRows(teamCode) {
+        const bounds = seasonBounds();
+        const allowed = new Set(seasons.slice(bounds[0], bounds[1] + 1));
+        return data.rows.filter(row => row.team === teamCode && allowed.has(row.season));
+      }
+
+      function sumRows(rows) {
+        return rows.reduce((sum, row) => ({
+          games: sum.games + Number(row.games || 0),
+          wins: sum.wins + Number(row.wins || 0),
+          attempts: sum.attempts + Number(row.attempts || 0),
+          made: sum.made + Number(row.made || 0)
+        }), {games: 0, wins: 0, attempts: 0, made: 0});
+      }
+
+      function metricRow(title, hint, leftValue, rightValue, format, direction) {
+        const row = document.createElement("article");
+        row.className = "metric-row";
+        const heading = document.createElement("div");
+        heading.className = "metric-heading";
+        const label = document.createElement("strong");
+        label.textContent = title;
+        const note = document.createElement("span");
+        note.textContent = hint;
+        heading.append(label, note);
+
+        const values = document.createElement("div");
+        values.className = "metric-values";
+        const leftText = document.createElement("strong");
+        leftText.className = "metric-value";
+        leftText.textContent = format(leftValue);
+        const rightText = document.createElement("strong");
+        rightText.className = "metric-value";
+        rightText.textContent = format(rightValue);
+
+        const maxValue = Math.max(leftValue || 0, rightValue || 0);
+        const scale = maxValue > 0 ? maxValue : 1;
+        const lines = document.createElement("div");
+        lines.className = "metric-lines";
+        lines.setAttribute("aria-hidden", "true");
+        for (const pair of [["left", leftValue], ["right", rightValue]]) {
+          const line = document.createElement("div");
+          line.className = "metric-line " + pair[0];
+          const fill = document.createElement("span");
+          fill.style.width = Math.max(2, (pair[1] / scale) * 100) + "%";
+          line.append(fill);
+          lines.append(line);
+        }
+        values.append(leftText, lines, rightText);
+
+        const verdict = document.createElement("p");
+        verdict.className = "verdict";
+        if (Math.abs(leftValue - rightValue) < 0.000001) {
+          verdict.textContent = "Even on this measure.";
+        } else if (direction === "favorable") {
+          const leader = leftValue > rightValue ? teamByCode[selected.left] : teamByCode[selected.right];
+          const other = leftValue > rightValue ? teamByCode[selected.right] : teamByCode[selected.left];
+          verdict.classList.add("positive");
+          verdict.textContent = "Positive for " + leader.name + "; negative for " + other.name + " on this metric.";
+        } else {
+          const leader = leftValue > rightValue ? teamByCode[selected.left] : teamByCode[selected.right];
+          verdict.classList.add("volume");
+          verdict.textContent = "Higher volume for " + leader.name + "; more attempts alone is not automatically better.";
+        }
+        row.append(heading, values, verdict);
+        return row;
+      }
+
+      function renderComparison() {
+        if (!selected.left || !selected.right) {
+          results.hidden = true;
+          return;
+        }
+        results.hidden = false;
+        const leftRows = getRangeRows(selected.left);
+        const rightRows = getRangeRows(selected.right);
+        const leftBySeason = new Map(leftRows.map(row => [row.season, row]));
+        const rightBySeason = new Map(rightRows.map(row => [row.season, row]));
+        const commonSeasons = seasons.filter(season => leftBySeason.has(season) && rightBySeason.has(season));
+
+        content.replaceChildren();
+        if (!commonSeasons.length) {
+          meta.textContent = "These teams have no shared seasons with data inside the selected range. Expand the range to compare them.";
+          const empty = document.createElement("div");
+          empty.className = "no-common";
+          empty.textContent = "No shared team-season data for this range.";
+          content.append(empty);
+          return;
+        }
+
+        const left = sumRows(commonSeasons.map(season => leftBySeason.get(season)));
+        const right = sumRows(commonSeasons.map(season => rightBySeason.get(season)));
+        const firstCommon = commonSeasons[0];
+        const lastCommon = commonSeasons[commonSeasons.length - 1];
+        meta.textContent = "Using " + commonSeasons.length + " shared seasons (" + firstCommon + " through " + lastCommon + "). Rates are recalculated from combined wins, games, makes, and attempts.";
+
+        const records = document.createElement("div");
+        records.className = "record-grid";
+        for (const pair of [[selected.left, left], [selected.right, right]]) {
+          const team = teamByCode[pair[0]];
+          const totals = pair[1];
+          const card = document.createElement("div");
+          card.className = "record-card";
+          const logo = document.createElement("img");
+          logo.src = "https://cdn.nba.com/logos/nba/" + team.logo_id + "/primary/L/logo.svg";
+          logo.alt = "";
+          const detail = document.createElement("div");
+          const name = document.createElement("span");
+          name.textContent = team.name;
+          const record = document.createElement("strong");
+          record.textContent = totals.wins.toLocaleString() + " wins · " + totals.games.toLocaleString() + " games";
+          detail.append(name, record);
+          card.append(logo, detail);
+          records.append(card);
+        }
+
+        const outcomes = document.createElement("div");
+        outcomes.className = "metric-group";
+        const outcomesTitle = document.createElement("h3");
+        outcomesTitle.textContent = "Game results";
+        outcomes.append(outcomesTitle);
+        outcomes.append(metricRow(
+          "Win rate",
+          "Higher is favorable; this is an observed result.",
+          left.games ? (left.wins / left.games) * 100 : 0,
+          right.games ? (right.wins / right.games) * 100 : 0,
+          value => value.toFixed(2) + "%",
+          "favorable"
+        ));
+
+        const bonus = document.createElement("div");
+        bonus.className = "metric-group";
+        const bonusTitle = document.createElement("h3");
+        bonusTitle.textContent = "Bonus free throws";
+        bonus.append(bonusTitle);
+        bonus.append(metricRow(
+          "Attempts per team-game",
+          "Shows volume, not an automatic advantage.",
+          left.games ? left.attempts / left.games : 0,
+          right.games ? right.attempts / right.games : 0,
+          value => value.toFixed(2),
+          "volume"
+        ));
+        bonus.append(metricRow(
+          "Free-throw accuracy",
+          "Higher is favorable.",
+          left.attempts ? (left.made / left.attempts) * 100 : 0,
+          right.attempts ? (right.made / right.attempts) * 100 : 0,
+          value => value.toFixed(2) + "%",
+          "favorable"
+        ));
+        content.append(records, outcomes, bonus);
+      }
+
+      function chooseTeam(code) {
+        if (selected.left === code) selected.left = null;
+        else if (selected.right === code) selected.right = null;
+        else if (!selected.left) selected.left = code;
+        else if (!selected.right) selected.right = code;
+        else selected.right = code;
+        render();
+      }
+
+      function render() {
+        renderSlot(leftSlot, selected.left, "left");
+        renderSlot(rightSlot, selected.right, "right");
+        for (const button of picker.querySelectorAll("[data-team]")) {
+          const isSelected = button.dataset.team === selected.left || button.dataset.team === selected.right;
+          button.classList.toggle("is-selected", isSelected);
+          button.setAttribute("aria-pressed", String(isSelected));
+        }
+        renderComparison();
+      }
+
+      picker.addEventListener("click", event => {
+        const button = event.target.closest("[data-team]");
+        if (button) chooseTeam(button.dataset.team);
+      });
+      picker.addEventListener("dragstart", event => {
+        const button = event.target.closest("[data-team]");
+        if (!button) return;
+        event.dataTransfer.setData("text/plain", button.dataset.team);
+        event.dataTransfer.effectAllowed = "copy";
+      });
+      board.addEventListener("dragover", event => {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = "copy";
+      });
+      board.addEventListener("drop", event => {
+        event.preventDefault();
+        const code = event.dataTransfer.getData("text/plain");
+        if (teamByCode[code]) chooseTeam(code);
+      });
+      leftSlot.addEventListener("click", () => {
+        if (selected.left) { selected.left = null; render(); }
+      });
+      rightSlot.addEventListener("click", () => {
+        if (selected.right) { selected.right = null; render(); }
+      });
+      startInput.addEventListener("input", () => {
+        if (Number(startInput.value) > Number(endInput.value)) endInput.value = startInput.value;
+        updateRangeLabels();
+        renderComparison();
+      });
+      endInput.addEventListener("input", () => {
+        if (Number(endInput.value) < Number(startInput.value)) startInput.value = endInput.value;
+        updateRangeLabels();
+        renderComparison();
+      });
+      updateRangeLabels();
+      render();
+    })();
+  </script>
+  {% endif %}
+</body>
+</html>
