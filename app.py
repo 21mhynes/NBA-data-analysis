@@ -4,7 +4,7 @@ import os
 
 import pymysql
 from dotenv import load_dotenv
-from flask import Flask, abort, render_template
+from flask import Flask, abort, render_template, request
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -670,6 +670,38 @@ def league_analysis():
         logging.exception("Could not load detailed league analysis from TiDB")
         error = "Detailed league results could not be loaded from TiDB. Check that the listed analysis files are in the archive."
     return render_template("league_analysis.html", data=data, error=error)
+
+
+@app.route("/season-leaderboard")
+def season_leaderboard():
+    """Show team rankings for one season using the archived team-season totals."""
+    error = None
+    data = None
+    try:
+        comparison_data = load_team_comparison_data()
+        if not comparison_data["seasons"]:
+            raise RuntimeError("No team-season rows were found in the TiDB analysis archive.")
+
+        metric = request.args.get("metric", "win_rate")
+        if metric not in {"attempts", "accuracy", "win_rate"}:
+            metric = "win_rate"
+        data = {
+            "seasons": comparison_data["seasons"],
+            "rows": comparison_data["rows"],
+            "teams": TEAM_DIRECTORY,
+            "selected_season": comparison_data["seasons"][-1],
+            "selected_metric": metric,
+        }
+        requested_season = request.args.get("season")
+        if requested_season in comparison_data["seasons"]:
+            data["selected_season"] = requested_season
+    except Exception:
+        logging.exception("Could not load season leaderboard data from TiDB")
+        error = (
+            "The season leaderboard could not load its team results from TiDB. "
+            "Check the database connection settings, then refresh."
+        )
+    return render_template("season_leaderboard.html", data=data, error=error)
 
 
 if __name__ == "__main__":
