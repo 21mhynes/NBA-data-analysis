@@ -17,9 +17,13 @@
     main:before{content:"";position:absolute;z-index:-1;inset:12px clamp(10px,1.8vw,28px);border:4px solid rgba(23,53,104,.72);pointer-events:none}main>*{position:relative;z-index:1}
     .wrap{max-width:1120px;margin:auto}.intro{text-align:center;margin:0 auto 24px}.eyebrow{color:var(--line);font-size:.94rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
     h1,h2,h3{margin:0;color:var(--navy);font-weight:900;line-height:1.08;text-transform:uppercase}h1{font-size:clamp(2.4rem,6vw,4.3rem)}h2{font-size:clamp(1.5rem,3vw,2rem)}
-    .intro p{max-width:700px;margin:10px auto 0;color:var(--muted);font-size:1.1rem}
     .panel{margin:22px 0;padding:clamp(18px,3vw,30px);background:rgba(255,241,210,.92);border:4px solid var(--line)}
     .controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.control label{display:block;margin-bottom:6px;color:var(--navy);font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+    .season-control-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px}
+    .season-control-row input[type=range]{width:100%;accent-color:var(--navy);cursor:pointer}
+    .season-control-row output{min-width:68px;color:var(--navy);font-size:1.15rem;font-weight:900;text-align:right}
+    .play-toggle{min-height:42px;padding:8px 14px;color:var(--cream);background:var(--navy);border:3px solid var(--line);font:800 1rem 'Barlow Condensed','Arial Narrow',Arial,sans-serif;cursor:pointer;white-space:nowrap}
+    .play-toggle:hover,.play-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
     select{width:100%;min-height:48px;padding:9px 40px 9px 12px;border:3px solid var(--line);border-radius:0;color:var(--navy);background:var(--cream);font:700 1.1rem 'Barlow Condensed','Arial Narrow',Arial,sans-serif}
     select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
     .leaderboard-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:16px}
@@ -32,18 +36,18 @@
     .rank-value{text-align:right;color:var(--navy);font-size:1.35rem;font-weight:900;white-space:nowrap}
     .empty{padding:24px;text-align:center;color:var(--muted);background:rgba(233,189,124,.45);border:2px dashed var(--line)}
     .error{padding:14px;background:var(--cream);border:3px solid var(--accent)}footer{border-top:4px solid var(--accent);text-align:center}
-    @media(max-width:680px){header{align-items:flex-start;flex-direction:column}.controls{grid-template-columns:1fr}.rank-row{grid-template-columns:34px 42px minmax(0,1fr) auto;gap:8px;padding:8px}.rank-logo{width:38px;height:38px}.rank-name{font-size:1rem}.meter{grid-column:2/4;grid-row:2;height:9px;margin-top:-4px}.rank-value{grid-column:4;grid-row:1/3;font-size:1.15rem}.leaderboard-head{align-items:flex-start;flex-direction:column}}
+    @media(max-width:680px){header{align-items:flex-start;flex-direction:column}.controls{grid-template-columns:1fr}.season-control-row{grid-template-columns:minmax(0,1fr) auto}.season-control-row output{min-width:62px}.play-toggle{grid-column:1/-1}.rank-row{grid-template-columns:34px 42px minmax(0,1fr) auto;gap:8px;padding:8px}.rank-logo{width:38px;height:38px}.rank-name{font-size:1rem}.meter{grid-column:2/4;grid-row:2;height:9px;margin-top:-4px}.rank-value{grid-column:4;grid-row:1/3;font-size:1.15rem}.leaderboard-head{align-items:flex-start;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
   <header><div class="brand">NBA Data Analysis</div><nav aria-label="Project pages"><a href="/">Home</a><a href="/league-analysis">League analysis</a><a href="/season-leaderboard" aria-current="page">Season leaderboard</a><a href="/compare-teams">Compare teams</a></nav></header>
   <main><div class="wrap">
-    <section class="intro"><div class="eyebrow">One season · 30 teams · three measures</div><h1>Season leaderboard</h1><p>See how NBA teams rank in a season for bonus free throws, accuracy, or winning percentage. Select a team to open its season page.</p></section>
+    <section class="intro"><div class="eyebrow">One season · 30 teams · three measures</div><h1>Season leaderboard</h1></section>
     {% if error %}<div class="panel error" role="alert">{{ error }}</div>{% elif data %}
     <section class="panel">
       <div class="controls">
-        <div class="control"><label for="season-select">Season</label><select id="season-select">{% for season in data.seasons %}<option value="{{ season }}"{% if season == data.selected_season %} selected{% endif %}>{{ season }}</option>{% endfor %}</select></div>
+        <div class="control"><label for="season-slider">Season replay</label><div class="season-control-row"><input id="season-slider" type="range" min="0" max="{{ data.seasons|length - 1 }}" step="1" value="{{ data.seasons.index(data.selected_season) }}" aria-label="Choose season"><output id="season-output" for="season-slider" aria-live="polite"></output><button type="button" class="play-toggle" id="play-toggle" aria-pressed="false">▶ Play seasons</button></div></div>
         <div class="control"><label for="metric-select">Rank teams by</label><select id="metric-select"><option value="win_rate"{% if data.selected_metric == "win_rate" %} selected{% endif %}>Win rate</option><option value="attempts"{% if data.selected_metric == "attempts" %} selected{% endif %}>Bonus attempts per team-game</option><option value="accuracy"{% if data.selected_metric == "accuracy" %} selected{% endif %}>Bonus free-throw accuracy</option></select></div>
       </div>
     </section>
@@ -56,8 +60,11 @@
       (() => {
         const data = JSON.parse(document.getElementById("leaderboard-data").textContent);
         const teams = Object.fromEntries(data.teams.map(team => [team.code, team]));
-        const seasonSelect = document.getElementById("season-select");
+        const seasonSlider = document.getElementById("season-slider");
+        const seasonOutput = document.getElementById("season-output");
+        const playToggle = document.getElementById("play-toggle");
         const metricSelect = document.getElementById("metric-select");
+        let replayTimer = null;
         const list = document.getElementById("ranking");
         const title = document.getElementById("leaderboard-title");
         const caption = document.getElementById("metric-caption");
@@ -69,11 +76,13 @@
           accuracy: {title:"Bonus free-throw accuracy", caption:"Total bonus free throws made divided by bonus attempts.", field:row=>row.attempts ? 100*row.made/row.attempts : null, format:value=>value.toFixed(2)+"%"}
         };
         function render() {
-          const season = seasonSelect.value;
+          const season = data.seasons[Number(seasonSlider.value)];
           const metric = details[metricSelect.value];
           const rows = data.rows.filter(row=>row.season===season).map(row=>({...row,value:metric.field(row)})).filter(row=>Number.isFinite(row.value)).sort((a,b)=>b.value-a.value);
           const max = Math.max(...rows.map(row=>row.value),0) || 1;
           seasonLabel.textContent = season + " season";
+          seasonOutput.textContent = season;
+          seasonSlider.setAttribute("aria-valuetext", season);
           title.textContent = metric.title;
           caption.textContent = metric.caption;
           count.textContent = rows.length + " teams with data";
@@ -95,7 +104,36 @@
           });
           const params=new URLSearchParams({season,metric:metricSelect.value});history.replaceState(null,"","/season-leaderboard?"+params.toString());
         }
-        seasonSelect.addEventListener("change",render);
+        function stopReplay() {
+          if (replayTimer !== null) {
+            window.clearInterval(replayTimer);
+            replayTimer = null;
+          }
+          playToggle.textContent = "▶ Play seasons";
+          playToggle.setAttribute("aria-pressed", "false");
+        }
+        playToggle.addEventListener("click", () => {
+          if (replayTimer !== null) {
+            stopReplay();
+            return;
+          }
+          if (Number(seasonSlider.value) >= Number(seasonSlider.max)) {
+            seasonSlider.value = "0";
+            render();
+          }
+          playToggle.textContent = "❚❚ Pause";
+          playToggle.setAttribute("aria-pressed", "true");
+          replayTimer = window.setInterval(() => {
+            const next = Number(seasonSlider.value) + 1;
+            seasonSlider.value = String(next);
+            render();
+            if (next >= Number(seasonSlider.max)) stopReplay();
+          }, 900);
+        });
+        seasonSlider.addEventListener("input", () => {
+          stopReplay();
+          render();
+        });
         metricSelect.addEventListener("change",render);
         render();
       })();
