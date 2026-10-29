@@ -863,3 +863,12 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
 
 </body>
 </html>
+
+/* Keep the overall conclusion headline on one line at desktop widths. */
+@media (min-width: 900px) {
+  .painted-key h2 {
+    font-size: clamp(1rem, 2.35vw, 1.95rem);
+    letter-spacing: -.045em;
+    white-space: nowrap;
+  }
+}
