@@ -40,6 +40,12 @@
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   
     h1,h2,h3,h4,h5,h6,.brand{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif}
+  
+    .control-label{display:block;margin-bottom:6px;color:var(--navy);font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+    .metric-picker{display:flex;flex-wrap:wrap;gap:8px}
+    .metric-choice{min-height:42px;padding:8px 12px;color:var(--navy);background:rgba(255,241,210,.75);border:2px solid var(--line);font:700 1rem 'Roboto Condensed','Arial Narrow',Arial,sans-serif;cursor:pointer}
+    .metric-choice:hover,.metric-choice:focus-visible{border-color:var(--accent);outline:2px solid rgba(185,88,50,.3);outline-offset:2px}
+    .metric-choice.is-selected{color:var(--cream);background:var(--navy);border-color:var(--accent);box-shadow:0 0 0 2px rgba(185,88,50,.18)}
   </style>
 </head>
 <body>
@@ -50,7 +56,7 @@
     <section class="panel">
       <div class="controls">
         <div class="control"><label for="season-slider">Season replay</label><div class="season-control-row"><input id="season-slider" type="range" min="0" max="{{ data.seasons|length - 1 }}" step="1" value="{{ data.seasons.index(data.selected_season) }}" aria-label="Choose season"><output id="season-output" for="season-slider" aria-live="polite"></output><button type="button" class="play-toggle" id="play-toggle" aria-pressed="false">▶ Play seasons</button></div></div>
-        <div class="control"><label for="metric-select">Rank teams by</label><select id="metric-select"><option value="win_rate"{% if data.selected_metric == "win_rate" %} selected{% endif %}>Win rate</option><option value="attempts"{% if data.selected_metric == "attempts" %} selected{% endif %}>Bonus attempts per team-game</option><option value="accuracy"{% if data.selected_metric == "accuracy" %} selected{% endif %}>Bonus free-throw accuracy</option></select></div>
+        <div class="control"><div class="control-label">Rank teams by</div><div class="metric-picker" role="group" aria-label="Rank teams by"><button type="button" class="metric-choice{% if data.selected_metric == 'win_rate' %} is-selected{% endif %}" data-metric="win_rate" aria-pressed="{% if data.selected_metric == 'win_rate' %}true{% else %}false{% endif %}">Win rate</button><button type="button" class="metric-choice{% if data.selected_metric == 'attempts' %} is-selected{% endif %}" data-metric="attempts" aria-pressed="{% if data.selected_metric == 'attempts' %}true{% else %}false{% endif %}">Bonus attempts per team-game</button><button type="button" class="metric-choice{% if data.selected_metric == 'accuracy' %} is-selected{% endif %}" data-metric="accuracy" aria-pressed="{% if data.selected_metric == 'accuracy' %}true{% else %}false{% endif %}">Bonus free-throw accuracy</button></div></div>
       </div>
     </section>
     <section class="panel" aria-live="polite">
@@ -65,7 +71,8 @@
         const seasonSlider = document.getElementById("season-slider");
         const seasonOutput = document.getElementById("season-output");
         const playToggle = document.getElementById("play-toggle");
-        const metricSelect = document.getElementById("metric-select");
+        const metricButtons = Array.from(document.querySelectorAll(".metric-choice"));
+        let selectedMetric = metricButtons.find(button => button.getAttribute("aria-pressed") === "true")?.dataset.metric || "win_rate";
         let replayTimer = null;
         const list = document.getElementById("ranking");
         const title = document.getElementById("leaderboard-title");
@@ -79,7 +86,7 @@
         };
         function render() {
           const season = data.seasons[Number(seasonSlider.value)];
-          const metric = details[metricSelect.value];
+          const metric = details[selectedMetric];
           const rows = data.rows.filter(row=>row.season===season).map(row=>({...row,value:metric.field(row)})).filter(row=>Number.isFinite(row.value)).sort((a,b)=>b.value-a.value);
           const max = Math.max(...rows.map(row=>row.value),0) || 1;
           seasonLabel.textContent = season + " season";
@@ -104,7 +111,7 @@
             const value=document.createElement("strong");value.className="rank-value";value.textContent=metric.format(row.value);
             link.append(place,logo,name,meter,value);list.append(link);
           });
-          const params=new URLSearchParams({season,metric:metricSelect.value});history.replaceState(null,"","/season-leaderboard?"+params.toString());
+          const params=new URLSearchParams({season,metric:selectedMetric});history.replaceState(null,"","/season-leaderboard?"+params.toString());
         }
         function stopReplay() {
           if (replayTimer !== null) {
@@ -136,7 +143,7 @@
           stopReplay();
           render();
         });
-        metricSelect.addEventListener("change",render);
+        metricButtons.forEach(button=>button.addEventListener("click",()=>{selectedMetric=button.dataset.metric;metricButtons.forEach(choice=>{const selected=choice===button;choice.classList.toggle("is-selected",selected);choice.setAttribute("aria-pressed",String(selected));});render();}));
         render();
       })();
     </script>
