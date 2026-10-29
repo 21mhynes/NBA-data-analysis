@@ -310,7 +310,7 @@
           const leader = leftValue > rightValue ? teamByCode[selected.left] : teamByCode[selected.right];
           const other = leftValue > rightValue ? teamByCode[selected.right] : teamByCode[selected.left];
           verdict.classList.add("positive");
-          verdict.textContent = "Positive metric edge for " + leader.name + "; lower value for " + other.name + ".";
+          verdict.textContent = "Positive for " + leader.name + "; negative for " + other.name + " on this metric.";
         } else {
           const leader = leftValue > rightValue ? teamByCode[selected.left] : teamByCode[selected.right];
           verdict.classList.add("volume");
