@@ -241,25 +241,6 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
   </div></main>
   <footer>NBA play-by-play analysis · Team-season results from TiDB · Associations do not establish cause.</footer>
 
-  <script>
-    (() => {
-      if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      const sections = document.querySelectorAll("main .panel, main .facts");
-      if (!sections.length) return;
-      document.documentElement.classList.add("scroll-reveal-enabled");
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
-      sections.forEach(section => {
-        section.classList.add("scroll-reveal");
-        observer.observe(section);
-      });
-    })();
-  </script>
 
 </body>
 </html>
