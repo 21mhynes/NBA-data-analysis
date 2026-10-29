@@ -96,9 +96,9 @@
     .metric-heading strong{color:var(--navy);font-size:1.2rem;font-weight:900}
     .metric-heading span{color:var(--muted);font-size:.98rem;font-weight:700}
     .metric-difference{color:var(--navy)!important;padding:3px 8px;background:rgba(215,160,92,.48);border-left:3px solid var(--difference-color,var(--line));font-weight:900!important;white-space:nowrap}
-    .metric-values{display:grid;grid-template-columns:minmax(82px,.8fr) minmax(100px,1.4fr) minmax(82px,.8fr);align-items:center;gap:14px}
+    .metric-values{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:14px;width:100%}
     .metric-value{color:var(--navy);font-size:clamp(1.2rem,2.6vw,1.7rem);font-weight:900}
-    .metric-value:last-child{text-align:right}
+    .metric-value:first-child{text-align:left}.metric-value:last-child{text-align:right}
     .metric-lines{display:grid;gap:7px}
     .metric-line{height:9px;overflow:hidden;background:rgba(16,43,88,.13);border:1px solid rgba(23,53,104,.45)}
     .metric-line span{display:block;height:100%;min-width:2px}
@@ -112,8 +112,8 @@
     .error{max-width:900px;margin:20px auto;padding:14px;background:var(--cream);border:3px solid var(--accent)}
     footer{border-top:4px solid var(--accent);text-align:center}
     @media(max-width:950px){.team-picker{grid-template-columns:repeat(5,minmax(0,1fr))}}
-    @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.team-picker{grid-template-columns:repeat(3,minmax(0,1fr))}.matchup-board{gap:8px}.selected-team{width:clamp(112px,29vw,160px);padding:10px}.versus{padding:6px 8px}.metric-values{grid-template-columns:1fr 1.2fr 1fr;gap:8px}.record-grid{grid-template-columns:1fr}}
-    @media(max-width:420px){.team-picker{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-values{grid-template-columns:1fr 1fr}.metric-lines{grid-column:1/-1;grid-row:2}.metric-value:last-child{text-align:right}.range-output{font-size:.95rem}}
+    @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.team-picker{grid-template-columns:repeat(3,minmax(0,1fr))}.matchup-board{gap:8px}.selected-team{width:clamp(112px,29vw,160px);padding:10px}.versus{padding:6px 8px}.metric-values{grid-template-columns:1fr 1fr;gap:8px}.record-grid{grid-template-columns:1fr}}
+    @media(max-width:420px){.team-picker{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-values{grid-template-columns:1fr 1fr}.metric-value:last-child{text-align:right}.range-output{font-size:.95rem}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
   
 .csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Barlow Condensed','Arial Narrow',Arial,sans-serif;white-space:nowrap;cursor:pointer}
@@ -189,7 +189,6 @@
           <div class="comparison-titlebar"><h2 id="results-title">Team comparison</h2><button type="button" class="csv-download" id="download-comparison" disabled aria-label="Download selected team comparison as CSV" title="Download selected comparison as CSV">↓ CSV</button></div>
           <div class="comparison-meta" id="comparison-meta"></div>
           <div id="comparison-content"></div>
-          <p class="interpretation">Positive and negative labels describe which way a metric compares in these data; they do not show that bonus attempts or accuracy cause wins. Attempt volume is shown as volume, not automatically as an advantage.</p>
         </section>
       {% endif %}
     </div>
