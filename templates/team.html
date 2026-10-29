@@ -152,6 +152,14 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
     white-space: nowrap;
   }
 }
+
+/* Metric buttons match the selectable controls used across the project. */
+.team-metric-control { display:grid; gap:6px; }
+.team-metric-label { color:var(--navy); font-weight:800; }
+.team-metric-picker { display:flex; flex-wrap:wrap; gap:8px; }
+.team-metric-choice { min-height:42px; padding:8px 12px; color:var(--navy); background:rgba(255,241,210,.75); border:2px solid var(--line); font:700 1rem 'Roboto Condensed','Arial Narrow',Arial,sans-serif; cursor:pointer; }
+.team-metric-choice:hover,.team-metric-choice:focus-visible { border-color:var(--team-secondary,var(--accent)); outline:2px solid rgba(185,88,50,.3); outline-offset:2px; }
+.team-metric-choice.is-selected { color:var(--cream); background:var(--navy); border-color:var(--team-secondary,var(--accent)); box-shadow:0 0 0 2px rgba(185,88,50,.18); }
 </style>
 </head>
 <body>
@@ -191,12 +199,13 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
         </div>
         <p>Choose a metric to compare the team with the league average in each season. The orange marker shows the league average.</p>
         <div class="trend-controls">
-          <label for="team-chart-metric">Metric
-            <select id="team-chart-metric">
-              <option value="attempts">Bonus attempts per team-game</option>
-              <option value="accuracy">Bonus free-throw accuracy</option>
-            </select>
-          </label>
+          <div class="team-metric-control">
+            <span class="team-metric-label">Metric</span>
+            <div class="team-metric-picker" role="group" aria-label="Metric">
+              <button type="button" class="team-metric-choice is-selected" data-metric="attempts" aria-pressed="true">Bonus attempts per team-game</button>
+              <button type="button" class="team-metric-choice" data-metric="accuracy" aria-pressed="false">Bonus free-throw accuracy</button>
+            </div>
+          </div>
           <div class="chart-legend" aria-label="Chart legend"><span><i class="legend-team-key" aria-hidden="true"></i>{{ team.name }}</span><span><i class="legend-league-key" aria-hidden="true"></i>League average</span></div>
         </div>
         <div class="chart" id="team-season-chart" data-csv-headers='["Season","Games","Wins","Bonus FT attempts per team-game","Bonus FT accuracy (%)","Win rate (%)","League average bonus attempts per team-game","League average bonus FT accuracy (%)"]' role="group" aria-label="{{ team.name }} season metric compared with league average">
@@ -211,10 +220,10 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
         <script>
           (() => {
             const chart = document.getElementById("team-season-chart");
-            const metricSelect = document.getElementById("team-chart-metric");
+            const metricButtons = [...document.querySelectorAll(".team-metric-choice")];
             const columns = [...chart.querySelectorAll(".season-column")];
             function renderMetric() {
-              const key = metricSelect.value;
+              const key = metricButtons.find(button => button.getAttribute("aria-pressed") === "true")?.dataset.metric || "attempts";
               const teamKey = key;
               const leagueKey = key === "attempts" ? "leagueAttempts" : "leagueAccuracy";
               const numeric = value => value === "" ? NaN : Number(value);
@@ -241,7 +250,14 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
               }
               chart.setAttribute("aria-label", "{{ team.name }} " + (key === "attempts" ? "bonus attempts per team-game" : "bonus free-throw accuracy") + " compared with the league average by season");
             }
-            metricSelect.addEventListener("change", renderMetric);
+            metricButtons.forEach(button => button.addEventListener("click", () => {
+              metricButtons.forEach(choice => {
+                const selected = choice === button;
+                choice.classList.toggle("is-selected", selected);
+                choice.setAttribute("aria-pressed", String(selected));
+              });
+              renderMetric();
+            }));
             renderMetric();
           })();
         </script>
