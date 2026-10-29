@@ -37,7 +37,14 @@
 }
 .tied-period-card{grid-column:1/-1;justify-self:center;width:min(100%,calc((100% - 16px)/2))}
 @media(max-width:700px){.tied-period-card{grid-column:auto;width:100%}}
-  </style>
+  
+.csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Barlow Condensed','Arial Narrow',Arial,sans-serif;white-space:nowrap;cursor:pointer}
+.csv-download:hover{background:var(--cream);border-color:var(--accent)}
+.csv-download:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.data-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.data-heading h2{margin-bottom:0}
+@media(max-width:480px){.data-heading{align-items:flex-start}}
+</style>
 </head>
 <body>
   <header><div class="brand">NBA Data Analysis</div><nav><a href="/">Home</a><a href="/league-analysis" aria-current="page">League analysis</a><a href="/compare-teams">Compare teams</a></nav></header>
@@ -49,8 +56,11 @@
     </div>
     {% if error %}<div class="error" role="alert">{{ error }}</div>{% elif data %}
     <section class="panel">
-      <div class="eyebrow">First to the bonus by period</div><h2>Win rate among teams first into the bonus in that period</h2>
-      <div class="table-wrap"><table><thead><tr><th>Period</th><th>Games/observations</th><th>Win rate</th></tr></thead><tbody>
+      <div class="data-heading">
+        <div><div class="eyebrow">First to the bonus by period</div><h2>Win rate among teams first into the bonus in that period</h2></div>
+        <button type="button" class="csv-download" data-download-table="period-win-rates" data-filename="bonus-win-rate-by-period.csv" aria-label="Download period win rates as CSV" title="Download table as CSV">↓ CSV</button>
+      </div>
+      <div class="table-wrap"><table id="period-win-rates"><thead><tr><th>Period</th><th>Games/observations</th><th>Win rate</th></tr></thead><tbody>
       {% for row in data.quarters %}<tr><td>{{ row.label }}</td><td>{{ "{:,}".format(row.games) }}</td><td>{{ "%.2f"|format(row.win_pct) }}%</td></tr>{% endfor %}
       </tbody></table></div><p class="note">Overtime has fewer observations than regulation periods, so its win rate is less stable.</p>
     </section>
@@ -69,10 +79,13 @@
       <p class="note">Overall home-team win rate: {{ "%.2f"|format(data.home_overall["Home"]) }}%. This gives context for the home/away comparison.</p>
     </section>
     <section class="panel">
-      <div class="eyebrow">Bonus attempts and winning</div><h2>How the bonus-attempt win-rate gap changed over time</h2>
+      <div class="data-heading">
+        <div><div class="eyebrow">Bonus attempts and winning</div><h2>How the bonus-attempt win-rate gap changed over time</h2></div>
+        <button type="button" class="csv-download" data-download-chart="league-gap-chart" data-filename="bonus-win-rate-gaps-by-season.csv" aria-label="Download season win-rate gap data as CSV" title="Download chart data as CSV">↓ CSV</button>
+      </div>
       <p>Each bar shows one season’s raw bonus-attempt win-rate gap. Point to, focus, or tap a bar to see the gap after excluding late-game attempts.</p>
-      <div class="trend" role="group" aria-label="Seasonal win-rate gaps">
-        {% for row in data.season_gaps %}<button type="button" class="bar" title="{{ row.season }} · bonus attempts {{ '%.2f'|format(row.attempt_gap) }} pp{% if row.adjusted_gap is not none %} · adjusted attempts {{ '%.2f'|format(row.adjusted_gap) }} pp{% endif %}" aria-label="{{ row.season }}: bonus attempts {{ '%.2f'|format(row.attempt_gap) }} percentage points{% if row.adjusted_gap is not none %}, adjusted attempts {{ '%.2f'|format(row.adjusted_gap) }} percentage points{% endif %}" data-tooltip="{{ row.season }} · attempts {{ '%.2f'|format(row.attempt_gap) }} pp{% if row.adjusted_gap is not none %} · adjusted {{ '%.2f'|format(row.adjusted_gap) }} pp{% endif %}" style="height:{{ [12, row.attempt_gap * 2.5]|max }}%"></button>{% endfor %}
+      <div class="trend" id="league-gap-chart" data-csv-headers='["Season","Raw bonus-attempt win-rate gap (percentage points)","Adjusted win-rate gap excluding late-game fouls (percentage points)"]' role="group" aria-label="Seasonal win-rate gaps">
+        {% for row in data.season_gaps %}<button type="button" class="bar" title="{{ row.season }} · bonus attempts {{ '%.2f'|format(row.attempt_gap) }} pp{% if row.adjusted_gap is not none %} · adjusted attempts {{ '%.2f'|format(row.adjusted_gap) }} pp{% endif %}" aria-label="{{ row.season }}: bonus attempts {{ '%.2f'|format(row.attempt_gap) }} percentage points{% if row.adjusted_gap is not none %}, adjusted attempts {{ '%.2f'|format(row.adjusted_gap) }} percentage points{% endif %}" data-tooltip="{{ row.season }} · attempts {{ '%.2f'|format(row.attempt_gap) }} pp{% if row.adjusted_gap is not none %} · adjusted {{ '%.2f'|format(row.adjusted_gap) }} pp{% endif %}" data-csv-row='{{ [row.season, row.attempt_gap, row.adjusted_gap]|tojson }}' style="height:{{ [12, row.attempt_gap * 2.5]|max }}%"></button>{% endfor %}
       </div>
       <div class="labels"><span>{{ data.season_gaps[0].season }}</span><span>{{ data.season_gaps[-1].season }}</span></div>
       <div class="table-wrap"><table><thead><tr><th>Win-rate gap</th><th>1996–97</th><th>2025–26</th></tr></thead><tbody>
@@ -90,5 +103,6 @@
     {% endif %}
   </div></main>
   <footer>Associations, not proof of causation · See the homepage for project files and charts.</footer>
+  <script src="{{ url_for('static', filename='download.js') }}" defer></script>
 </body>
 </html>
