@@ -606,6 +606,10 @@ main::after {
 @media(max-width:480px){.data-heading{align-items:flex-start}}
 
     h1,h2,h3,h4,h5,h6,.brand{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif}
+  
+/* Keep the homepage intro centered and prevent horizontal overflow. */
+.intro{max-width:1600px;width:100%;margin:0 auto 26px;padding:0 clamp(8px,2vw,32px);white-space:normal;text-align:center;font-size:clamp(.82rem,.9vw,.92rem);line-height:1.35}
+@media (min-width:1600px){.intro{white-space:nowrap}}
   </style>
 </head>
 <body>
