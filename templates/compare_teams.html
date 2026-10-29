@@ -61,14 +61,19 @@
     .matchup-panel{padding:clamp(17px,3vw,30px)}
     .matchup-head{text-align:center;margin-bottom:16px}
     .matchup-head p{margin:5px 0 0}
-    .matchup-board{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:clamp(10px,2vw,24px)}
-    .selected-team{min-width:0;min-height:180px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:18px;color:var(--cream);background:var(--navy);border:4px solid var(--line);font:inherit;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
-    .selected-team:hover,.selected-team:focus-visible{transform:translateY(-3px);box-shadow:0 7px 0 var(--accent);outline:3px solid var(--cream);outline-offset:2px}
-    .selected-team img{width:clamp(76px,10vw,118px);height:clamp(76px,10vw,118px);object-fit:contain;padding:9px;background:var(--cream);border:3px solid var(--cream);border-radius:50%}
-    .selected-team strong{font-size:clamp(1.25rem,2vw,1.7rem);line-height:1.05}
-    .selected-team small{color:var(--cream);font-weight:700}
-    .slot-empty{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--cream)}
-    .slot-empty strong{font-size:1.45rem}
+    .matchup-board{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:clamp(10px,2vw,24px)}
+    .team-slot{min-width:0;display:grid;justify-items:center;gap:9px}
+    .selected-team{position:relative;width:clamp(142px,18vw,216px);aspect-ratio:1;display:grid;place-items:center;padding:15px;overflow:hidden;color:var(--cream);background:var(--navy);border:4px dashed #fff;border-radius:50%;font:inherit;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+    .selected-team:hover,.selected-team:focus-visible{transform:translateY(-3px);box-shadow:0 0 0 5px rgba(255,255,255,.35);outline:3px solid var(--cream);outline-offset:3px}
+    .selected-team::before{content:"";position:absolute;inset:18%;border:2px dashed rgba(255,255,255,.75);border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0deg 27deg,rgba(255,255,255,.8) 28deg 30deg,transparent 31deg 45deg);mask:radial-gradient(circle,transparent 0 35%,#000 37%);animation:slot-spin 14s linear infinite;pointer-events:none}
+    @keyframes slot-spin{to{transform:rotate(1turn)}}
+    .selected-team.is-filled{border-style:solid;border-color:var(--slot-color,var(--line));background:var(--cream)}
+    .selected-team.is-filled::before{display:none}
+    .selected-team img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;padding:4px}
+    .slot-empty{position:relative;z-index:1;display:grid;justify-items:center;gap:4px;color:#fff;text-align:center}
+    .slot-empty strong{font-size:1.3rem;line-height:1.05}
+    .slot-empty small{font-weight:800}
+    .slot-name{min-height:1.45em;color:var(--navy);font-size:1.25rem;font-weight:900;text-align:center;text-transform:uppercase}
     .versus{align-self:center;padding:9px 12px;color:var(--cream);background:var(--accent);border:3px solid var(--line);border-radius:50%;font-size:1.1rem;font-weight:900}
     .selection-help{margin:12px 0 0;text-align:center;font-size:1rem}
     .team-picker{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:18px}
@@ -92,14 +97,15 @@
     .metric-heading{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
     .metric-heading strong{color:var(--navy);font-size:1.2rem;font-weight:900}
     .metric-heading span{color:var(--muted);font-size:.98rem;font-weight:700}
+    .metric-difference{color:var(--navy)!important;padding:3px 8px;background:rgba(215,160,92,.48);border-left:3px solid var(--difference-color,var(--line));font-weight:900!important;white-space:nowrap}
     .metric-values{display:grid;grid-template-columns:minmax(82px,.8fr) minmax(100px,1.4fr) minmax(82px,.8fr);align-items:center;gap:14px}
     .metric-value{color:var(--navy);font-size:clamp(1.2rem,2.6vw,1.7rem);font-weight:900}
     .metric-value:last-child{text-align:right}
     .metric-lines{display:grid;gap:7px}
     .metric-line{height:9px;overflow:hidden;background:rgba(16,43,88,.13);border:1px solid rgba(23,53,104,.45)}
     .metric-line span{display:block;height:100%;min-width:2px}
-    .metric-line.left span{background:var(--navy)}
-    .metric-line.right span{background:var(--accent)}
+    .metric-line.left span{background:var(--left-team-color,var(--navy))}
+    .metric-line.right span{background:var(--right-team-color,var(--accent))}
     .verdict{margin:9px 0 0;padding:7px 10px;color:var(--navy);background:rgba(215,160,92,.35);border-left:4px solid var(--line);font-weight:800}
     .verdict.positive{border-color:var(--navy)}
     .verdict.volume{border-color:var(--accent)}
@@ -108,9 +114,9 @@
     .error{max-width:900px;margin:20px auto;padding:14px;background:var(--cream);border:3px solid var(--accent)}
     footer{border-top:4px solid var(--accent);text-align:center}
     @media(max-width:950px){.team-picker{grid-template-columns:repeat(5,minmax(0,1fr))}}
-    @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.team-picker{grid-template-columns:repeat(3,minmax(0,1fr))}.matchup-board{gap:8px}.selected-team{min-height:145px;padding:12px 7px}.versus{padding:6px 8px}.metric-values{grid-template-columns:1fr 1.2fr 1fr;gap:8px}.record-grid{grid-template-columns:1fr}}
+    @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.team-picker{grid-template-columns:repeat(3,minmax(0,1fr))}.matchup-board{gap:8px}.selected-team{width:clamp(112px,29vw,160px);padding:10px}.versus{padding:6px 8px}.metric-values{grid-template-columns:1fr 1.2fr 1fr;gap:8px}.record-grid{grid-template-columns:1fr}}
     @media(max-width:420px){.team-picker{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-values{grid-template-columns:1fr 1fr}.metric-lines{grid-column:1/-1;grid-row:2}.metric-value:last-child{text-align:right}.range-output{font-size:.95rem}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
   </style>
 </head>
 <body>
@@ -156,13 +162,15 @@
             <p>Click a team below, or drag its logo into the matchup.</p>
           </div>
           <div class="matchup-board" id="matchup-board" aria-live="polite">
-            <button type="button" class="selected-team" id="left-slot" aria-label="First team slot. Select a team below.">
-              <span class="slot-empty"><small>First team · left side</small><strong>Choose a team</strong><small>Click here to deselect</small></span>
-            </button>
+            <div class="team-slot">
+              <button type="button" class="selected-team" id="left-slot" aria-label="First team slot. Select a team below."></button>
+              <span class="slot-name" id="left-slot-name">First team · left side</span>
+            </div>
             <div class="versus" aria-hidden="true">VS</div>
-            <button type="button" class="selected-team" id="right-slot" aria-label="Second team slot. Select a team below.">
-              <span class="slot-empty"><small>Second team · right side</small><strong>Choose a team</strong><small>Click here to deselect</small></span>
-            </button>
+            <div class="team-slot">
+              <button type="button" class="selected-team" id="right-slot" aria-label="Second team slot. Select a team below."></button>
+              <span class="slot-name" id="right-slot-name">Second team · right side</span>
+            </div>
           </div>
           <p class="selection-help">Click a selected logo above to remove it. When both sides are filled, choosing another team replaces the right-side team.</p>
           <div class="team-picker" id="team-picker" aria-label="All 30 NBA teams">
@@ -221,35 +229,53 @@
         rangeFill.style.width = ((end - start) / last) * 100 + "%";
       }
 
+      function colorDistance(first, second) {
+        const rgb = color => color.match(/[0-9a-f]{2}/gi).map(part => parseInt(part, 16));
+        const a = rgb(first || "#102b58");
+        const b = rgb(second || "#b95832");
+        return Math.sqrt(a.reduce((sum, value, index) => sum + (value - b[index]) ** 2, 0));
+      }
+
+      function selectedColor(side) {
+        const team = teamByCode[selected[side]];
+        if (!team) return "#ffffff";
+        const other = teamByCode[selected[side === "left" ? "right" : "left"]];
+        if (side === "right" && other && colorDistance(other.primary_color, team.primary_color) < 105) {
+          return team.secondary_color || "#ffffff";
+        }
+        return team.primary_color;
+      }
+
       function renderSlot(slot, code, side) {
         slot.replaceChildren();
+        slot.classList.remove("is-filled");
+        slot.style.removeProperty("--slot-color");
+        const caption = document.getElementById(side + "-slot-name");
         if (!code) {
           const empty = document.createElement("span");
           empty.className = "slot-empty";
-          const small = document.createElement("small");
-          small.textContent = side === "left" ? "First team · left side" : "Second team · right side";
+          const label = document.createElement("small");
+          label.textContent = side === "left" ? "LEFT TEAM" : "RIGHT TEAM";
           const title = document.createElement("strong");
           title.textContent = "Choose a team";
-          const hint = document.createElement("small");
-          hint.textContent = "Click here to deselect";
-          empty.append(small, title, hint);
+          empty.append(label, title);
           slot.append(empty);
           slot.setAttribute("aria-label", (side === "left" ? "First" : "Second") + " team slot. Select a team below.");
           slot.dataset.team = "";
+          caption.textContent = side === "left" ? "First team · left side" : "Second team · right side";
           return;
         }
         const team = teamByCode[code];
         const image = document.createElement("img");
         image.src = "https://cdn.nba.com/logos/nba/" + team.logo_id + "/primary/L/logo.svg";
-        image.alt = "";
+        image.alt = team.name + " logo. Click to deselect.";
         image.loading = "lazy";
-        const name = document.createElement("strong");
-        name.textContent = team.name;
-        const hint = document.createElement("small");
-        hint.textContent = "Click logo to deselect";
-        slot.append(image, name, hint);
+        slot.classList.add("is-filled");
+        slot.style.setProperty("--slot-color", selectedColor(side));
+        slot.append(image);
         slot.setAttribute("aria-label", "Deselect " + team.name);
         slot.dataset.team = code;
+        caption.textContent = team.name;
       }
 
       function getRangeRows(teamCode) {
@@ -267,16 +293,29 @@
         }), {games: 0, wins: 0, attempts: 0, made: 0});
       }
 
-      function metricRow(title, hint, leftValue, rightValue, format, direction) {
+      function metricRow(title, hint, leftValue, rightValue, format, direction, differenceUnit) {
         const row = document.createElement("article");
         row.className = "metric-row";
+        row.style.setProperty("--left-team-color", selectedColor("left"));
+        row.style.setProperty("--right-team-color", selectedColor("right"));
         const heading = document.createElement("div");
         heading.className = "metric-heading";
         const label = document.createElement("strong");
         label.textContent = title;
         const note = document.createElement("span");
         note.textContent = hint;
-        heading.append(label, note);
+        const difference = document.createElement("span");
+        difference.className = "metric-difference";
+        const delta = leftValue - rightValue;
+        if (Math.abs(delta) < 0.000001) {
+          difference.textContent = "Difference: even";
+          difference.style.setProperty("--difference-color", "#707272");
+        } else {
+          const team = teamByCode[delta > 0 ? selected.left : selected.right];
+          difference.textContent = "Gap: " + Math.abs(delta).toFixed(2) + " " + differenceUnit + " for " + team.code;
+          difference.style.setProperty("--difference-color", selectedColor(delta > 0 ? "left" : "right"));
+        }
+        heading.append(label, note, difference);
 
         const values = document.createElement("div");
         values.className = "metric-values";
@@ -379,7 +418,8 @@
           left.games ? (left.wins / left.games) * 100 : 0,
           right.games ? (right.wins / right.games) * 100 : 0,
           value => value.toFixed(2) + "%",
-          "favorable"
+          "favorable",
+          "pp"
         ));
 
         const bonus = document.createElement("div");
@@ -393,7 +433,8 @@
           left.games ? left.attempts / left.games : 0,
           right.games ? right.attempts / right.games : 0,
           value => value.toFixed(2),
-          "volume"
+          "volume",
+          "attempts/team-game"
         ));
         bonus.append(metricRow(
           "Free-throw accuracy",
@@ -401,7 +442,8 @@
           left.attempts ? (left.made / left.attempts) * 100 : 0,
           right.attempts ? (right.made / right.attempts) * 100 : 0,
           value => value.toFixed(2) + "%",
-          "favorable"
+          "favorable",
+          "pp"
         ));
         content.append(records, outcomes, bonus);
       }
