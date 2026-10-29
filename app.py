@@ -99,6 +99,29 @@ def archive_count(cursor, source_file):
     return int(cursor.fetchone()["row_count"])
 
 
+def read_bonus_entry_timing(cursor):
+    """Aggregate archived bonus-entry clock times by season, team, and period."""
+    cursor.execute(
+        """
+        SELECT
+            JSON_UNQUOTE(JSON_EXTRACT(row_json, '$.season')) AS season,
+            JSON_UNQUOTE(JSON_EXTRACT(row_json, '$.team_entering_bonus')) AS team,
+            CAST(JSON_UNQUOTE(JSON_EXTRACT(row_json, '$.period')) AS UNSIGNED) AS period,
+            AVG(CAST(JSON_UNQUOTE(JSON_EXTRACT(row_json, '$.seconds_remaining')) AS DECIMAL(10,2)))
+                AS average_seconds_remaining,
+            COUNT(*) AS entries
+        FROM analysis_results_archive
+        WHERE source_file = %s
+          AND JSON_EXTRACT(row_json, '$.season') IS NOT NULL
+          AND JSON_EXTRACT(row_json, '$.seconds_remaining') IS NOT NULL
+        GROUP BY season, team, period
+        ORDER BY season, period, team
+        """,
+        ("results/historical_bonus_entries.csv",),
+    )
+    return cursor.fetchall()
+
+
 def as_float(value):
     if value is None or value == "":
         return None
@@ -556,8 +579,64 @@ def load_league_analysis_data():
                 "results/team_trends/team_changes_first5_vs_last5.csv",
                 ["bonus_fta_change", "bonus_ft_percentage_change", "win_percentage_change"],
             )
+            timing_rows = read_bonus_entry_timing(cursor)
     finally:
         connection.close()
+
+    source_to_team = {
+        source_code: code
+        for code, info in TEAM_INFO.items()
+        for source_code in info["source_codes"]
+    }
+    team_timing = {}
+    league_timing = {}
+    for row in timing_rows:
+        code = source_to_team.get(row.get("team"))
+        season = row.get("season")
+        period_number = int(float(row.get("period") or 0))
+        seconds = as_float(row.get("average_seconds_remaining"))
+        entries = int(float(row.get("entries") or 0))
+        if not code or not season or seconds is None or entries < 1:
+            continue
+        period = str(period_number) if period_number <= 4 else "OT"
+        team_key = (season, code, period)
+        values = team_timing.setdefault(team_key, [0.0, 0])
+        values[0] += seconds * entries
+        values[1] += entries
+        league_key = (season, period)
+        totals = league_timing.setdefault(league_key, [0.0, 0])
+        totals[0] += seconds * entries
+        totals[1] += entries
+
+    timing_rows_data = []
+    for (season, code, period), (weighted_seconds, entries) in team_timing.items():
+        timing_rows_data.append({
+            "season": season,
+            "team": code,
+            "period": period,
+            "average_seconds": weighted_seconds / entries,
+            "entries": entries,
+        })
+    for (season, period), (weighted_seconds, entries) in league_timing.items():
+        timing_rows_data.append({
+            "season": season,
+            "team": "ALL",
+            "period": period,
+            "average_seconds": weighted_seconds / entries,
+            "entries": entries,
+        })
+    period_order = {"1": 1, "2": 2, "3": 3, "4": 4, "OT": 5}
+    timing_rows_data.sort(
+        key=lambda row: (
+            season_sort_key(row["season"]),
+            period_order[row["period"]],
+            row["team"],
+        )
+    )
+    timing_seasons = sorted(
+        {row["season"] for row in timing_rows_data},
+        key=season_sort_key,
+    )
 
     season_gap_data = []
     adjusted_by_season = {row["season"]: as_float(row["win_percentage_gap"]) for row in adjusted_gaps}
@@ -603,6 +682,10 @@ def load_league_analysis_data():
         ],
         "home_overall": {row["location"]: as_float(row["win_percentage"]) for row in home_overall},
         "season_gaps": season_gap_data,
+        "bonus_timing": {
+            "seasons": timing_seasons,
+            "rows": timing_rows_data,
+        },
         "attempt_change_corr": corr_for_team_change("bonus_fta_change"),
         "accuracy_change_corr": corr_for_team_change("bonus_ft_percentage_change"),
     }
