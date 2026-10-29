@@ -65,10 +65,12 @@
     .team-slot{min-width:0;display:grid;justify-items:center;gap:9px}
     .selected-team{position:relative;width:clamp(142px,18vw,216px);aspect-ratio:1;display:grid;place-items:center;padding:15px;overflow:hidden;color:var(--cream);background:var(--navy);border:4px dashed #fff;border-radius:50%;font:inherit;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
     .selected-team:hover,.selected-team:focus-visible{transform:translateY(-3px);box-shadow:0 0 0 5px rgba(255,255,255,.35);outline:3px solid var(--cream);outline-offset:3px}
-    .selected-team::before{content:"";position:absolute;inset:18%;border:2px dashed rgba(255,255,255,.75);border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0deg 27deg,rgba(255,255,255,.8) 28deg 30deg,transparent 31deg 45deg);mask:radial-gradient(circle,transparent 0 35%,#000 37%);animation:slot-spin 14s linear infinite;pointer-events:none}
-    @keyframes slot-spin{to{transform:rotate(1turn)}}
+    .selected-team::before,.selected-team::after{content:"";position:absolute;inset:19%;border:3px dashed rgba(255,255,255,.9);border-radius:50%;pointer-events:none}
+    .selected-team::before{clip-path:inset(0 0 48% 0);animation:slot-arc-spin 11s linear infinite}
+    .selected-team::after{inset:27%;border-width:2px;opacity:.72;clip-path:inset(48% 0 0 0);animation:slot-arc-spin 15s linear infinite reverse}
+    @keyframes slot-arc-spin{to{transform:rotate(1turn)}}
     .selected-team.is-filled{border-style:solid;border-color:var(--slot-color,var(--line));background:var(--cream)}
-    .selected-team.is-filled::before{display:none}
+    .selected-team.is-filled::before,.selected-team.is-filled::after{display:none}
     .selected-team img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;padding:4px}
     .slot-empty{position:relative;z-index:1;display:grid;justify-items:center;gap:4px;color:#fff;text-align:center}
     .slot-empty strong{font-size:1.3rem;line-height:1.05}
@@ -133,7 +135,6 @@
       <section class="page-intro">
         <div class="eyebrow">Head-to-head · Team season data</div>
         <h1>Compare teams</h1>
-        <p>Choose a season range and any two teams. Their shared seasons update the matchup as you choose.</p>
       </section>
       {% if error %}
         <div class="error" role="alert">{{ error }}</div>
@@ -141,7 +142,6 @@
         <section class="panel range-panel" aria-labelledby="range-title">
           <div class="range-heading">
             <div><div class="eyebrow">Choose the seasons</div><h2 id="range-title">Season range</h2></div>
-            <p>Move either handle to set the start and end.</p>
           </div>
           <div class="range-output">
             <strong>From <span id="start-label">{{ data.seasons[0] }}</span></strong>
@@ -159,7 +159,6 @@
           <div class="matchup-head">
             <div class="eyebrow">Pick any two franchises</div>
             <h2 id="matchup-title">Choose the matchup</h2>
-            <p>Click a team below, or drag its logo into the matchup.</p>
           </div>
           <div class="matchup-board" id="matchup-board" aria-live="polite">
             <div class="team-slot">
@@ -172,7 +171,6 @@
               <span class="slot-name" id="right-slot-name">Second team · right side</span>
             </div>
           </div>
-          <p class="selection-help">Click a selected logo above to remove it. When both sides are filled, choosing another team replaces the right-side team.</p>
           <div class="team-picker" id="team-picker" aria-label="All 30 NBA teams">
             {% for team in team_directory %}
               <button type="button" class="team-choice" data-team="{{ team.code }}" aria-pressed="false" draggable="true" title="Select {{ team.name }}">
@@ -252,15 +250,7 @@
         slot.style.removeProperty("--slot-color");
         const caption = document.getElementById(side + "-slot-name");
         if (!code) {
-          const empty = document.createElement("span");
-          empty.className = "slot-empty";
-          const label = document.createElement("small");
-          label.textContent = side === "left" ? "LEFT TEAM" : "RIGHT TEAM";
-          const title = document.createElement("strong");
-          title.textContent = "Choose a team";
-          empty.append(label, title);
-          slot.append(empty);
-          slot.setAttribute("aria-label", (side === "left" ? "First" : "Second") + " team slot. Select a team below.");
+          slot.setAttribute("aria-label", (side === "left" ? "First" : "Second") + " team slot is empty. Select a team from the team list.");
           slot.dataset.team = "";
           caption.textContent = side === "left" ? "First team · left side" : "Second team · right side";
           return;
