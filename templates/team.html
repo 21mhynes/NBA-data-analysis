@@ -135,13 +135,14 @@
             function renderMetric() {
               const key = metricSelect.value;
               const teamKey = key;
-              const leagueKey = "league-" + key;
-              const values = columns.flatMap(column => [Number(column.dataset[teamKey]), Number(column.dataset[leagueKey])]).filter(Number.isFinite);
+              const leagueKey = key === "attempts" ? "leagueAttempts" : "leagueAccuracy";
+              const numeric = value => value === "" ? NaN : Number(value);
+              const values = columns.flatMap(column => [numeric(column.dataset[teamKey]), numeric(column.dataset[leagueKey])]).filter(Number.isFinite);
               const min = Math.min(...values);
               const span = Math.max(...values) - min || 1;
               for (const column of columns) {
-                const teamValue = Number(column.dataset[teamKey]);
-                const leagueValue = Number(column.dataset[leagueKey]);
+                const teamValue = numeric(column.dataset[teamKey]);
+                const leagueValue = numeric(column.dataset[leagueKey]);
                 const bar = column.querySelector(".bar");
                 const marker = column.querySelector(".league-marker");
                 if (!Number.isFinite(teamValue)) { bar.hidden = true; continue; }
