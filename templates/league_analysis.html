@@ -135,7 +135,13 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
   }
 }
 
-  </style>
+  
+/* Keep the long season-gap chart heading and description on one line on desktop. */
+@media (min-width: 900px) {
+  .gap-chart-heading h2 { font-size: clamp(1.1rem, 1.8vw, 1.7rem); white-space: nowrap; letter-spacing: -.035em; }
+  .gap-chart-intro { font-size: .8rem; line-height: 1.3; white-space: nowrap; }
+}
+</style>
 </head>
 <body>
   <header>
@@ -208,11 +214,11 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
       <p class="note">Overall home-team win rate: {{ "%.2f"|format(data.home_overall["Home"]) }}%. This gives context for the home/away comparison.</p>
     </section>
     <section class="panel">
-      <div class="data-heading">
+      <div class="data-heading gap-chart-heading">
         <div><div class="eyebrow">Bonus attempts and winning</div><h2>How the bonus-attempt win-rate gap changed over time</h2></div>
         <button type="button" class="csv-download" data-download-chart="league-gap-chart" data-filename="bonus-win-rate-gaps-by-season.csv" aria-label="Download season win-rate gap data as CSV" title="Download chart data as CSV">↓ CSV</button>
       </div>
-      <p>Each bar shows one season’s raw bonus-attempt win-rate gap. Point to, focus, or tap a bar to see the gap after excluding late-game attempts.</p>
+      <p class="gap-chart-intro">Each bar shows one season’s raw bonus-attempt win-rate gap. Point to, focus, or tap a bar to see the gap after excluding late-game attempts.</p>
       <div class="trend" id="league-gap-chart" data-csv-headers='["Season","Raw bonus-attempt win-rate gap (percentage points)","Adjusted win-rate gap excluding late-game fouls (percentage points)"]' role="group" aria-label="Seasonal win-rate gaps">
         {% for row in data.season_gaps %}<button type="button" class="bar" title="{{ row.season }} · bonus attempts {{ '%.2f'|format(row.attempt_gap) }} pp{% if row.adjusted_gap is not none %} · adjusted attempts {{ '%.2f'|format(row.adjusted_gap) }} pp{% endif %}" aria-label="{{ row.season }}: bonus attempts {{ '%.2f'|format(row.attempt_gap) }} percentage points{% if row.adjusted_gap is not none %}, adjusted attempts {{ '%.2f'|format(row.adjusted_gap) }} percentage points{% endif %}" data-tooltip="{{ row.season }} · attempts {{ '%.2f'|format(row.attempt_gap) }} pp{% if row.adjusted_gap is not none %} · adjusted {{ '%.2f'|format(row.adjusted_gap) }} pp{% endif %}" data-csv-row='{{ [row.season, row.attempt_gap, row.adjusted_gap]|tojson }}' style="height:{{ [12, row.attempt_gap * 2.5]|max }}%"></button>{% endfor %}
       </div>
