@@ -65,12 +65,7 @@
     .team-slot{min-width:0;display:grid;justify-items:center;gap:9px}
     .selected-team{position:relative;width:clamp(142px,18vw,216px);aspect-ratio:1;display:grid;place-items:center;padding:15px;overflow:hidden;color:var(--cream);background:var(--navy);border:4px dashed #fff;border-radius:50%;font:inherit;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
     .selected-team:hover,.selected-team:focus-visible{transform:translateY(-3px);box-shadow:0 0 0 5px rgba(255,255,255,.35);outline:3px solid var(--cream);outline-offset:3px}
-    .selected-team::before,.selected-team::after{content:"";position:absolute;inset:19%;border:3px dashed rgba(255,255,255,.9);border-radius:50%;pointer-events:none}
-    .selected-team::before{clip-path:inset(0 0 48% 0);animation:slot-arc-spin 11s linear infinite}
-    .selected-team::after{inset:27%;border-width:2px;opacity:.72;clip-path:inset(48% 0 0 0);animation:slot-arc-spin 15s linear infinite reverse}
-    @keyframes slot-arc-spin{to{transform:rotate(1turn)}}
     .selected-team.is-filled{border-style:solid;border-color:var(--slot-color,var(--line));background:var(--cream)}
-    .selected-team.is-filled::before,.selected-team.is-filled::after{display:none}
     .selected-team img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;padding:4px}
     .slot-empty{position:relative;z-index:1;display:grid;justify-items:center;gap:4px;color:#fff;text-align:center}
     .slot-empty strong{font-size:1.3rem;line-height:1.05}
@@ -163,12 +158,12 @@
           <div class="matchup-board" id="matchup-board" aria-live="polite">
             <div class="team-slot">
               <button type="button" class="selected-team" id="left-slot" aria-label="First team slot. Select a team below."></button>
-              <span class="slot-name" id="left-slot-name">First team · left side</span>
+              <span class="slot-name" id="left-slot-name" hidden></span>
             </div>
             <div class="versus" aria-hidden="true">VS</div>
             <div class="team-slot">
               <button type="button" class="selected-team" id="right-slot" aria-label="Second team slot. Select a team below."></button>
-              <span class="slot-name" id="right-slot-name">Second team · right side</span>
+              <span class="slot-name" id="right-slot-name" hidden></span>
             </div>
           </div>
           <div class="team-picker" id="team-picker" aria-label="All 30 NBA teams">
@@ -252,7 +247,8 @@
         if (!code) {
           slot.setAttribute("aria-label", (side === "left" ? "First" : "Second") + " team slot is empty. Select a team from the team list.");
           slot.dataset.team = "";
-          caption.textContent = side === "left" ? "First team · left side" : "Second team · right side";
+          caption.textContent = "";
+          caption.hidden = true;
           return;
         }
         const team = teamByCode[code];
@@ -266,6 +262,7 @@
         slot.setAttribute("aria-label", "Deselect " + team.name);
         slot.dataset.team = code;
         caption.textContent = team.name;
+        caption.hidden = false;
       }
 
       function getRangeRows(teamCode) {
