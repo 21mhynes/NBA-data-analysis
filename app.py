@@ -596,7 +596,7 @@ def load_league_analysis_data():
         period_number = int(float(row.get("period") or 0))
         seconds = as_float(row.get("average_seconds_remaining"))
         entries = int(float(row.get("entries") or 0))
-        if not code or not season or seconds is None or entries < 1:
+        if not code or not season or period_number < 1 or seconds is None or entries < 1:
             continue
         period = str(period_number) if period_number <= 4 else "OT"
         team_key = (season, code, period)
