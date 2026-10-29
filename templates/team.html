@@ -60,7 +60,14 @@
     .subnav a:hover,.subnav a:focus-visible { text-decoration:underline; }
   
     .team-hero p { color:var(--cream); font-size:clamp(1.15rem,1.45vw,1.35rem); font-weight:600; line-height:1.4; max-width:850px; margin-bottom:0; }
-  </style>
+  
+.csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Barlow Condensed','Arial Narrow',Arial,sans-serif;white-space:nowrap;cursor:pointer}
+.csv-download:hover{background:var(--cream);border-color:var(--accent)}
+.csv-download:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.data-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.data-heading h2{margin-bottom:0}
+@media(max-width:480px){.data-heading{align-items:flex-start}}
+</style>
 </head>
 <body>
   <header>
@@ -88,12 +95,14 @@
       </div>
 
       <section class="panel">
-        <div class="eyebrow">Season-by-season trend</div>
-        <h2>Bonus attempts per team-game</h2>
+        <div class="data-heading">
+          <div><div class="eyebrow">Season-by-season trend</div><h2>Bonus attempts per team-game</h2></div>
+          <button type="button" class="csv-download" data-download-chart="team-season-chart" data-filename="{{ team.code|lower }}-season-results.csv" aria-label="Download {{ team.name }} season chart and table data as CSV" title="Download season data as CSV">↓ CSV</button>
+        </div>
         <p>Each bar is one season. Point to, focus, or tap a bar to see attempts, accuracy, and win rate.</p>
-        <div class="chart" role="group" aria-label="{{ team.name }} average bonus attempts per team-game by season">
+        <div class="chart" id="team-season-chart" data-csv-headers='["Season","Games","Wins","Bonus FT attempts per team-game","Bonus FT accuracy (%)","Win rate (%)"]' role="group" aria-label="{{ team.name }} average bonus attempts per team-game by season">
           {% for season in data.seasons %}
-            <button type="button" class="bar" title="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy · {{ '%.2f'|format(season.win_pct) }}% wins" aria-label="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts, {{ '%.2f'|format(season.accuracy) }}% accuracy, {{ '%.2f'|format(season.win_pct) }}% wins" data-tooltip="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy · {{ '%.2f'|format(season.win_pct) }}% wins" style="height:{{ season.bar_height }}%"></button>
+            <button type="button" class="bar" title="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy · {{ '%.2f'|format(season.win_pct) }}% wins" aria-label="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts, {{ '%.2f'|format(season.accuracy) }}% accuracy, {{ '%.2f'|format(season.win_pct) }}% wins" data-tooltip="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy · {{ '%.2f'|format(season.win_pct) }}% wins" data-csv-row='{{ [season.season, season.games, season.wins, season.attempts, season.accuracy, season.win_pct]|tojson }}' style="height:{{ season.bar_height }}%"></button>
           {% endfor %}
         </div>
         <div class="chart-labels"><span>{{ data.first_season }}</span><span>{{ data.last_season }}</span></div>
@@ -127,5 +136,6 @@
     {% endif %}
   </main>
   <footer>NBA play-by-play analysis · {{ team.name }} · {{ data.first_season if data else "Team detail" }}{% if data %}–{{ data.last_season }}{% endif %}</footer>
+  <script src="{{ url_for('static', filename='download.js') }}" defer></script>
 </body>
 </html>

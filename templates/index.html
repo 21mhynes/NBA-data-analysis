@@ -597,7 +597,14 @@ main::after {
 .question-card p { margin:0; color:var(--ink); font-weight:600; font-size:1.05rem; line-height:1.35; }
 @media(max-width:900px) { .question-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:560px) { .question-grid { grid-template-columns:1fr; } }
-  </style>
+  
+.csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Barlow Condensed','Arial Narrow',Arial,sans-serif;white-space:nowrap;cursor:pointer}
+.csv-download:hover{background:var(--cream);border-color:var(--accent)}
+.csv-download:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.data-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.data-heading h2{margin-bottom:0}
+@media(max-width:480px){.data-heading{align-items:flex-start}}
+</style>
 </head>
 <body>
   <header>
@@ -720,12 +727,14 @@ main::after {
       </section>
 
       <section class="panel">
-        <div class="eyebrow">League trend · {{ data.season_span }}</div>
-        <h2>Fewer bonus attempts, higher accuracy</h2>
+        <div class="data-heading">
+          <div><div class="eyebrow">League trend · {{ data.season_span }}</div><h2>Fewer bonus attempts, higher accuracy</h2></div>
+          <button type="button" class="csv-download" data-download-chart="home-season-chart" data-filename="league-attempts-and-accuracy-by-season.csv" aria-label="Download league season chart data as CSV" title="Download chart data as CSV">↓ CSV</button>
+        </div>
         <p class="section-intro">Point to, focus, or tap a season bar to see its bonus attempts and accuracy.</p>
-        <div class="season-chart" role="group" aria-label="Average bonus free throws per team-game across seasons">
+        <div class="season-chart" id="home-season-chart" data-csv-headers='["Season","Bonus attempts per team-game","Bonus free-throw accuracy (%)"]' role="group" aria-label="Average bonus free throws per team-game across seasons">
           {% for season in data.seasons %}
-            <button type="button" class="season-bar" title="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts; {{ '%.2f'|format(season.accuracy) }}% accuracy" aria-label="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts, {{ '%.2f'|format(season.accuracy) }}% accuracy" data-tooltip="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy" style="height: {{ season.bar_height }}%"></button>
+            <button type="button" class="season-bar" title="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts; {{ '%.2f'|format(season.accuracy) }}% accuracy" aria-label="{{ season.season }}: {{ '%.2f'|format(season.attempts) }} attempts, {{ '%.2f'|format(season.accuracy) }}% accuracy" data-tooltip="{{ season.season }} · {{ '%.2f'|format(season.attempts) }} attempts · {{ '%.2f'|format(season.accuracy) }}% accuracy" data-csv-row='{{ [season.season, season.attempts, season.accuracy]|tojson }}' style="height: {{ season.bar_height }}%"></button>
           {% endfor %}
         </div>
         <div class="season-labels"><span>{{ data.first_season.season }}</span><span>{{ data.last_season.season }}</span></div>
@@ -792,5 +801,6 @@ main::after {
     </section>
   </main>
   <footer>NBA play-by-play · {{ seasons }} · Findings are associations, not causal proof.</footer>
+  <script src="{{ url_for('static', filename='download.js') }}" defer></script>
 </body>
 </html>
