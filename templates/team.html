@@ -6,10 +6,10 @@
   <meta name="description" content="{{ team.name }} bonus attempts, free-throw accuracy, and winning trends.">
   <title>{{ team.name }} Bonus Analysis</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=Roboto+Condensed:wght@400;500;600;700;800;900&display=swap');
     :root { --court:#d7a05c; --court-light:#e9bd7c; --court-dark:#c48b49; --line:#173568; --navy:#102b58; --cream:#fff1d2; --ink:#152744; --muted:#354968; --accent:#b95832; }
     * { box-sizing:border-box; }
-    body { margin:0; color:var(--ink); background:var(--navy); font:18px/1.5 'Barlow Condensed','Arial Narrow',Arial,sans-serif; }
+    body { margin:0; color:var(--ink); background:var(--navy); font:18px/1.5 'Roboto',Arial,sans-serif; }
     header { display:flex; justify-content:space-between; align-items:center; gap:18px; padding:14px clamp(18px,4vw,54px); color:var(--cream); background:var(--navy); border-bottom:4px solid var(--team-primary,var(--accent)); }
     .brand { font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
     header a { color:var(--cream); text-decoration:none; font-weight:700; }
@@ -35,7 +35,7 @@
     .stat strong { display:block; color:var(--cream); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:900; line-height:1.1; }
     .trend-controls { display:flex; justify-content:space-between; align-items:end; gap:14px; flex-wrap:wrap; margin:14px 0 4px; }
     .trend-controls label { display:grid; gap:4px; color:var(--navy); font-weight:800; }
-    .trend-controls select { min-height:38px; padding:5px 34px 5px 9px; color:var(--navy); background:var(--cream); border:2px solid var(--line); font:700 1rem 'Barlow Condensed','Arial Narrow',Arial,sans-serif; }
+    .trend-controls select { min-height:38px; padding:5px 34px 5px 9px; color:var(--navy); background:var(--cream); border:2px solid var(--line); font:700 1rem 'Roboto',Arial,sans-serif; }
     .chart-legend { display:flex; flex-wrap:wrap; gap:16px; color:var(--muted); font-size:.95rem; font-weight:700; }
     .chart-legend span { display:inline-flex; align-items:center; gap:7px; }
     .legend-team-key { width:14px; height:14px; background:var(--team-primary,var(--line)); border:1px solid var(--line); }
@@ -44,7 +44,7 @@
     .season-column { position:relative; flex:1; min-width:2px; height:100%; display:flex; align-items:flex-end; }
     .bar { flex:1; min-width:2px; height:var(--bar-height); display:block; position:relative; padding:0; margin:0; appearance:none; -webkit-appearance:none; background:var(--team-primary,var(--line)); border:1px solid rgba(255,241,210,.7); box-shadow:inset 0 -4px 0 var(--team-secondary,var(--accent)); cursor:help; }
     .league-marker { position:absolute; z-index:2; left:0; right:0; bottom:var(--league-height); height:3px; background:var(--accent); box-shadow:0 0 0 1px var(--cream); pointer-events:none; }
-     .bar::after { content:attr(data-tooltip); position:absolute; z-index:20; left:50%; bottom:calc(100% + 9px); transform:translateX(-50%); width:max-content; max-width:min(260px,70vw); padding:8px 10px; color:var(--cream); background:var(--navy); border:2px solid var(--team-secondary,var(--accent)); font:700 .9rem/1.3 'Barlow Condensed','Arial Narrow',Arial,sans-serif; text-align:center; white-space:normal; box-shadow:0 4px 12px rgba(0,0,0,.25); opacity:0; visibility:hidden; pointer-events:none; }
+     .bar::after { content:attr(data-tooltip); position:absolute; z-index:20; left:50%; bottom:calc(100% + 9px); transform:translateX(-50%); width:max-content; max-width:min(260px,70vw); padding:8px 10px; color:var(--cream); background:var(--navy); border:2px solid var(--team-secondary,var(--accent)); font:700 .9rem/1.3 'Roboto',Arial,sans-serif; text-align:center; white-space:normal; box-shadow:0 4px 12px rgba(0,0,0,.25); opacity:0; visibility:hidden; pointer-events:none; }
      .bar:hover::after, .bar:focus::after { opacity:1; visibility:visible; }
      .bar:hover, .bar:focus { outline:2px solid var(--team-secondary,var(--accent)); outline-offset:2px; }
      .chart .season-column:first-child .bar::after { left:0; transform:none; }
@@ -70,13 +70,15 @@
   
     .team-hero p { color:var(--cream); font-size:clamp(1.15rem,1.45vw,1.35rem); font-weight:600; line-height:1.4; max-width:850px; margin-bottom:0; }
   
-.csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Barlow Condensed','Arial Narrow',Arial,sans-serif;white-space:nowrap;cursor:pointer}
+.csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Roboto',Arial,sans-serif;white-space:nowrap;cursor:pointer}
 .csv-download:hover{background:var(--cream);border-color:var(--accent)}
 .csv-download:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .data-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .data-heading h2{margin-bottom:0}
 @media(max-width:480px){.data-heading{align-items:flex-start}}
-</style>
+
+    h1,h2,h3,h4,h5,h6,.brand{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif}
+  </style>
 </head>
 <body>
   <header>

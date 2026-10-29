@@ -6,9 +6,9 @@
   <meta name="description" content="Rank NBA teams by bonus free-throw attempts, accuracy, and win rate for any season.">
   <title>Season Leaderboard · NBA Bonus Study</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=Roboto+Condensed:wght@400;500;600;700;800;900&display=swap');
     :root{--court:#d7a05c;--court-light:#e9bd7c;--court-dark:#c48b49;--navy:#102b58;--line:#173568;--cream:#fff1d2;--ink:#152744;--muted:#354968;--accent:#b95832}
-    *{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--ink);font:18px/1.45 'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--ink);font:18px/1.45 'Roboto',Arial,sans-serif}
     header,footer{padding:15px clamp(18px,4vw,54px);color:var(--cream);background:var(--navy)}
     header{display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:4px solid var(--accent)}
     .brand{font-weight:900;letter-spacing:.1em;text-transform:uppercase}nav{display:flex;gap:16px;flex-wrap:wrap}
@@ -22,9 +22,9 @@
     .season-control-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px}
     .season-control-row input[type=range]{width:100%;accent-color:var(--navy);cursor:pointer}
     .season-control-row output{min-width:68px;color:var(--navy);font-size:1.15rem;font-weight:900;text-align:right}
-    .play-toggle{min-height:42px;padding:8px 14px;color:var(--cream);background:var(--navy);border:3px solid var(--line);font:800 1rem 'Barlow Condensed','Arial Narrow',Arial,sans-serif;cursor:pointer;white-space:nowrap}
+    .play-toggle{min-height:42px;padding:8px 14px;color:var(--cream);background:var(--navy);border:3px solid var(--line);font:800 1rem 'Roboto',Arial,sans-serif;cursor:pointer;white-space:nowrap}
     .play-toggle:hover,.play-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-    select{width:100%;min-height:48px;padding:9px 40px 9px 12px;border:3px solid var(--line);border-radius:0;color:var(--navy);background:var(--cream);font:700 1.1rem 'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+    select{width:100%;min-height:48px;padding:9px 40px 9px 12px;border:3px solid var(--line);border-radius:0;color:var(--navy);background:var(--cream);font:700 1.1rem 'Roboto',Arial,sans-serif}
     select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
     .leaderboard-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:16px}
     .metric-caption{margin:5px 0 0;color:var(--muted)}.ranking{display:grid;gap:9px}
@@ -38,6 +38,8 @@
     .error{padding:14px;background:var(--cream);border:3px solid var(--accent)}footer{border-top:4px solid var(--accent);text-align:center}
     @media(max-width:680px){header{align-items:flex-start;flex-direction:column}.controls{grid-template-columns:1fr}.season-control-row{grid-template-columns:minmax(0,1fr) auto}.season-control-row output{min-width:62px}.play-toggle{grid-column:1/-1}.rank-row{grid-template-columns:34px 42px minmax(0,1fr) auto;gap:8px;padding:8px}.rank-logo{width:38px;height:38px}.rank-name{font-size:1rem}.meter{grid-column:2/4;grid-row:2;height:9px;margin-top:-4px}.rank-value{grid-column:4;grid-row:1/3;font-size:1.15rem}.leaderboard-head{align-items:flex-start;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  
+    h1,h2,h3,h4,h5,h6,.brand{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif}
   </style>
 </head>
 <body>
