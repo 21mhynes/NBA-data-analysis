@@ -771,7 +771,12 @@ def league_analysis():
     except Exception:
         logging.exception("Could not load detailed league analysis from TiDB")
         error = "Detailed league results could not be loaded from TiDB. Check that the listed analysis files are in the archive."
-    return render_template("league_analysis.html", data=data, error=error)
+    return render_template(
+        "league_analysis.html",
+        data=data,
+        error=error,
+        team_directory=TEAM_DIRECTORY,
+    )
 
 
 @app.route("/season-leaderboard")
