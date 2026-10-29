@@ -589,6 +589,77 @@ def load_league_analysis_data():
     }
 
 
+def season_sort_key(season):
+    """Sort season labels by their starting calendar year."""
+    return int(str(season).split("-", 1)[0])
+
+
+def load_team_comparison_data():
+    """Load team-season rows used by the team pages for the comparison tool."""
+    connection = get_connection()
+    try:
+        with connection.cursor() as cursor:
+            rows = read_rows(
+                cursor,
+                "results/team_trends/team_by_season_summary.csv",
+                [
+                    "season", "team", "games", "wins", "total_bonus_fta",
+                    "total_bonus_ftm",
+                ],
+            )
+    finally:
+        connection.close()
+
+    source_to_team = {
+        source_code: code
+        for code, team in TEAM_INFO.items()
+        for source_code in team["source_codes"]
+    }
+    grouped = {}
+    for row in rows:
+        code = source_to_team.get(row.get("team"))
+        season = row.get("season")
+        if not code or not season:
+            continue
+        key = (code, season)
+        totals = grouped.setdefault(
+            key, {"team": code, "season": season, "games": 0, "wins": 0,
+                  "attempts": 0, "made": 0}
+        )
+        totals["games"] += int(float(row.get("games") or 0))
+        totals["wins"] += int(float(row.get("wins") or 0))
+        totals["attempts"] += int(float(row.get("total_bonus_fta") or 0))
+        totals["made"] += int(float(row.get("total_bonus_ftm") or 0))
+
+    seasons = sorted({season for _, season in grouped}, key=season_sort_key)
+    return {
+        "seasons": seasons,
+        "rows": list(grouped.values()),
+    }
+
+
+@app.route("/compare-teams")
+def compare_teams():
+    data = None
+    error = None
+    try:
+        data = load_team_comparison_data()
+        if not data["seasons"]:
+            raise RuntimeError("No team-season rows were found in the TiDB analysis archive.")
+    except Exception:
+        logging.exception("Could not load team comparison data from TiDB")
+        error = (
+            "Team comparison data could not be loaded from TiDB. "
+            "Check the database connection settings, then refresh."
+        )
+    return render_template(
+        "compare_teams.html",
+        data=data,
+        error=error,
+        team_directory=TEAM_DIRECTORY,
+    )
+
+
 @app.route("/league-analysis")
 def league_analysis():
     data = None
