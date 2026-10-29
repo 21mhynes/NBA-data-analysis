@@ -141,6 +141,12 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
   .gap-chart-heading h2 { font-size: clamp(1.1rem, 1.8vw, 1.7rem); white-space: nowrap; letter-spacing: -.035em; }
   .gap-chart-intro { font-size: .8rem; line-height: 1.3; white-space: nowrap; }
 }
+
+/* Keep the period chart title together on desktop without changing mobile wrapping. */
+@media (min-width: 900px) {
+  .period-heading > div { min-width: 0; }
+  .period-heading h2 { font-size: clamp(1.1rem, 1.75vw, 1.7rem); letter-spacing: -.035em; white-space: nowrap; }
+}
 </style>
 </head>
 <body>
@@ -161,7 +167,7 @@ header { position:sticky; top:0; z-index:1000; flex-direction:row; align-items:c
     </div>
     {% if error %}<div class="error" role="alert">{{ error }}</div>{% elif data %}
     <section class="panel">
-      <div class="data-heading">
+      <div class="data-heading period-heading">
         <div><div class="eyebrow">First to the bonus by period</div><h2>Win rate among teams first into the bonus in that period</h2></div>
         <button type="button" class="csv-download" data-download-table="period-win-rates" data-filename="bonus-win-rate-by-period.csv" aria-label="Download period win rates as CSV" title="Download table as CSV">↓ CSV</button>
       </div>
