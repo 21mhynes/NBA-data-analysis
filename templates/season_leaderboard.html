@@ -58,10 +58,78 @@
   .metric-choice { flex:1 1 0; min-width:0; padding:7px 9px; font-size:.9rem; white-space:nowrap; }
 }
 
+  
+/* Shared clickable team-logo ribbon for quick navigation from every page. */
+header { display:flex; flex-direction:column; align-items:stretch; gap:12px; }
+.header-top { width:100%; display:flex; justify-content:space-between; align-items:center; gap:18px; }
+.header-top .brand { flex:0 0 auto; }
+.header-top nav { display:flex; justify-content:flex-end; align-items:center; gap:16px; flex-wrap:wrap; }
+.team-ribbon { width:100%; display:grid; grid-template-columns:repeat(15,minmax(0,1fr)); justify-content:center; gap:clamp(4px,.7vw,10px); }
+.team-logo { justify-self:center; width:46px; height:46px; display:grid; place-items:center; overflow:hidden; background:var(--cream); border:3px solid var(--cream); border-radius:50%; box-shadow:0 0 0 2px var(--line); }
+.team-logo img { display:block; width:32px; height:32px; object-fit:contain; }
+@media(max-width:900px) {
+  .team-ribbon { grid-template-columns:repeat(12,minmax(0,1fr)); gap:8px; }
+}
+@media(max-width:760px) {
+  .team-ribbon { width:min(100%,600px); grid-template-columns:repeat(9,minmax(42px,1fr)); gap:6px; }
+  .team-logo { width:46px; height:46px; }
+}
+@media(max-width:680px) {
+  .header-top { align-items:flex-start; flex-direction:column; gap:8px; }
+  .header-top nav { justify-content:flex-start; gap:10px 14px; }
+}
+@media(max-width:480px) {
+  .team-ribbon { width:auto; grid-template-columns:repeat(6,44px); gap:7px; }
+  .team-logo { width:44px; height:44px; }
+  .team-logo img { width:30px; height:30px; }
+}
+
+/* Keep metric labels centered and prevent lonely words in supporting labels. */
+.metric-choice { display:flex; align-items:center; justify-content:center; text-align:center; line-height:1.1; }
+.metric-caption { font-size:.95rem; line-height:1.35; text-wrap:balance; }
+#team-count { flex:0 0 auto; white-space:nowrap; }
+
   </style>
 </head>
 <body>
-  <header><div class="brand">NBA Data Analysis</div><nav aria-label="Project pages"><a href="/">Home</a><a href="/league-analysis">League analysis</a><a href="/season-leaderboard" aria-current="page">Season leaderboard</a><a href="/compare-teams">Compare teams</a></nav></header>
+  <header>
+    <div class="header-top">
+      <div class="brand">NBA Data Analysis</div>
+      <nav aria-label="Project pages"><a href="/">Home</a><a href="/league-analysis">League analysis</a><a href="/season-leaderboard" aria-current="page">Season leaderboard</a><a href="/compare-teams">Compare teams</a></nav>
+    </div>
+    <div class="team-ribbon" aria-label="Current NBA team logos">
+      <a class="team-logo" href="/team/ATL" title="Atlanta Hawks results" aria-label="View Atlanta Hawks results"><img src="https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg" alt="Atlanta Hawks logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/BOS" title="Boston Celtics results" aria-label="View Boston Celtics results"><img src="https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg" alt="Boston Celtics logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/BKN" title="Brooklyn Nets results" aria-label="View Brooklyn Nets results"><img src="https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg" alt="Brooklyn Nets logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/CHA" title="Charlotte Hornets results" aria-label="View Charlotte Hornets results"><img src="https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg" alt="Charlotte Hornets logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/CHI" title="Chicago Bulls results" aria-label="View Chicago Bulls results"><img src="https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg" alt="Chicago Bulls logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/CLE" title="Cleveland Cavaliers results" aria-label="View Cleveland Cavaliers results"><img src="https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg" alt="Cleveland Cavaliers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/DAL" title="Dallas Mavericks results" aria-label="View Dallas Mavericks results"><img src="https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg" alt="Dallas Mavericks logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/DEN" title="Denver Nuggets results" aria-label="View Denver Nuggets results"><img src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Denver Nuggets logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/DET" title="Detroit Pistons results" aria-label="View Detroit Pistons results"><img src="https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg" alt="Detroit Pistons logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/GSW" title="Golden State Warriors results" aria-label="View Golden State Warriors results"><img src="https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg" alt="Golden State Warriors logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/HOU" title="Houston Rockets results" aria-label="View Houston Rockets results"><img src="https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg" alt="Houston Rockets logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/IND" title="Indiana Pacers results" aria-label="View Indiana Pacers results"><img src="https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg" alt="Indiana Pacers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/LAC" title="LA Clippers results" aria-label="View LA Clippers results"><img src="https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg" alt="LA Clippers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/LAL" title="Los Angeles Lakers results" aria-label="View Los Angeles Lakers results"><img src="https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg" alt="Los Angeles Lakers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/MEM" title="Memphis Grizzlies results" aria-label="View Memphis Grizzlies results"><img src="https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg" alt="Memphis Grizzlies logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/MIA" title="Miami Heat results" aria-label="View Miami Heat results"><img src="https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg" alt="Miami Heat logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/MIL" title="Milwaukee Bucks results" aria-label="View Milwaukee Bucks results"><img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Milwaukee Bucks logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/MIN" title="Minnesota Timberwolves results" aria-label="View Minnesota Timberwolves results"><img src="https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg" alt="Minnesota Timberwolves logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/NOP" title="New Orleans Pelicans results" aria-label="View New Orleans Pelicans results"><img src="https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg" alt="New Orleans Pelicans logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/NYK" title="New York Knicks results" aria-label="View New York Knicks results"><img src="https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg" alt="New York Knicks logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/OKC" title="Oklahoma City Thunder results" aria-label="View Oklahoma City Thunder results"><img src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Oklahoma City Thunder logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/ORL" title="Orlando Magic results" aria-label="View Orlando Magic results"><img src="https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg" alt="Orlando Magic logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/PHI" title="Philadelphia 76ers results" aria-label="View Philadelphia 76ers results"><img src="https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg" alt="Philadelphia 76ers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/PHX" title="Phoenix Suns results" aria-label="View Phoenix Suns results"><img src="https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg" alt="Phoenix Suns logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/POR" title="Portland Trail Blazers results" aria-label="View Portland Trail Blazers results"><img src="https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg" alt="Portland Trail Blazers logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/SAC" title="Sacramento Kings results" aria-label="View Sacramento Kings results"><img src="https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg" alt="Sacramento Kings logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/SAS" title="San Antonio Spurs results" aria-label="View San Antonio Spurs results"><img src="https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg" alt="San Antonio Spurs logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/TOR" title="Toronto Raptors results" aria-label="View Toronto Raptors results"><img src="https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg" alt="Toronto Raptors logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/UTA" title="Utah Jazz results" aria-label="View Utah Jazz results"><img src="https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg" alt="Utah Jazz logo" loading="lazy"></a>
+      <a class="team-logo" href="/team/WAS" title="Washington Wizards results" aria-label="View Washington Wizards results"><img src="https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg" alt="Washington Wizards logo" loading="lazy"></a>
+      </div>
+  </header>
   <main><div class="wrap">
     <section class="intro"><div class="eyebrow">One season · 30 teams · three measures</div><h1>Season leaderboard</h1></section>
     {% if error %}<div class="panel error" role="alert">{{ error }}</div>{% elif data %}
