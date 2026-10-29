@@ -91,6 +91,7 @@
     .metric-group{margin-top:22px}
     .metric-group h3{margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid rgba(23,53,104,.35)}
     .metric-row{margin:10px 0;padding:15px;background:rgba(255,241,210,.72);border:2px solid rgba(23,53,104,.38)}
+    .comparison-titlebar{display:flex;align-items:center;justify-content:space-between;gap:10px}.comparison-titlebar h2{margin-bottom:0}
     .metric-heading{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
     .metric-heading strong{color:var(--navy);font-size:1.2rem;font-weight:900}
     .metric-heading span{color:var(--muted);font-size:.98rem;font-weight:700}
@@ -114,7 +115,14 @@
     @media(max-width:700px){header{align-items:flex-start;flex-direction:column}.team-picker{grid-template-columns:repeat(3,minmax(0,1fr))}.matchup-board{gap:8px}.selected-team{width:clamp(112px,29vw,160px);padding:10px}.versus{padding:6px 8px}.metric-values{grid-template-columns:1fr 1.2fr 1fr;gap:8px}.record-grid{grid-template-columns:1fr}}
     @media(max-width:420px){.team-picker{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-values{grid-template-columns:1fr 1fr}.metric-lines{grid-column:1/-1;grid-row:2}.metric-value:last-child{text-align:right}.range-output{font-size:.95rem}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
-  </style>
+  
+.csv-download{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:3px 8px;color:var(--navy);background:rgba(255,241,210,.76);border:1.5px solid var(--line);border-radius:999px;font:700 .88rem/1.2 'Barlow Condensed','Arial Narrow',Arial,sans-serif;white-space:nowrap;cursor:pointer}
+.csv-download:hover{background:var(--cream);border-color:var(--accent)}
+.csv-download:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.data-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.data-heading h2{margin-bottom:0}
+@media(max-width:480px){.data-heading{align-items:flex-start}}
+</style>
 </head>
 <body>
   <header>
@@ -178,7 +186,7 @@
 
         <section class="panel compare-results" id="compare-results" aria-labelledby="results-title" aria-live="polite" hidden>
           <div class="eyebrow">Selected matchup · selected seasons</div>
-          <h2 id="results-title">Team comparison</h2>
+          <div class="comparison-titlebar"><h2 id="results-title">Team comparison</h2><button type="button" class="csv-download" id="download-comparison" disabled aria-label="Download selected team comparison as CSV" title="Download selected comparison as CSV">↓ CSV</button></div>
           <div class="comparison-meta" id="comparison-meta"></div>
           <div id="comparison-content"></div>
           <p class="interpretation">Positive and negative labels describe which way a metric compares in these data; they do not show that bonus attempts or accuracy cause wins. Attempt volume is shown as volume, not automatically as an advantage.</p>
@@ -206,6 +214,8 @@
       const results = document.getElementById("compare-results");
       const meta = document.getElementById("comparison-meta");
       const content = document.getElementById("comparison-content");
+      const comparisonDownload = document.getElementById("download-comparison");
+      let comparisonCsvRows = [];
       const teamByCode = Object.fromEntries(teams.map(team => [team.code, team]));
       const selected = {left: null, right: null};
 
@@ -349,6 +359,8 @@
       function renderComparison() {
         if (!selected.left || !selected.right) {
           results.hidden = true;
+          comparisonDownload.disabled = true;
+          comparisonCsvRows = [];
           return;
         }
         results.hidden = false;
@@ -365,6 +377,8 @@
           empty.className = "no-common";
           empty.textContent = "No shared team-season data for this range.";
           content.append(empty);
+          comparisonDownload.disabled = true;
+          comparisonCsvRows = [];
           return;
         }
 
@@ -373,6 +387,13 @@
         const firstCommon = commonSeasons[0];
         const lastCommon = commonSeasons[commonSeasons.length - 1];
         meta.textContent = "Using " + commonSeasons.length + " shared seasons (" + firstCommon + " through " + lastCommon + "). Rates are recalculated from combined wins, games, makes, and attempts.";
+        const [rangeStart, rangeEnd] = seasonBounds();
+        comparisonCsvRows = [
+          ["Team", "Selected range start", "Selected range end", "Shared seasons", "First shared season", "Last shared season", "Games", "Wins", "Win rate (%)", "Bonus attempts", "Attempts per team-game", "Bonus free throws made", "Free-throw accuracy (%)"],
+          [teamByCode[selected.left].name, seasons[rangeStart], seasons[rangeEnd], commonSeasons.length, firstCommon, lastCommon, left.games, left.wins, left.games ? (left.wins / left.games) * 100 : 0, left.attempts, left.games ? left.attempts / left.games : 0, left.made, left.attempts ? (left.made / left.attempts) * 100 : 0],
+          [teamByCode[selected.right].name, seasons[rangeStart], seasons[rangeEnd], commonSeasons.length, firstCommon, lastCommon, right.games, right.wins, right.games ? (right.wins / right.games) * 100 : 0, right.attempts, right.games ? right.attempts / right.games : 0, right.made, right.attempts ? (right.made / right.attempts) * 100 : 0]
+        ];
+        comparisonDownload.disabled = false;
 
         const records = document.createElement("div");
         records.className = "record-grid";
@@ -480,6 +501,9 @@
       rightSlot.addEventListener("click", () => {
         if (selected.right) { selected.right = null; render(); }
       });
+      comparisonDownload.addEventListener("click", () => {
+        window.downloadNbaCsv("team-comparison-selected-range.csv", comparisonCsvRows);
+      });
       startInput.addEventListener("input", () => {
         if (Number(startInput.value) > Number(endInput.value)) endInput.value = startInput.value;
         updateRangeLabels();
@@ -495,5 +519,6 @@
     })();
   </script>
   {% endif %}
+  <script src="{{ url_for('static', filename='download.js') }}" defer></script>
 </body>
 </html>
