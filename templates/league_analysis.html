@@ -27,8 +27,8 @@
     .bar:hover::after,.bar:focus::after{opacity:1;visibility:visible}.bar:hover,.bar:focus{outline:2px solid var(--accent);outline-offset:2px}
     .trend .bar:first-child::after{left:0;transform:none}.trend .bar:last-child::after{left:auto;right:0;transform:none}
     .labels{display:flex;justify-content:space-between;font-weight:700}
-    .timing-team-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(54px,1fr));gap:8px;margin:18px 0 12px}
-    .timing-logo-choice{width:54px;height:54px;justify-self:center;display:grid;place-items:center;padding:5px;background:rgba(255,241,210,.85);border:2px solid rgba(23,53,104,.55);border-radius:50%;cursor:pointer;transition:transform .14s ease,border-color .14s ease,box-shadow .14s ease}
+    .timing-team-picker{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:18px 0 12px}
+    .timing-logo-choice{flex:0 0 54px;width:54px;height:54px;display:grid;place-items:center;padding:5px;background:rgba(255,241,210,.85);border:2px solid rgba(23,53,104,.55);border-radius:50%;cursor:pointer;transition:transform .14s ease,border-color .14s ease,box-shadow .14s ease}
     .timing-logo-choice:hover,.timing-logo-choice:focus-visible{transform:scale(1.08);border-color:var(--accent);outline:2px solid rgba(185,88,50,.35);outline-offset:2px}
     .timing-logo-choice.is-selected{border:3px solid var(--accent);box-shadow:0 0 0 3px rgba(185,88,50,.2)}
     .timing-logo-choice img{width:100%;height:100%;object-fit:contain}
